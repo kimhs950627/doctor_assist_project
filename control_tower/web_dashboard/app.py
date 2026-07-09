@@ -18,6 +18,7 @@
 """
 from __future__ import annotations
 
+import asyncio
 import os
 import sys
 import tempfile
@@ -34,20 +35,14 @@ except ImportError as e:
 # modules 경로 추가 (프로젝트 루트 기준)
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from modules.gemini_module import GeminiModule, GeminiQuotaError
-from modules.instagram_module import InstagramModule, PublishRequest, ThreadsModule
+from control_tower.router import DoctorRouter, RouterResult
 
 app = FastAPI(title="Doctor Assist Dashboard", version="1.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
-# ── 모듈 초기화 ───────────────────────────────────────────
-try:
-    gemini = GeminiModule()
-except Exception:
-    gemini = None  # type: ignore
-
-instagram = InstagramModule()
-threads = ThreadsModule()
+# ── 공유 라우터 (Gemini/Instagram/Threads 오케스트레이션) ──
+# 두 컨트롤 타워(웹/텔레그램)가 공통으로 사용하는 비즈니스 로직 레이어.
+router = DoctorRouter()
 
 
 # ── 유틸 ─────────────────────────────────────────────────
@@ -61,23 +56,19 @@ async def _save_upload(file: UploadFile) -> str | None:
         return tmp.name
 
 
-def _gemini_or_error() -> tuple[GeminiModule | None, dict | None]:
-    if gemini is None:
-        return None, {"error": "GEMINI_API_KEY가 설정되지 않았습니다"}
-    return gemini, None
+def _to_response(res: RouterResult, *, quota_code: int = 429, error_code: int = 503) -> JSONResponse:
+    """RouterResult → JSONResponse. 쿼터 초과는 429, 그 외 설정/실패는 503."""
+    if res.ok:
+        return JSONResponse(res.data)
+    code = quota_code if res.error and "쿼터" in res.error else error_code
+    return JSONResponse({"error": res.error or "알 수 없는 오류"}, status_code=code)
 
 
 # ── 헬스체크 ─────────────────────────────────────────────
 
 @app.get("/api/health")
 def health() -> dict[str, Any]:
-    gm, _ = _gemini_or_error()
-    gemini_ok, detail = gm.ping() if gm else (False, "미설정")
-    return {
-        "gemini": {"ok": gemini_ok, "detail": detail},
-        "instagram": {"configured": instagram.is_configured},
-        "threads": {"configured": threads.is_configured},
-    }
+    return router.health()
 
 
 # ── Gemini 엔드포인트들 ──────────────────────────────────
@@ -87,15 +78,10 @@ async def api_ask(
     question: str = Form(...),
     image: UploadFile | None = File(None),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     img_path = await _save_upload(image) if image else None
     try:
-        answer = gm.ask(question, image_path=img_path)
-        return JSONResponse({"answer": answer})
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과 (무료 한도 도달)"}, status_code=429)
+        res = await asyncio.to_thread(router.handle_ask, question, img_path)
+        return _to_response(res)
     finally:
         if img_path:
             Path(img_path).unlink(missing_ok=True)
@@ -106,15 +92,10 @@ async def api_soap(
     note: str = Form(...),
     image: UploadFile | None = File(None),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     img_path = await _save_upload(image) if image else None
     try:
-        result = gm.to_soap(note, image_path=img_path)
-        return JSONResponse(result)
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과"}, status_code=429)
+        res = await asyncio.to_thread(router.handle_soap, note, img_path)
+        return _to_response(res)
     finally:
         if img_path:
             Path(img_path).unlink(missing_ok=True)
@@ -126,15 +107,10 @@ async def api_ddx(
     n: int = Form(5),
     image: UploadFile | None = File(None),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     img_path = await _save_upload(image) if image else None
     try:
-        result = gm.differential_diagnosis(symptoms, n=n, image_path=img_path)
-        return JSONResponse({"differential": result})
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과"}, status_code=429)
+        res = await asyncio.to_thread(router.handle_ddx, symptoms, n, img_path)
+        return _to_response(res)
     finally:
         if img_path:
             Path(img_path).unlink(missing_ok=True)
@@ -146,15 +122,9 @@ async def api_edu(
     grade: str = Form("중학교"),
     points: str = Form(""),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     pts = [p.strip() for p in points.split(",") if p.strip()] if points else None
-    try:
-        result = gm.patient_education(diagnosis, grade=grade, points=pts)
-        return JSONResponse({"education": result})
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과"}, status_code=429)
+    res = await asyncio.to_thread(router.handle_edu, diagnosis, grade, pts)
+    return _to_response(res)
 
 
 @app.post("/api/drug")
@@ -162,15 +132,9 @@ async def api_drug(
     current_meds: str = Form(...),
     new_med: str = Form(...),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     meds = [m.strip() for m in current_meds.split(",") if m.strip()]
-    try:
-        result = gm.check_drug_interaction(meds, new_med)
-        return JSONResponse(result)
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과"}, status_code=429)
+    res = await asyncio.to_thread(router.handle_drug, meds, new_med)
+    return _to_response(res)
 
 
 @app.post("/api/sns_draft")
@@ -179,15 +143,13 @@ async def api_sns_draft(
     style: str = Form("교육적이고 친근한"),
     image: UploadFile | None = File(None),
 ) -> JSONResponse:
-    gm, err = _gemini_or_error()
-    if err:
-        return JSONResponse(err, status_code=503)
     img_path = await _save_upload(image) if image else None
     try:
-        result = gm.generate_sns_draft(topic, image_path=img_path, style=style)
-        return JSONResponse(result)
-    except GeminiQuotaError:
-        return JSONResponse({"error": "Gemini 쿼터 초과"}, status_code=429)
+        res = await asyncio.to_thread(router.handle_sns_draft, topic, img_path, style)
+        if res.ok:
+            # 프론트엔드 호환: draft 필드를 평탄화하지 않고 그대로 반환
+            return JSONResponse(res.data.get("draft", {}))
+        return _to_response(res)
     finally:
         if img_path:
             Path(img_path).unlink(missing_ok=True)
@@ -203,22 +165,19 @@ async def api_publish(
 ) -> JSONResponse:
     urls = [u.strip() for u in media_urls.split(",") if u.strip()]
     tags = [t.strip() for t in hashtags.split(",") if t.strip()]
-    ig_req = PublishRequest(text=instagram_text, media_urls=urls, hashtags=tags, dry_run=dry_run)
-    th_req = PublishRequest(text=threads_text, media_urls=urls, hashtags=tags, dry_run=dry_run)
-    ig_result = instagram.publish(ig_req) if instagram_text or urls else None
-    th_result = threads.publish(th_req) if threads_text else None
-    return JSONResponse({
-        "instagram": {
-            "ok": ig_result.ok if ig_result else None,
-            "permalink": ig_result.permalink if ig_result else None,
-            "error": ig_result.error_message if ig_result else None,
-        } if ig_result else "skipped",
-        "threads": {
-            "ok": th_result.ok if th_result else None,
-            "media_id": th_result.published_media_id if th_result else None,
-            "error": th_result.error_message if th_result else None,
-        } if th_result else "skipped",
-    })
+    # 이미 생성된 캡션/해시태그를 직접 발행: draft 없이 텍스트+미디어로 발행.
+    res = await asyncio.to_thread(
+        router.handle_sns_publish,
+        None,  # draft=None (topic 기반 생성 아님)
+        instagram_text=instagram_text,
+        threads_text=threads_text,
+        media_urls=urls,
+        hashtags=tags,
+        dry_run=dry_run,
+    )
+    if res.ok:
+        return JSONResponse(res.data)
+    return _to_response(res, error_code=502)
 
 
 # ── 대시보드 HTML ─────────────────────────────────────────

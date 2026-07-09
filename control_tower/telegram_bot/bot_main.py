@@ -1,8 +1,12 @@
 """텔레그램 봇 컨트롤 타워.
 
+웹 대시보드(control_tower.web_dashboard.app)와 동일한 ``DoctorRouter`` 를 공유하므로
+비즈니스 로직 중복이 없다. 이 파일은 텔레그램特有的 입출력(커맨드 파싱, 승인 흐름,
+메시지 포맷팅)만 담당한다.
+
 실행::
 
-    pip install python-telegram-bot google-genai requests
+    pip install python-telegram-bot google-genai requests python-dotenv
     python control_tower/telegram_bot/bot_main.py
 
 환경변수 (.env)::
@@ -20,7 +24,7 @@
 
     /start       — 시작 안내
     /soap <메모> — 진료 메모 → SOAP
-    /ddx <증상>  — 감별 진단 5가지
+    /ddx <증상>  — 감별 진단 5가지 (이미지 첨부 가능)
     /edu <진단명>— 환자 설명문
     /drug <현재약> | <추가약> — 약물 상호작용
     /post <주제> — SNS 초안 생성 후 승인 → 발행
@@ -33,7 +37,6 @@ import asyncio
 import logging
 import os
 import sys
-import tempfile
 from pathlib import Path
 
 try:
@@ -47,8 +50,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from telegram import Update
 from telegram.ext import ContextTypes, MessageHandler, filters
 
-from modules.gemini_module import GeminiModule, GeminiQuotaError
-from modules.instagram_module import InstagramModule, PublishRequest, ThreadsModule
+from control_tower.router import DoctorRouter, RouterResult
 from modules.telegram_module import TelegramBot
 
 logging.basicConfig(
@@ -59,129 +61,144 @@ logger = logging.getLogger(__name__)
 
 DRY_RUN = os.environ.get("DRY_RUN", "true").lower() in {"1", "true", "yes"}
 
-# ── 모듈 초기화 ───────────────────────────────────────────
+# ── 컨트롤 타워 초기화 ───────────────────────────────────
 bot = TelegramBot()
 bot.register_default_commands()
 
-try:
-    gemini = GeminiModule()
-    logger.info("Gemini module initialized")
-except Exception as exc:
-    gemini = None  # type: ignore
-    logger.warning("Gemini init failed: %s", exc)
+# 공유 라우터: Gemini/Instagram/Threads 오케스트레이션 (lazy init, 키 없어도 safe)
+router = DoctorRouter()
 
-instagram = InstagramModule()
-threads = ThreadsModule()
-
-# 대기 중 승인 future 저장
+# 대기 중 승인 future 저장 (chat_id → Future)
 _pending: dict[int, asyncio.Future] = {}
 
 
 # ── 헬퍼 ─────────────────────────────────────────────────
 
-def _gemini_required(func):
-    """Gemini 없으면 에러 메시지 반환 데코레이터."""
-    async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if gemini is None:
-            await update.message.reply_text("❌ GEMINI_API_KEY가 설정되지 않았습니다.")
-            return
-        await func(update, context)
-    return wrapper
+async def _run(func, *args) -> RouterResult:
+    """동기 라우터 메서드를 스레드풀에서 실행 (이벤트 루프 블로킹 방지)."""
+    return await asyncio.to_thread(func, *args)
+
+
+async def _reply_error(update: Update, res: RouterResult) -> None:
+    """RouterResult 실패를 사용자 메시지로 변환."""
+    if res.error and "쿼터" in res.error:
+        await update.message.reply_text("❌ Gemini 쿼터 초과 (무료 한도 도달)")
+    elif res.error and "GEMINI_API_KEY" in (res.error or ""):
+        await update.message.reply_text("❌ GEMINI_API_KEY가 설정되지 않았습니다.")
+    else:
+        await update.message.reply_text(f"❌ 오류: {res.error or '알 수 없음'}")
 
 
 # ── 커맨드 핸들러 ─────────────────────────────────────────
 
 @bot.command("soap", description="진료 메모 → SOAP 변환")
-@_gemini_required
 async def soap_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     note = " ".join(context.args).strip()
     if not note:
         await update.message.reply_text("사용법: /soap <진료 메모>\n예: /soap 55세 남성 두통 3일 혈압 160/100")
         return
     await update.message.reply_text("⏳ SOAP 변환 중...")
-    try:
-        result = gemini.to_soap(note)
-        text = f"📋 SOAP 변환 결과\n\nS: {result.get('S','')}\nO: {result.get('O','')}\nA: {result.get('A','')}\nP: {result.get('P','')}"
-        await update.message.reply_text(text)
-    except GeminiQuotaError:
-        await update.message.reply_text("❌ Gemini 쿼터 초과 (무료 한도 도달)")
+    res = await _run(router.handle_soap, note)
+    if not res.ok:
+        await _reply_error(update, res)
+        return
+    s = res.data
+    await update.message.reply_text(
+        f"📋 SOAP 변환 결과\n\nS: {s.get('S','')}\nO: {s.get('O','')}\nA: {s.get('A','')}\nP: {s.get('P','')}"
+    )
 
 
 @bot.command("ddx", description="감별 진단")
-@_gemini_required
 async def ddx_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     symptoms = " ".join(context.args).strip()
     if not symptoms:
         await update.message.reply_text("사용법: /ddx <증상/소견>\n예: /ddx 우상복부 둔통 3개월 AST 상승")
         return
     await update.message.reply_text("⏳ 감별 진단 분석 중...")
+
+    # 이미지 첨부 처리 (사진과 함께 /ddx 전송 시)
+    image_path = None
+    if update.message.photo:
+        photo = update.message.photo[-1]
+        f = await context.bot.get_file(photo.file_id)
+        import tempfile
+        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
+        await f.download_to_drive(tmp.name)
+        image_path = tmp.name
+
     try:
-        result = gemini.differential_diagnosis(symptoms, n=5)
-        lines = ["🔍 감별 진단 (상위 5개)\n"]
-        for i, item in enumerate(result, 1):
-            lines.append(
-                f"{i}. {item.get('diagnosis','')}\n"
-                f"   핵심: {item.get('key_feature','')}\n"
-                f"   다음 단계: {item.get('next_step','')}"
-            )
-        await update.message.reply_text("\n\n".join(lines))
-    except GeminiQuotaError:
-        await update.message.reply_text("❌ Gemini 쿼터 초과")
+        res = await _run(router.handle_ddx, symptoms, 5, image_path)
+    finally:
+        if image_path:
+            Path(image_path).unlink(missing_ok=True)
+
+    if not res.ok:
+        await _reply_error(update, res)
+        return
+    items = res.data.get("differential", [])
+    lines = ["🔍 감별 진단 (상위 5개)\n"]
+    for i, item in enumerate(items, 1):
+        lines.append(
+            f"{i}. {item.get('diagnosis','')}\n"
+            f"   핵심: {item.get('key_feature','')}\n"
+            f"   다음 단계: {item.get('next_step','')}"
+        )
+    await update.message.reply_text("\n\n".join(lines))
 
 
 @bot.command("edu", description="환자 설명문")
-@_gemini_required
 async def edu_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not context.args:
         await update.message.reply_text("사용법: /edu <진단명>\n예: /edu 제2형 당뇨")
         return
     diagnosis = " ".join(context.args)
     await update.message.reply_text("⏳ 설명문 생성 중...")
-    try:
-        result = gemini.patient_education(diagnosis)
-        await update.message.reply_text(f"📄 {diagnosis} 환자 설명문\n\n{result}")
-    except GeminiQuotaError:
-        await update.message.reply_text("❌ Gemini 쿼터 초과")
+    res = await _run(router.handle_edu, diagnosis)
+    if not res.ok:
+        await _reply_error(update, res)
+        return
+    await update.message.reply_text(f"📄 {diagnosis} 환자 설명문\n\n{res.data.get('education', '')}")
 
 
 @bot.command("drug", description="약물 상호작용 체크")
-@_gemini_required
 async def drug_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     raw = " ".join(context.args)
     if "|" not in raw:
-        await update.message.reply_text("사용법: /drug <현재 복용약, 쉼표 구분> | <추가 예정약>\n예: /drug 메트포르민, 아스피린 | 클로피도그렐")
+        await update.message.reply_text(
+            "사용법: /drug <현재 복용약, 쉼표 구분> | <추가 예정약>\n"
+            "예: /drug 메트포르민, 아스피린 | 클로피도그렐"
+        )
         return
     current_str, new_med = raw.split("|", 1)
     current_meds = [m.strip() for m in current_str.split(",") if m.strip()]
     await update.message.reply_text("⏳ 약물 상호작용 분석 중...")
-    try:
-        result = gemini.check_drug_interaction(current_meds, new_med.strip())
-        emoji = "⚠️" if result.get("has_interaction") else "✅"
-        text = (
-            f"💊 약물 상호작용 분석 {emoji}\n\n"
-            f"상호작용: {'있음' if result.get('has_interaction') else '없음'}\n"
-            f"심각도: {result.get('severity', '-')}\n\n"
-            f"{result.get('details', '')}\n\n"
-            f"권고사항: {result.get('recommendation', '')}"
-        )
-        await update.message.reply_text(text)
-    except GeminiQuotaError:
-        await update.message.reply_text("❌ Gemini 쿼터 초과")
+    res = await _run(router.handle_drug, current_meds, new_med.strip())
+    if not res.ok:
+        await _reply_error(update, res)
+        return
+    d = res.data
+    emoji = "⚠️" if d.get("has_interaction") else "✅"
+    await update.message.reply_text(
+        f"💊 약물 상호작용 분석 {emoji}\n\n"
+        f"상호작용: {'있음' if d.get('has_interaction') else '없음'}\n"
+        f"심각도: {d.get('severity', '-')}\n\n"
+        f"{d.get('details', '')}\n\n"
+        f"권고사항: {d.get('recommendation', '')}"
+    )
 
 
 @bot.command("post", description="SNS 초안 생성 + 발행")
-@_gemini_required
 async def post_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     topic = " ".join(context.args).strip()
     if not topic:
         await update.message.reply_text("사용법: /post <SNS 주제>\n예: /post 오늘 외래에서 LDL 상담이 많았다")
         return
     await update.message.reply_text("⏳ SNS 초안 생성 중...")
-    try:
-        draft = gemini.generate_sns_draft(topic)
-    except GeminiQuotaError:
-        await update.message.reply_text("❌ Gemini 쿼터 초과")
+    res = await _run(router.handle_sns_draft, topic)
+    if not res.ok:
+        await _reply_error(update, res)
         return
+    draft = res.data.get("draft", {})
 
     preview = (
         f"📸 [인스타그램]\n{draft.get('instagram_caption','')}\n\n"
@@ -218,34 +235,56 @@ async def post_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
 
     await update.message.reply_text("🚀 발행 중...")
-    hashtags = draft.get("hashtags", [])
-    ig_req = PublishRequest(text=draft.get("instagram_caption", ""), hashtags=hashtags, dry_run=DRY_RUN)
-    th_req = PublishRequest(text=draft.get("threads_caption", ""), hashtags=hashtags, dry_run=DRY_RUN)
-    ig_result = instagram.publish(ig_req)
-    th_result = threads.publish(th_req)
+    # decision 이 str 이면 재생성 지시 → 초안 재생성 후 발행
+    final_draft = draft
+    if isinstance(decision, str):
+        regen = await _run(router.handle_sns_draft, f"{topic} (수정 지시: {decision})")
+        if regen.ok:
+            final_draft = regen.data.get("draft", draft)
+        else:
+            await _reply_error(update, regen)
+            return
 
+    pub = await _run(
+        router.handle_sns_publish,
+        final_draft,
+        dry_run=DRY_RUN,
+    )
+    if not pub.ok:
+        await _reply_error(update, pub)
+        return
+    ig = pub.data.get("instagram")
+    th = pub.data.get("threads")
     mode = "🧪 DRY RUN" if DRY_RUN else "🚀 LIVE"
+
+    def _fmt(label: str, r) -> str:
+        if r == "skipped" or r is None:
+            return f"{label}: ⏭ 스킵"
+        ok = r.get("ok") if isinstance(r, dict) else False
+        detail = ""
+        if isinstance(r, dict):
+            detail = r.get("permalink") or r.get("media_id") or r.get("error") or ""
+        return f"{label}: {'✅' if ok else '❌'} {detail}"
+
     await update.message.reply_text(
-        f"발행 완료 ({mode})\n"
-        f"Instagram: {'✅' if ig_result.ok else '❌'} {ig_result.permalink or ig_result.error_message or ''}\n"
-        f"Threads: {'✅' if th_result.ok else '❌'} {th_result.published_media_id or th_result.error_message or ''}"
+        f"발행 완료 ({mode})\n{_fmt('Instagram', ig)}\n{_fmt('Threads', th)}"
     )
 
 
 @bot.command("status", description="모듈 상태")
 async def status_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    gemini_ok, detail = gemini.ping() if gemini else (False, "미설정")
+    h = await _run(router.health)
     mode = "🧪 DRY RUN" if DRY_RUN else "🚀 LIVE"
-    text = (
+    g = h.get("gemini", {})
+    await update.message.reply_text(
         f"📊 Doctor Assist Bot 상태\n"
         f"{'─' * 20}\n"
         f"모드: {mode}\n"
-        f"Gemini: {'✅' if gemini_ok else '❌'} {detail}\n"
-        f"Instagram: {'✅' if instagram.is_configured else '❌ 미설정'}\n"
-        f"Threads: {'✅' if threads.is_configured else '❌ 미설정'}\n"
+        f"Gemini: {'✅' if g.get('ok') else '❌'} {g.get('detail', '미설정')}\n"
+        f"Instagram: {'✅' if h.get('instagram', {}).get('configured') else '❌ 미설정'}\n"
+        f"Threads: {'✅' if h.get('threads', {}).get('configured') else '❌ 미설정'}\n"
         f"대기 중 승인: {len(_pending)}건"
     )
-    await update.message.reply_text(text)
 
 
 # ── 텍스트 메시지 핸들러 (yes/no 승인) ───────────────────
