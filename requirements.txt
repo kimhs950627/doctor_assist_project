@@ -1,0 +1,18 @@
+# Doctor Assist Project — 의존성
+
+# LLM
+google-genai>=1.0.0
+
+# Telegram Bot
+python-telegram-bot>=21.0
+
+# Web Dashboard
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# HTTP
+requests>=2.31.0
+
+# 환경변수
+python-dotenv>=1.0.0
