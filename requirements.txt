@@ -1,6 +1,7 @@
 # Doctor Assist Project — 의존성
 
 # LLM
+google-generativeai>=0.8.0
 google-genai>=1.0.0
 
 # Telegram Bot
@@ -11,8 +12,19 @@ fastapi>=0.110.0
 uvicorn[standard]>=0.29.0
 python-multipart>=0.0.9
 
-# HTTP
+# HTTP (async)
+httpx>=0.27.0
 requests>=2.31.0
+
+# Image Processing
+Pillow>=10.0.0
+
+# Browser Automation (Naver Blog RPA)
+playwright>=1.44.0
+# 설치 후: playwright install chromium
+
+# Database
+aiosqlite>=0.20.0
 
 # 환경변수
 python-dotenv>=1.0.0
