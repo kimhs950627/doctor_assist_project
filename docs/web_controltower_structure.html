@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Assist — Web Control Tower Structure</title>
+<style>
+:root {
+  --bg:#f5f7f8; --surface:#fff; --ink:#17212b; --muted:#667685; --line:#dce3e8;
+  --teal:#006d77; --teal-2:#e5f4f3; --blue:#3867d6; --blue-2:#eaf0ff;
+  --amber:#b25e00; --amber-2:#fff2df; --green:#147a4a; --green-2:#e8f6ee;
+  --red:#b83b3b; --shadow:0 8px 24px rgba(20,37,53,.08); --r:14px;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:16px 28px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;min-width:255px}.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--teal);color:white;font-size:20px}.brand strong{display:block;font-size:16px}.brand small{display:block;color:var(--muted);font-size:12px}.status{margin-left:auto;color:var(--green);font-size:13px;font-weight:700}.status::before{content:"";display:inline-block;width:8px;height:8px;background:#1aa466;border-radius:50%;margin-right:6px}
+.layout{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:calc(100vh - 69px)} aside{border-right:1px solid var(--line);background:#fbfcfc;padding:20px 14px}.nav-label{font-size:11px;letter-spacing:.08em;font-weight:800;color:#84929d;padding:0 12px 8px}.nav{display:block;text-decoration:none;color:#455563;padding:11px 12px;border-radius:9px;margin-bottom:3px;font-weight:650}.nav:hover{background:#edf4f4}.nav.active{background:var(--teal-2);color:var(--teal)}.nav .pill{float:right;font-size:10px;padding:2px 6px;border-radius:20px;background:var(--amber-2);color:var(--amber)}.side-note{margin:24px 4px 0;padding:13px;background:var(--blue-2);border-radius:10px;color:#345281;font-size:12px}
+main{padding:30px;max-width:1450px;width:100%;margin:auto}.kicker{color:var(--teal);font-size:12px;letter-spacing:.07em;font-weight:800;text-transform:uppercase}.topline{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}h1{font-size:28px;line-height:1.2;margin:4px 0 6px}p.sub{margin:0;color:var(--muted)}.legend{display:flex;gap:8px;flex-wrap:wrap}.badge{font-size:11px;font-weight:800;padding:4px 8px;border-radius:20px}.current{background:var(--green-2);color:var(--green)}.planned{background:var(--amber-2);color:var(--amber)}.shared{background:var(--blue-2);color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:19px}.card h2{font-size:16px;margin:0 0 7px}.card p{color:var(--muted);font-size:13px;margin:0}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}.tab-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.tab{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#fff;min-width:140px}.tab b{display:block;font-size:13px}.tab span{display:block;color:var(--muted);font-size:11px;margin-top:2px}.tab.now{border-color:#a9d7d2;background:#fbffff}.tab.future{border-style:dashed;background:#fffdf9}.tab .mark{float:right;font-size:10px;margin-top:2px}
+.flow{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr;align-items:center;gap:4px;margin:18px 0 6px}.node{border:1px solid var(--line);border-radius:11px;padding:13px;min-height:105px;background:#fff}.node strong{font-size:13px;display:block;margin-bottom:5px}.node small{color:var(--muted);font-size:11px;display:block}.arrow{text-align:center;color:#93a1ab;font-size:22px}.node.teal{border-color:#9acfc9;background:#fbffff}.node.blue{border-color:#bbceff;background:#fbfcff}.node.am{border-color:#f0ca91;background:#fffcf7}.node.green{border-color:#b4ddc6;background:#fbfffc}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.mode{border:1px solid var(--line);border-radius:10px;padding:14px}.mode h3{font-size:14px;margin:0 0 7px}.mode ul{padding-left:17px;margin:7px 0 0;color:var(--muted);font-size:12px}.mode.daily{border-left:4px solid var(--blue)}.mode.research{border-left:4px solid var(--teal)}
+.arch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.layer{border-radius:11px;padding:14px}.layer h3{font-size:13px;margin:0 0 7px}.layer ul{padding:0;margin:0;list-style:none;font-size:12px;color:#526370}.layer li{padding:4px 0;border-top:1px solid rgba(0,0,0,.06)}.layer li:first-child{border-top:0}.ui{background:#eef6ff}.service{background:#eefaf7}.runtime{background:#fff8e9}
+.table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}.table th{text-align:left;color:#6c7b86;background:#f7f9fa;font-weight:800}.table th,.table td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}.table td:nth-child(1){font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--teal);font-size:11px}.callout{border-left:4px solid var(--teal);background:var(--teal-2);padding:13px 15px;border-radius:0 9px 9px 0;font-size:13px;margin-top:16px}.muted{color:var(--muted)}
+@media(max-width:900px){.layout{grid-template-columns:1fr} aside{display:none}main{padding:20px}.span-4,.span-5,.span-7,.span-8{grid-column:span 12}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.arch,.two{grid-template-columns:1fr}.status{display:none}.topline{display:block}.legend{margin-top:12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">✚</div><div><strong>Doctor Assist</strong><small>Web Control Tower · Structure Render</small></div></div>
+  <div class="status">Control plane online</div>
+</header>
+<div class="layout">
+<aside>
+  <div class="nav-label">CONTROL TOWER</div>
+  <a class="nav active" href="#overview">▦ Overview</a>
+  <a class="nav" href="#tabs">▣ Web tabs</a>
+  <a class="nav" href="#flow">⇢ Evidence flow</a>
+  <a class="nav" href="#architecture">◇ Service layers</a>
+  <a class="nav" href="#data">▤ Research assets</a>
+  <a class="nav" href="#roadmap">✓ Build order</a>
+  <div class="side-note"><b>Design rule</b><br>Web and Telegram are UI entry points. Research, drafting, storage, and approval logic live in shared services.</div>
+</aside>
+<main>
+<section id="overview">
+  <div class="topline"><div><div class="kicker">Current control tower + implementation target</div><h1>Web dashboard structure</h1><p class="sub">A rendered map of the current FastAPI dashboard and the planned evidence-first workflow.</p></div><div class="legend"><span class="badge current">● Current</span><span class="badge planned">○ Planned</span><span class="badge shared">◆ Shared backend</span></div></div>
+  <div class="grid">
+    <div class="card span-4"><span class="badge current">Current UI</span><h2>Clinical assistance</h2><p>Existing FastAPI endpoints provide Gemini-powered Ask, SOAP, DDx, patient education, and medication interaction support.</p></div>
+    <div class="card span-4"><span class="badge current">Current UI</span><h2>SNS & publishing</h2><p>Existing dashboard generates SNS drafts and triggers Instagram/Threads publishing through the shared router.</p></div>
+    <div class="card span-4"><span class="badge planned">Next UI</span><h2>Evidence library</h2><p>OpenManus research jobs become durable, searchable assets that can be reused by both blog and handout workflows.</p></div>
+  </div>
+</section>
+
+<section id="tabs" class="card" style="margin-top:16px">
+  <div class="kicker">Navigation model</div><h2>Unified tabs</h2><p>The existing <b>외래 / SNS / 발행</b> interface evolves into clear task-oriented tabs. Planned labels remain visibly distinct until their backend endpoints exist.</p>
+  <div class="tab-row">
+    <div class="tab now"><span class="mark current">CURRENT</span><b>🩺 Clinical</b><span>SOAP · DDx · education · drug</span></div>
+    <div class="tab future"><span class="mark planned">PLANNED</span><b>📄 Patient Handouts</b><span>Templates · customize · print/PDF</span></div>
+    <div class="tab now"><span class="mark current">CURRENT+</span><b>📣 Vlog & Publishing</b><span>Drafts · images · review · handoff</span></div>
+    <div class="tab future"><span class="mark planned">PLANNED</span><b>🔎 Research</b><span>OpenManus jobs · sources · claims</span></div>
+    <div class="tab future"><span class="mark planned">PLANNED</span><b>📚 Library & Review</b><span>Search · reuse · approval history</span></div>
+    <div class="tab future"><span class="mark planned">PLANNED</span><b>⚙ Jobs & System</b><span>Queue · retries · worker health</span></div>
+    <div class="tab future"><span class="mark planned">FUTURE</span><b>📈 EMR Analytics</b><span>De-identified CSV/XLSX only</span></div>
+  </div>
+</section>
+
+<section id="flow" class="card" style="margin-top:16px">
+  <div class="kicker">Evidence-first workflow</div><h2>One research service, two entry points</h2><p>Whether started from Vlog or the Research tab, thorough research uses the same durable job lifecycle and creates the same reusable Research Asset.</p>
+  <div class="flow">
+    <div class="node teal"><strong>1. Web / Telegram</strong><small>Topic, audience, source policy, optional images</small><small><b>Entry:</b> Vlog research mode or standalone Research</small></div><div class="arrow">→</div>
+    <div class="node am"><strong>2. Research Job</strong><small>SQLite status: queued → running → completed/failed</small><small>UI returns a job ID; never blocks on browser work</small></div><div class="arrow">→</div>
+    <div class="node blue"><strong>3. OpenManus Worker</strong><small>Separate subprocess/runtime</small><small>Source discovery, papers, guidelines, policy evidence</small></div><div class="arrow">→</div>
+    <div class="node green"><strong>4. Research Asset</strong><small>JSON evidence bundle, sources, logs, tags, outline</small><small>Reusable for content, handout, and later review</small></div>
+  </div>
+  <div class="flow" style="grid-template-columns:1fr 32px 1fr 32px 1fr;max-width:760px;margin:15px auto 4px">
+    <div class="node blue"><strong>5. Gemini Editorial</strong><small>Without grounding; reads selected EvidenceBundle only</small></div><div class="arrow">→</div>
+    <div class="node teal"><strong>6. Physician Review</strong><small>Evidence link, wording edit, approval state</small></div><div class="arrow">→</div>
+    <div class="node green"><strong>7. Output</strong><small>Print/PDF, Instagram, Tistory, Naver handoff</small></div>
+  </div>
+  <div class="callout"><b>Key boundary:</b> OpenManus gathers evidence. Gemini writes from the saved evidence. The physician decides whether the output is clinically and publicly appropriate.</div>
+</section>
+
+<section class="card" style="margin-top:16px">
+  <div class="kicker">Vlog & publishing</div><h2>Two explicit content modes</h2>
+  <div class="two">
+    <div class="mode daily"><h3>Research mode OFF — Daily Vlog</h3><p class="muted">For lifestyle, clinic culture, routine posts, and content not requiring current medical fact validation.</p><ul><li>Topic + images → Gemini direct draft</li><li>Channel-specific Instagram/Tistory/Naver versions</li><li>Physician review before release</li></ul></div>
+    <div class="mode research"><h3>Research mode ON — Medical Content</h3><p class="muted">For guideline updates, medical information, insurance/policy explanations, and factual posts.</p><ul><li>Topic → OpenManus job → saved Research Asset</li><li>Gemini drafts only from EvidenceBundle</li><li>Claim mapping and mandatory evidence review</li></ul></div>
+  </div>
+</section>
+
+<section id="architecture" class="card" style="margin-top:16px">
+  <div class="kicker">Maintainable boundaries</div><h2>Three-layer architecture</h2>
+  <div class="arch">
+    <div class="layer ui"><h3>UI / Control Layer</h3><ul><li>FastAPI dashboard</li><li>Telegram bot</li><li>Forms, status, review screens</li><li>No long-running research logic</li></ul></div>
+    <div class="layer service"><h3>Shared Service Layer</h3><ul><li><code>DoctorRouter</code></li><li>ResearchJobService</li><li>ResearchLibraryService</li><li>EditorialService</li><li>One business workflow for both UIs</li></ul></div>
+    <div class="layer runtime"><h3>Runtime / Provider Layer</h3><ul><li>OpenManus subprocess worker</li><li>Gemini API wrapper</li><li>SQLite + protected artifact files</li><li>Publishing adapters</li><li>Provider interfaces remain replaceable</li></ul></div>
+  </div>
+</section>
+
+<section id="data" class="card" style="margin-top:16px">
+  <div class="kicker">Research library</div><h2>Research Asset directory</h2><p>Each OpenManus run is stored under a stable ID. The raw agent result is kept for provenance; Gemini receives the normalized evidence bundle.</p>
+  <table class="table"><thead><tr><th>File</th><th>Role</th><th>Used by Gemini?</th></tr></thead><tbody>
+  <tr><td>manifest.json</td><td>Topic, tags, entry point, status, timestamps, downstream links</td><td>No</td></tr>
+  <tr><td>request.json</td><td>Validated research request and source policy</td><td>Optional metadata</td></tr>
+  <tr><td>openmanus_raw.json</td><td>Raw output and execution provenance for debugging</td><td>No</td></tr>
+  <tr><td>evidence_bundle.json</td><td>Normalized claims, sources, dates, limitations, conflicts, outline</td><td><b>Yes — default input</b></td></tr>
+  <tr><td>sources.json</td><td>Source URLs, publication/update dates, snippets, quality metadata</td><td>Review support</td></tr>
+  <tr><td>summary.md / outline.md</td><td>Human-readable summary and proposed structure</td><td>Optional</td></tr>
+  <tr><td>run.log</td><td>Sanitized operational log, timeout and failure diagnosis</td><td>No</td></tr>
+  </tbody></table>
+</section>
+
+<section id="roadmap" class="card" style="margin-top:16px;margin-bottom:30px">
+  <div class="kicker">Build sequence</div><h2>Implement the reusable core first</h2>
+  <div class="grid" style="margin-top:12px">
+    <div class="card span-4" style="box-shadow:none"><span class="badge planned">PHASE 0–1</span><h2>Contracts & storage</h2><p>Research schemas, SQLite index, artifact folders, synthetic fixtures, then one isolated OpenManus worker.</p></div>
+    <div class="card span-4" style="box-shadow:none"><span class="badge planned">PHASE 2–3</span><h2>Research control</h2><p>Telegram commands, web Research tab, Library search, source/claim viewer, status and retry.</p></div>
+    <div class="card span-4" style="box-shadow:none"><span class="badge planned">PHASE 4–5</span><h2>Consumers</h2><p>Vlog research checkbox, evidence-based drafts, patient-handout reuse, print/PDF, approval history.</p></div>
+  </div>
+  <div class="callout"><b>Start here:</b> build <code>research_schemas.py</code> and <code>research_store.py</code> before adding new dashboard buttons. This prevents Vlog, Research, and Handout features from becoming separate incompatible systems.</div>
+</section>
+</main></div>
+</body></html>
