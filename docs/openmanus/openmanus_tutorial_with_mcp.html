@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenManus + Gemma 4 완벽 세팅 & 외부 연동 가이드</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #fff;
+            background-color: #2980b9;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #2980b9;
+            border-left: 4px solid #2980b9;
+            padding-left: 10px;
+            margin-top: 25px;
+        }
+        .step {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #282c34;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+            font-family: Consolas, Monaco, monospace;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, monospace;
+            color: #c0392b;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>OpenManus + Gemma 4 <br>기본 세팅 및 외부 저장소(MCP) 연동 가이드</h1>
+
+    <div class="info">
+        이 가이드는 완전 초보자를 위해 작성되었습니다.<br>
+        <strong>1부</strong>는 AI 에이전트를 내 컴퓨터에 설치하는 기본 과정,<br>
+        <strong>2부</strong>는 내 깃허브, 구글 드라이브, 원드라이브, 개인 NAS를 AI와 연결하는 심화 과정입니다.
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1부: 기본 세팅 -->
+    <!-- ========================================== -->
+
+    <h2 id="part1">1부: 기본 설치 및 환경 세팅</h2>
+
+    <div class="step">
+        <h3>0단계: Google API Key 발급받기 (무료 AI의 열쇠)</h3>
+        <ol>
+            <li>크롬이나 엣지 브라우저에서 <code>https://aistudio.google.com/apikey</code> 에 접속합니다.</li>
+            <li>Google 계정으로 로그인 후 <strong>"Create API key"</strong> 파란 버튼을 클릭합니다.</li>
+            <li>화면에 나타나는 <code>AIzaSy...</code> 로 시작하는 긴 문자열을 복사합니다.</li>
+            <li><strong>메모장에 붙여넣어 안전하게 저장해 둡니다.</strong></li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>1단계: PowerShell 열기 및 Ubuntu 설치</h3>
+        <ol>
+            <li>화면 맨 아래 <strong>시작 버튼(Windows 로고)</strong> 우클릭 → <strong>"터미널(관리자)"</strong> 클릭.</li>
+            <li>파란색(또는 검은색) 창이 열리면 아래 명령어를 복사해서 붙여넣고 Enter:
+                <pre>wsl --install -d Ubuntu-24.04</pre>
+            </li>
+            <li>설치 완료 후 <strong>컴퓨터를 재부팅</strong>합니다.</li>
+            <li>재부팅 후 열리는 검은 창에서 영어 소문자로 <strong>아이디</strong>(예: <code>kim</code>)를 입력하고 Enter.</li>
+            <li><strong>비밀번호</strong>를 두 번 입력합니다 (입력 시 화면에 아무것도 안 보이지만 정상입니다).</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>2단계: 필수 도구 설치 (명령어 복사/붙여넣기)</h3>
+        <p>초록색 글씨의 프롬프트가 보이면 아래 명령어를 한 블록씩 차례대로 복사/붙여넣기 하고 Enter를 누릅니다.</p>
+        <ol>
+            <li>운영체제 업데이트 (비밀번호 요구 시 입력):
+                <pre>sudo apt update && sudo apt upgrade -y</pre>
+            </li>
+            <li>기본 도구 및 Node.js 설치 (MCP 연동에 필수!):
+                <pre>sudo apt install -y git curl build-essential nodejs npm</pre>
+            </li>
+            <li>파이썬 패키지 도구(uv) 설치:
+                <pre>curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc</pre>
+            </li>
+            <li>브라우저 자동화 라이브러리 설치:
+                <pre>sudo apt install -y libglib2.0-0 libnss3 libnspr4 libdbus-1-3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxcb1 libxkbcommon0 libx11-6 libxcomposite1 libxdamage1 libxext6 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64</pre>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>3단계: OpenManus 다운로드 및 세팅</h3>
+        <pre>cd ~
+git clone https://github.com/FoundationAgents/OpenManus.git
+cd OpenManus
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -r requirements.txt
+playwright install chromium</pre>
+    </div>
+
+    <div class="step">
+        <h3>4단계: API Key 저장 및 config.toml 작성</h3>
+        <ol>
+            <li>키를 컴퓨터에 저장 (YOUR_KEY_HERE 부분을 내 키로 변경):
+                <pre>mkdir -p ~/.secrets
+echo 'export GEMINI_API_KEY="YOUR_KEY_HERE"' > ~/.secrets/gemini.env
+echo 'source ~/.secrets/gemini.env' >> ~/.bashrc
+source ~/.bashrc</pre>
+            </li>
+            <li>설정 파일 백지화 후 열기:
+                <pre>cp config/config.example.toml config/config.toml
+nano config/config.toml</pre>
+            </li>
+            <li>기존 내용 전부 지우고(Ctrl+K 반복), 아래 내용 붙여넣기:
+                <pre>[llm]
+model = "gemma-4-31b-it"
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+api_key = "${GEMINI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+
+[llm.vision]
+model = "gemma-4-31b-it"
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+api_key = "${GEMINI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+
+[agent]
+max_steps = 15
+
+[browser]
+headless = true</pre>
+            </li>
+            <li>저장(Ctrl+O → Enter) 후 종료(Ctrl+X)</li>
+        </ol>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 2부: MCP 연동 -->
+    <!-- ========================================== -->
+
+    <h2 id="part2">2부: 심화 - 외부 저장소 연결 (MCP 세팅)</h2>
+
+    <div class="info">
+        <strong>MCP(Model Context Protocol)란?</strong><br>
+        AI가 깃허브, 구글드라이브 같은 외부 서비스의 파일을 직접 읽고 쓸 수 있게 연결해주는 다리입니다.<br>
+        아래 설정 파일(<code>mcp.json</code>) 하나만 작성하면 모든 연결이 끝납니다.
+    </div>
+
+    <div class="step">
+        <h3>사전 준비: 각각의 서비스 권한 얻기</h3>
+
+        <h4>① GitHub</h4>
+        <p>GitHub 계정 세팅에서 <strong>Personal Access Token (PAT)</strong>을 발급받아 메모장에 둡니다. (예: <code>ghp_xxx...</code>)</p>
+
+        <h4>② 개인 NAS (ipTIME FTP 우회법 - 가장 추천)</h4>
+        <p>복잡한 FTP 플러그인 대신 윈도우의 '네트워크 드라이브'를 이용하는 것이 압도적으로 편하고 안전합니다.</p>
+        <ol>
+            <li>윈도우 탐색기 열기 → "내 PC" 우클릭 → <strong>네트워크 드라이브 연결</strong> 클릭</li>
+            <li>드라이브 문자를 <strong>Z:</strong> 로 선택</li>
+            <li>폴더 항목에 NAS 주소 입력 (예: <code>\192.168.0.2\myfolder</code>) 후 아이디/비밀번호 입력</li>
+            <li>Ubuntu 검은 창을 열고, Windows의 Z 드라이브를 Ubuntu에 연결하는 명령어 입력:
+                <pre>sudo mkdir -p /mnt/z
+sudo mount -t drvfs Z: /mnt/z</pre>
+            </li>
+            <li class="highlight">이제 AI는 /mnt/z 경로를 통해 NAS 파일에 자유롭게 접근할 수 있습니다.</li>
+        </ol>
+
+        <h4>③ Google Drive & OneDrive (OAuth 인증 파일)</h4>
+        <p>이 두 서비스는 보안이 강력하여 클라우드 개발자 콘솔에서 앱을 만들고 인증 JSON 파일이나 Client ID를 발급받아야 합니다.<br>
+        - <strong>Google Drive:</strong> Google Cloud Console에서 '데스크톱 앱'용 OAuth JSON 파일 다운로드 후 Ubuntu의 <code>~/.secrets/gdrive.json</code>으로 저장.<br>
+        - <strong>OneDrive:</strong> Azure Portal에서 앱 등록 후 Client ID 복사.</p>
+    </div>
+
+    <div class="step">
+        <h3>최종 연동: mcp.json 파일 작성하기</h3>
+        <p>OpenManus에게 연결할 도구 목록을 알려주는 단계입니다.</p>
+        <ol>
+            <li>설정 파일 만들기:
+                <pre>cd ~/OpenManus/config
+nano mcp.json</pre>
+            </li>
+            <li>아래 코드를 복사해서 붙여넣습니다. (사용하지 않을 서비스는 해당 블록을 지우면 됩니다.)<br>
+                <em>※ <code>YOUR_GITHUB_PAT</code> 등 본인의 키로 변경하세요.</em>
+<pre>{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT_여기에_입력"
+      }
+    },
+    "nas": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/mnt/z"]
+    },
+    "gdrive": {
+      "command": "npx",
+      "args": ["-y", "@isaacphi/mcp-gdrive"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "/home/kim/.secrets/gdrive.json"
+      }
+    },
+    "onedrive": {
+      "command": "npx",
+      "args": ["-y", "kennyr859-onedrive-mcp"],
+      "env": {
+        "MICROSOFT_CLIENT_ID": "YOUR_AZURE_CLIENT_ID_여기에_입력",
+        "MICROSOFT_TENANT_ID": "common"
+      }
+    }
+  }
+}</pre>
+            </li>
+            <li>저장(Ctrl+O → Enter) 후 종료(Ctrl+X)</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h3>🚀 실행하기 (MCP 모드)</h3>
+        <p>기본 <code>main.py</code> 대신 <strong>MCP가 장착된 버전</strong>으로 실행해야 합니다.</p>
+        <pre>cd ~/OpenManus
+source .venv/bin/activate
+python run_mcp.py -i</pre>
+
+        <p>이제 프롬프트 창에 이렇게 명령할 수 있습니다!</p>
+        <ul style="background:#eee; padding:15px; border-radius:5px; list-style-type:none;">
+            <li>💬 <strong>"내 깃허브의 doctor-assist 레포지토리에 있는 최근 커밋 내역을 알려줘"</strong></li>
+            <li>💬 <strong>"NAS(로컬 파일시스템 /mnt/z)에 있는 '의학통계.xlsx' 파일을 읽고 내용을 요약해줘"</strong></li>
+            <li>💬 <strong>"내 구글 드라이브에서 '2026_초음파_가이드.pdf'를 검색해서 찾아줘"</strong></li>
+        </ul>
+
+        <div class="warning">
+            <strong>⚠️ 무료 API(Gemma 4) 사용 시 주의사항:</strong><br>
+            GitHub이나 드라이브의 "전체 구조"를 한 번에 읽어오라고 하면, 요청이 폭주하여 제한(429 에러)에 걸리거나 토큰 한도(256K)를 초과합니다.<br>
+            <em>"NAS의 특정 폴더 안에 있는 파일 5개만 목록을 보여줘"</em> 처럼 <strong>구체적이고 작게</strong> 지시하는 것이 좋습니다.
+        </div>
+    </div>
+
+</body>
+</html>

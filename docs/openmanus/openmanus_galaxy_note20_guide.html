@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenManus on Galaxy Note20 (Termux) 가이드</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 3px solid #2980b9; padding-bottom: 10px; }
+        h2 { color: #fff; background-color: #2980b9; padding: 10px 15px; border-radius: 5px; margin-top: 40px; }
+        h3 { color: #2980b9; border-left: 4px solid #2980b9; padding-left: 10px; margin-top: 25px; }
+        .step { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .warning { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
+        .info { background-color: #e8f4f8; border-left: 5px solid #3498db; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
+        .diff { background-color: #fdecea; border-left: 5px solid #e74c3c; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
+        pre { background-color: #282c34; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 13px; font-family: Consolas, Monaco, monospace; }
+        code { background-color: #eee; padding: 2px 5px; border-radius: 3px; font-family: Consolas, Monaco, monospace; color: #c0392b; }
+        pre code { background-color: transparent; color: inherit; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #ecf0f1; }
+        .green { color: #27ae60; font-weight: bold; }
+        .red { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h1>📱 OpenManus on Galaxy Note20<br><small>Termux + proot-distro(Ubuntu) 초보자 완전 가이드</small></h1>
+
+<div class="info">
+    <strong>대상 기기:</strong> Galaxy Note20 / Note20 Ultra (Snapdragon 865, ARM64, 256GB)<br>
+    <strong>Android 버전:</strong> 12 이상<br>
+    <strong>루팅 필요 여부:</strong> 불필요 (No Root)<br>
+    <strong>이 가이드는 기존 Windows WSL2 튜토리얼을 갤럭시 환경에 맞게 수정한 버전입니다.</strong>
+</div>
+
+<!-- 차이점 먼저 설명 -->
+<h2>Windows vs 갤럭시폰: 핵심 차이점</h2>
+<div class="step">
+    <table>
+        <tr><th>항목</th><th>Windows (WSL2)</th><th>Galaxy Note20 (Termux)</th></tr>
+        <tr><td>Linux 환경</td><td>WSL2가 자동으로 제공</td><td>Termux + proot-distro로 직접 설치</td></tr>
+        <tr><td>Chromium (브라우저 자동화)</td><td><code>playwright install chromium</code> 자동 설치</td><td><span class="red">자동 불가.</span> Termux용 Chromium을 따로 깔고 경로 수동 연결</td></tr>
+        <tr><td>배치파일(.bat)</td><td>더블클릭 가능</td><td><span class="red">불가.</span> 대신 쉘 스크립트(.sh)로 대체</td></tr>
+        <tr><td>Python 3.12</td><td>uv로 설치</td><td>Termux 기본 패키지로 지원 (pkg install python)</td></tr>
+        <tr><td>NAS 마운트</td><td>Z: 드라이브 → WSL /mnt/z</td><td>sshfs 또는 Termux FTP 클라이언트 사용</td></tr>
+        <tr><td>키보드</td><td>노트북 키보드</td><td>Termux 앱 자체 하단 키보드 (Ctrl/Tab/화살표 포함)</td></tr>
+    </table>
+</div>
+
+<!-- ===== 0단계 ===== -->
+<h2 id="step0">0단계: 준비</h2>
+<div class="step">
+    <h3>Termux 설치 (Google Play 버전은 사용하지 말 것!)</h3>
+    <div class="warning">
+        <strong>⚠️ 중요:</strong> Google Play Store에 있는 Termux는 오래된 버전이라 오류가 납니다.<br>
+        반드시 아래 <strong>F-Droid</strong> 경로에서 내려받아야 합니다.
+    </div>
+    <ol>
+        <li>갤럭시 브라우저에서 <code>https://f-droid.org/packages/com.termux</code> 접속</li>
+        <li><strong>Download APK</strong> 버튼 클릭해서 앱 설치</li>
+        <li>안드로이드 보안 팝업에서 "이 출처의 설치 허용" 을 눌러 설치를 완료합니다.</li>
+        <li>Termux를 실행하면 검은 터미널 화면이 열립니다. 이것이 곧 Linux 환경입니다.</li>
+    </ol>
+    <div class="info">
+        <strong>Termux 화면에서 긴 명령어를 편하게 입력하려면:</strong><br>
+        화면을 <strong>두 손가락으로 옆으로 스와이프</strong>하면 단축키 바(Ctrl, Alt, 화살표 키 등)가 나타납니다.
+    </div>
+</div>
+
+<!-- ===== 1단계 ===== -->
+<h2 id="step1">1단계: Termux 초기 세팅</h2>
+<div class="step">
+    <p>Termux를 열고 아래 명령어를 한 줄씩 입력합니다.<br>
+    긴 텍스트를 직접 치기 힘들면, 다른 폰/PC에서 이 페이지를 열고 복사 → 갤럭시에서 긴 터치(붙여넣기) 합니다.</p>
+    <ol>
+        <li>패키지 업데이트:
+            <pre>pkg update && pkg upgrade -y</pre>
+        </li>
+        <li>스토리지 권한 허용 (파일 접근에 필요):
+            <pre>termux-setup-storage</pre>
+            <em>"저장소 권한 허용" 팝업이 뜨면 허용을 누릅니다.</em>
+        </li>
+        <li>proot-distro 설치 (갤럭시 안에 Ubuntu를 설치하는 도구):
+            <pre>pkg install proot-distro -y</pre>
+        </li>
+        <li>Ubuntu 설치 (300~500MB 소요, Wi-Fi 연결 필수):
+            <pre>proot-distro install ubuntu</pre>
+        </li>
+        <li>Ubuntu 환경으로 진입:
+            <pre>proot-distro login ubuntu</pre>
+            <em>프롬프트가 <code>root@localhost:~#</code> 로 바뀌면 Ubuntu 안에 들어온 것입니다.</em>
+        </li>
+    </ol>
+</div>
+
+<!-- ===== 2단계 ===== -->
+<h2 id="step2">2단계: Ubuntu 안에서 개발 도구 설치</h2>
+<div class="step">
+    <p><strong>이제부터 모든 명령어는 Ubuntu 안(<code>root@localhost</code>)에서 입력합니다.</strong></p>
+    <ol>
+        <li>Ubuntu 패키지 업데이트:
+            <pre>apt update && apt upgrade -y</pre>
+        </li>
+        <li>필수 도구 설치:
+            <pre>apt install -y git curl build-essential python3 python3-pip python3-venv nodejs npm nano</pre>
+        </li>
+        <li>파이썬 패키지 도구 uv 설치:
+            <pre>curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc</pre>
+        </li>
+    </ol>
+    <div class="diff">
+        <strong>❌ 여기서 Windows와 다른 점:</strong><br>
+        기존 가이드에서 했던 <code>sudo apt install libglib2.0-0 ...</code> 브라우저 의존성 라이브러리 설치는 여기서는 <strong>불필요합니다.</strong><br>
+        대신 Termux용 Chromium을 Termux 레이어(Ubuntu 바깥)에서 따로 설치합니다. (아래 4단계 참조)
+    </div>
+</div>
+
+<!-- ===== 3단계 ===== -->
+<h2 id="step3">3단계: OpenManus 설치 (Ubuntu 안에서)</h2>
+<div class="step">
+    <ol>
+        <li>OpenManus 다운로드:
+            <pre>cd ~
+git clone https://github.com/FoundationAgents/OpenManus.git
+cd OpenManus</pre>
+        </li>
+        <li>가상환경 생성 및 라이브러리 설치:
+            <pre>uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -r requirements.txt</pre>
+        </li>
+        <li>Playwright 브라우저 자동 다운로드는 건너뜁니다:
+            <pre>PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pip install playwright</pre>
+        </li>
+    </ol>
+</div>
+
+<!-- ===== 4단계 (핵심 차이점) ===== -->
+<h2 id="step4">4단계: 갤럭시 전용 - Chromium 연결 (핵심)</h2>
+<div class="step">
+    <div class="diff">
+        <strong>Windows 가이드와의 핵심 차이점입니다.</strong><br>
+        ARM 기반 Android에서는 Playwright가 기본적으로 Chromium을 다운로드할 수 없습니다.<br>
+        Termux에서 제공하는 ARM용 Chromium을 설치하고, OpenManus에게 그 경로를 알려줘야 합니다.
+    </div>
+    <h3>Step 1: Termux 레이어로 빠져나가서 Chromium 설치</h3>
+    <p>Ubuntu를 잠깐 나갑니다:</p>
+    <pre>exit</pre>
+    <p>이제 Termux 프롬프트(<code>~ $</code>)에서 입력:</p>
+    <pre># X11 저장소 활성화 (ARM용 Chromium 제공)
+pkg install x11-repo -y
+pkg install chromium -y</pre>
+
+    <p>설치된 Chromium 경로 확인:</p>
+    <pre>which chromium-browser</pre>
+    <p><code>/data/data/com.termux/files/usr/bin/chromium-browser</code> 라고 나오면 성공입니다.</p>
+    <p>다시 Ubuntu 환경으로 들어갑니다:</p>
+    <pre>proot-distro login ubuntu</pre>
+
+    <h3>Step 2: OpenManus가 이 Chromium을 쓰도록 환경변수 등록</h3>
+    <pre>cd ~/OpenManus
+echo 'export PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/data/data/com.termux/files/usr/bin/chromium-browser' >> ~/.bashrc
+source ~/.bashrc</pre>
+
+    <h3>Step 3: OpenManus BrowserTool 설정에서 --no-sandbox 강제 적용</h3>
+    <p>Android/ARM 환경에서는 Chromium이 샌드박스 없이 실행되어야 합니다.<br>
+    아래 명령으로 OpenManus 코드에 패치를 적용합니다:</p>
+    <pre>cd ~/OpenManus
+grep -rn "chromium.launch" app/ --include="*.py"</pre>
+    <p>위 명령으로 출력된 파일을 열고, <code>chromium.launch(</code> 부분을 아래처럼 수정합니다:</p>
+    <pre>nano app/tools/browser_use_tool.py</pre>
+    <p>Ctrl+W 로 <code>headless</code> 검색 후, launch 블록에 아래 args 추가:</p>
+    <pre>args=['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']</pre>
+    <p>저장: Ctrl+O → Enter → Ctrl+X</p>
+</div>
+
+<!-- ===== 5단계 ===== -->
+<h2 id="step5">5단계: API Key 저장 및 config.toml 작성</h2>
+<div class="step">
+    <p>이 단계는 Windows 가이드와 동일합니다. Ubuntu 안(<code>root@localhost</code>)에서 입력합니다.</p>
+    <ol>
+        <li>API Key 저장 (YOUR_KEY_HERE를 실제 키로 교체):
+            <pre>mkdir -p ~/.secrets
+echo 'export GEMINI_API_KEY="YOUR_KEY_HERE"' > ~/.secrets/gemini.env
+echo 'source ~/.secrets/gemini.env' >> ~/.bashrc
+source ~/.bashrc</pre>
+        </li>
+        <li>config.toml 작성:
+            <pre>cd ~/OpenManus
+cp config/config.example.toml config/config.toml
+nano config/config.toml</pre>
+        </li>
+        <li>기존 내용 모두 지우고(Ctrl+K 반복) 아래 내용 붙여넣기:
+            <pre>[llm]
+model = "gemma-4-31b-it"
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+api_key = "${GEMINI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+
+[llm.vision]
+model = "gemma-4-31b-it"
+base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+api_key = "${GEMINI_API_KEY}"
+max_tokens = 4096
+temperature = 0.0
+
+[agent]
+max_steps = 15
+
+[browser]
+headless = true</pre>
+        </li>
+        <li>저장(Ctrl+O → Enter) 후 종료(Ctrl+X)</li>
+    </ol>
+</div>
+
+<!-- ===== 6단계 실행 ===== -->
+<h2 id="step6">6단계: 실행 및 자동 실행 스크립트</h2>
+<div class="step">
+    <h3>실행 방법</h3>
+    <pre>cd ~/OpenManus
+source .venv/bin/activate
+python main.py</pre>
+
+    <h3>갤럭시용 자동 실행 스크립트 만들기 (Windows .bat 대신 .sh)</h3>
+    <p>Windows에서 .bat 파일을 만든 것처럼, 갤럭시에서는 쉘 스크립트(.sh)로 한 번에 실행하는 메뉴를 만들 수 있습니다.<br>
+    이 스크립트는 <strong>Termux 레이어</strong>에서 만들고 실행합니다. (<code>exit</code>으로 Ubuntu 나간 뒤)</p>
+    <pre>exit   # Ubuntu에서 나가기 (Termux 레이어로)
+nano ~/run_openmanus.sh</pre>
+    <p>아래 내용 붙여넣기:</p>
+    <pre>#!/data/data/com.termux/files/usr/bin/bash
+echo "=================================="
+echo " OpenManus + Gemma 4 실행기 (갤럭시)"
+echo "=================================="
+echo "[1] 일반 모드 (main.py)"
+echo "[2] MCP 모드 (run_mcp.py)"
+echo ""
+read -p "번호 선택: " choice
+
+if [ "$choice" = "1" ]; then
+  proot-distro login ubuntu -- bash -c "cd ~/OpenManus && source ~/.bashrc && source .venv/bin/activate && python main.py"
+elif [ "$choice" = "2" ]; then
+  proot-distro login ubuntu -- bash -c "cd ~/OpenManus && source ~/.bashrc && source .venv/bin/activate && python run_mcp.py -i"
+else
+  echo "종료"
+fi</pre>
+    <p>저장(Ctrl+O → Enter → Ctrl+X) 후 실행 권한 부여:</p>
+    <pre>chmod +x ~/run_openmanus.sh</pre>
+    <p>이제 Termux를 열 때마다 아래 한 줄만 입력하면 메뉴가 뜹니다:</p>
+    <pre>~/run_openmanus.sh</pre>
+</div>
+
+<!-- ===== MCP 연동 ===== -->
+<h2 id="mcp">7단계: MCP 연동 (GitHub / NAS)</h2>
+<div class="step">
+    <p>Windows 가이드와 동일하게 <code>config/mcp.json</code>을 작성합니다. <strong>Ubuntu 안에서</strong> 진행합니다.</p>
+    <pre>proot-distro login ubuntu
+cd ~/OpenManus/config
+nano mcp.json</pre>
+    <p>내용 작성 (Windows 가이드의 mcp.json과 동일한 방식):</p>
+    <pre>{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_xxx..."
+      }
+    }
+  }
+}</pre>
+
+    <h3>NAS 연결 (갤럭시 전용)</h3>
+    <p>Windows처럼 Z: 드라이브를 마운트할 수 없으므로, <strong>sshfs</strong>를 사용해 NAS를 마운트합니다.<br>
+    ipTIME은 기본적으로 FTP 외에 SSH도 설정 가능합니다. SSH가 켜져 있다면:</p>
+    <pre>apt install -y sshfs
+mkdir -p ~/nas
+sshfs admin@192.168.0.2:/myfolder ~/nas -p 22</pre>
+    <p>그 뒤 mcp.json에 추가:</p>
+    <pre>"nas": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-filesystem", "/root/nas"]
+}</pre>
+</div>
+
+<!-- ===== 주의사항 ===== -->
+<h2 id="notes">주의사항 및 폰 관리</h2>
+<div class="step">
+    <table>
+        <tr><th>이슈</th><th>내용 / 해결법</th></tr>
+        <tr><td>앱이 백그라운드에서 꺼짐</td><td>Android 12+는 배터리 절약을 위해 백그라운드 앱을 강제 종료합니다. Termux 앱의 배터리 최적화를 <strong>비제한</strong>으로 설정하세요. (설정 → 앱 → Termux → 배터리 → 최적화 안 함)</td></tr>
+        <tr><td>발열 및 배터리</td><td>OpenManus 실행 중 Gemma 4 API 통신 + Chromium이 함께 돌아가면 발열이 심합니다. 충전하면서 사용하는 것을 권장합니다.</td></tr>
+        <tr><td>Chromium 실행 오류</td><td><code>--no-sandbox</code> 옵션을 반드시 config 혹은 코드에 추가해야 합니다. Android 권한 모델이 샌드박스를 막습니다.</td></tr>
+        <tr><td>RPM 제한 (Free Tier)</td><td>무료 Gemma 4 API: 분당 15 요청, 하루 1,500 요청 한도. 복잡한 작업은 여러 개의 짧은 명령으로 나눠서 요청하세요.</td></tr>
+        <tr><td>재시작 후 Ubuntu 재진입</td><td>Termux 앱을 다시 열면 Termux 레이어입니다. <code>~/run_openmanus.sh</code>를 실행하면 자동으로 Ubuntu 안에 들어가서 OpenManus가 켜집니다.</td></tr>
+    </table>
+</div>
+
+</body>
+</html>
