@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Note20에서 OpenManus 시작하기 — DroidDesk GUI 중심 가이드</title>
+  <style>
+    :root{--ink:#17201d;--muted:#5f6c65;--paper:#f7f6f1;--surface:#fffefa;--line:#d8ddd6;--green:#176b52;--green2:#dff0e8;--amber:#8a5714;--amber2:#fff3dc;--red:#9e3030;--red2:#fde9e7;--code:#17211d;--codeink:#e6f4ed}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.72;font-size:16px}.wrap{max-width:980px;margin:auto;padding:28px 18px 80px}header{background:linear-gradient(135deg,#124937,#1c775b);color:#fff;border-radius:18px;padding:42px 34px;margin:10px 0 28px;box-shadow:0 14px 32px #163e2a28}h1{font-size:clamp(28px,5vw,46px);line-height:1.18;margin:0 0 12px}h2{font-size:26px;margin:48px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--green)}h3{font-size:19px;margin:26px 0 10px}.lead{font-size:18px;max-width:65ch;color:#edf9f3}.badge{display:inline-block;background:#b6ead4;color:#123e30;font-weight:800;font-size:13px;padding:4px 10px;border-radius:999px;margin-bottom:14px}.card,.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;margin:16px 0;box-shadow:0 3px 12px #1b2c2210}.step{position:relative;padding-left:84px}.num{position:absolute;left:24px;top:25px;width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:grid;place-items:center}.callout{border-radius:12px;padding:16px 18px;margin:16px 0}.info{background:var(--green2);border-left:5px solid var(--green)}.warn{background:var(--amber2);border-left:5px solid #d78c1d}.danger{background:var(--red2);border-left:5px solid var(--red)}.check{font-weight:800;color:var(--green)}code{background:#edf0eb;color:#994222;border-radius:5px;padding:2px 5px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}pre{background:var(--code);color:var(--codeink);padding:17px;border-radius:10px;overflow:auto;font-size:13px;line-height:1.55;border:1px solid #2c4539}pre code{padding:0;background:none;color:inherit}table{width:100%;border-collapse:collapse;background:var(--surface);margin:15px 0;font-size:15px}th,td{border:1px solid var(--line);padding:11px;vertical-align:top;text-align:left}th{background:#e9f1eb}ul,ol{padding-left:22px}.ui{border:1px dashed #77a68e;background:#f2faf5;padding:12px 14px;border-radius:9px;font-weight:700;color:#245e48}.toc a{color:var(--green);text-decoration:none;font-weight:700}.small{color:var(--muted);font-size:14px}.flow{font-family:ui-monospace,monospace;background:#eef4ef;padding:14px;border-radius:9px;white-space:pre-wrap}.ok{color:#0a6948;font-weight:800}.no{color:#a12e2e;font-weight:800}@media(max-width:620px){.wrap{padding:14px 12px 56px}header{padding:30px 22px;border-radius:13px}.step{padding:72px 18px 18px}.num{left:18px;top:18px}h2{font-size:23px}table{font-size:13px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <div class="badge">GUI-FIRST · NO LOCAL LLM</div>
+  <h1>Galaxy Note20에서<br>OpenManus 시작하기</h1>
+  <p class="lead">DroidDesk의 버튼과 Ubuntu desktop을 먼저 이용하고, terminal 명령은 꼭 필요한 3개 블록으로 줄인 installation guide다. LLM 추론은 휴대폰이 아닌 Gemini API에서 수행한다.</p>
+</header>
+<section class="card toc">
+  <strong>이 가이드의 목표</strong>
+  <p>Galaxy Note20을 <b>Gemini API 기반 OpenManus orchestration + lightweight browser worker</b>로 시험한다. Local Ollama/Gemma model download나 GPU inference는 하지 않는다.</p>
+  <a href="#start">시작 전 확인</a> · <a href="#gui">DroidDesk GUI 설치</a> · <a href="#terminal">필수 terminal 3단계</a> · <a href="#test">Smoke test</a> · <a href="#trouble">문제 해결</a>
+</section>
+
+<h2 id="start">시작 전 확인</h2>
+<div class="card">
+  <ul>
+    <li>Galaxy Note20 또는 Note20 Ultra, 안정적인 Wi-Fi, 충전기 연결</li>
+    <li>Internal storage 여유 8 GB 이상 권장 (Ubuntu desktop + browser cache 포함)</li>
+    <li>Google Gemini API key: <b>휴대폰에서 local model을 다운로드하지 않는다.</b></li>
+    <li>GitHub account: OpenManus upstream clone에 사용</li>
+  </ul>
+  <div class="warn"><b>PHI 금지:</b> 이 단계의 OpenManus test에는 환자식별정보, EMR 화면, 실제 patient data를 넣지 않는다. 예시는 public documentation URL이나 비임상 dummy prompt만 사용한다.</div>
+</div>
+
+<h2 id="gui">1–3. DroidDesk에서 GUI로 Linux Desktop 만들기</h2>
+<div class="step"><span class="num">1</span><h3>DroidDesk APK 설치</h3><p>Android Chrome에서 DroidDesk 공식 GitHub Release를 열고 최신 APK를 내려받는다. Android가 install 차단을 표시하면 Chrome에 대해 <b>Allow from this source</b>를 허용한 뒤 설치한다.</p><div class="ui">Browser → DroidDesk GitHub Releases → APK download → Install</div><p class="small">DroidDesk는 Termux, Termux X11, TUR, PRoot를 이용해 root 없이 Android 위 Linux desktop을 구성한다.</p></div>
+<div class="step"><span class="num">2</span><h3>Ubuntu 설치 버튼 누르기</h3><p>DroidDesk를 열고 <b>Ubuntu</b> 항목을 고른다. 처음에는 <b>Install</b>을 누른다. 설치 중에는 앱을 닫지 말고 Wi-Fi와 충전을 유지한다.</p><div class="ui">DroidDesk home → Ubuntu → Install → completion message 확인</div></div>
+<div class="step"><span class="num">3</span><h3>Desktop을 실행하고 Terminal 열기</h3><p>설치가 끝나면 <b>Launch Desktop</b> 또는 <b>Start Desktop</b>을 선택한다. XFCE 화면이 열리면 application menu에서 <b>Terminal</b>을 실행한다. 이후 terminal은 아래 3개 code block을 한 번씩 붙여넣는 용도로만 쓴다.</p><div class="info"><b>여기까지가 GUI 영역이다.</b> Ubuntu 설치, GUI desktop start, browser launch는 DroidDesk 화면에서 수행한다.</div></div>
+
+<h2 id="terminal">4–6. 필요한 Terminal 명령은 3번</h2>
+<div class="step"><span class="num">4</span><h3>Block A — OpenManus 설치</h3><p>Ubuntu Desktop의 Terminal에서 아래 전체 block을 복사해 붙여넣고 Enter를 누른다. 완료될 때까지 기다린다.</p><pre><code>sudo apt update &amp;&amp; sudo apt install -y git curl python3 python3-venv python3-pip
+mkdir -p ~/services &amp;&amp; cd ~/services
+git clone https://github.com/FoundationAgents/OpenManus.git
+cd OpenManus
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt</code></pre><p class="check">완료 확인: 마지막 줄에 error 없이 prompt가 다시 나타난다.</p></div>
+<div class="step"><span class="num">5</span><h3>Block B — Gemini API secret과 config 만들기</h3><p>아래 block에서 <code>PASTE_YOUR_GEMINI_KEY_HERE</code>만 실제 key로 바꾼다. key를 GitHub, screenshot, Telegram message에 올리지 않는다.</p><pre><code>cd ~/services/OpenManus
+source .venv/bin/activate
+mkdir -p ~/.secrets config
+printf 'export GEMINI_API_KEY="PASTE_YOUR_GEMINI_KEY_HERE"\n' &gt; ~/.secrets/gemini.env
+chmod 600 ~/.secrets/gemini.env
+source ~/.secrets/gemini.env
+cp config/config.example.toml config/config.toml
+nano config/config.toml</code></pre><p><b>nano editor 화면</b>에서 OpenManus upstream example의 provider/model field를 현재 지원되는 Gemini API configuration에 맞춘다. API key literal을 config file에 중복 저장하지 말고 environment variable reference가 지원되는지 먼저 확인한다.</p><div class="warn"><b>중요:</b> OpenManus version마다 Gemini direct provider support와 config key가 다를 수 있다. 먼저 <code>config/config.example.toml</code>의 주석과 installed package documentation을 확인한다. direct Gemini가 안 되면 이 단계에서 멈추고 config issue로 기록한다. Ollama 설치로 돌아가지 않는다.</div></div>
+<div class="step"><span class="num">6</span><h3>Block C — Browser와 Python smoke 준비</h3><p>DroidDesk desktop에서 Chromium 또는 Firefox를 먼저 클릭해 정상적으로 열리는지 확인한다. 그 뒤 terminal에 아래 block을 실행한다. 이 명령은 Playwright가 browser binary를 준비할 수 있는지 확인한다.</p><pre><code>cd ~/services/OpenManus
+source .venv/bin/activate
+python -m playwright install chromium
+python -c "import platform; print('arch:', platform.machine())"
+python -c "import playwright; print('playwright: import OK')"</code></pre><div class="danger"><b>ARM64 warning:</b> <code>playwright install chromium</code>가 실패할 수 있다. 이는 Gemini API 문제가 아니라 Android/ARM64 browser binary issue다. 아래 troubleshooting대로 log를 남긴 뒤 browser-less test부터 진행한다.</div></div>
+
+<h2 id="test">7. 단계별 Smoke Test</h2>
+<div class="card"><p>한 번에 복잡한 medical research를 시키지 않는다. 각 단계가 성공해야 다음 단계로 간다.</p>
+<table><thead><tr><th>Test</th><th>실행 / prompt</th><th>Pass 기준</th></tr></thead><tbody>
+<tr><td><b>OM-00</b><br>API only</td><td><code>python main.py</code>를 실행한 뒤:<br><code>Reply with exactly: OPENMANUS_SMOKE_OK</code></td><td><span class="ok">PASS</span>: 정확한 response, traceback 없음</td></tr>
+<tr><td><b>OM-01</b><br>Simple web task</td><td><code>Find the official Python sqlite3 documentation URL and return title plus URL only.</code></td><td><span class="ok">PASS</span>: official URL 반환, browser/agent crash 없음</td></tr>
+<tr><td><b>OM-02</b><br>Source discipline</td><td><code>Compare two official SQLite WAL documentation sources. Return URLs, 3 supported claims, and 2 limitations.</code></td><td><span class="ok">PASS</span>: source URL, claims, limitations 구분</td></tr>
+</tbody></table></div>
+<div class="card"><h3>결과 저장</h3><pre><code>mkdir -p ~/services/OpenManus/workspace/smoke
+python main.py 2&gt;&amp;1 | tee ~/services/OpenManus/workspace/smoke/OM-00_note20.log</code></pre><p class="small">API key, token, cookie는 log에 남기지 않는다. error가 나면 error message와 device/Python/OpenManus commit만 기록한다.</p></div>
+
+<h2>8. 이 기기의 역할 결정</h2>
+<table><thead><tr><th>결과</th><th>Note20 운영 역할</th><th>다음 action</th></tr></thead><tbody>
+<tr><td>OM-00 3회 연속 pass</td><td>Gemini API agent / Telegram / FastAPI control node</td><td>OM-01로 진행</td></tr>
+<tr><td>OM-01 2회 이상 pass</td><td>Light browser research worker 후보</td><td>Concurrent job 1개로 제한</td></tr>
+<tr><td>Browser installer fail, OM-00 pass</td><td>API-only orchestrator</td><td>Laptop에서 browser worker 수행</td></tr>
+<tr><td>Repeated timeout / Android process kill</td><td>Control plane only</td><td>Long research를 Note20에서 실행하지 않음</td></tr>
+</tbody></table>
+<div class="flow">Telegram / Web request
+          ↓
+Galaxy Note20: OpenManus orchestration + Gemini API + JSON artifacts
+          ↓
+(optional) Laptop browser worker: Playwright / heavy browsing</div>
+
+<h2 id="trouble">문제 해결</h2>
+<div class="card"><h3>1. DroidDesk install이 멈춘다</h3><p>Wi-Fi, storage, charging을 확인한다. app을 force-close하지 말고, storage가 8 GB 미만이면 Android data/cache를 정리한 뒤 재시도한다.</p><h3>2. <code>sudo</code>가 없다</h3><p>PRoot distro image에 따라 root shell로 시작될 수 있다. 이때 command에서 <code>sudo</code>만 빼고 실행한다.</p><h3>3. <code>python -m playwright install chromium</code> 실패</h3><p>가장 흔한 ARM64 issue다. OpenManus 전체가 실패한 것으로 판단하지 말고 OM-00 API-only test를 먼저 한다. 이후 Termux-compatible Chromium binary와 explicit executable path 방식은 별도 test document로 다룬다.</p><h3>4. Gemini configuration error</h3><p>현재 OpenManus clone의 <code>config/config.example.toml</code>과 README를 기준으로 provider support를 확인한다. config file에 key를 hard-code한 경우 즉시 key rotate를 고려한다.</p><h3>5. Phone이 자꾸 멈추거나 app이 꺼진다</h3><p>Battery optimization에서 DroidDesk/Termux 관련 app을 unrestricted으로 두고, charging 상태에서 1 job만 sequential 실행한다. 긴 browser job은 laptop worker로 보낸다.</p></div>
+
+<h2>운영 원칙</h2>
+<div class="card"><ul><li><b>No local inference:</b> Ollama, local Gemma, model weight download를 이 guide 범위에 넣지 않는다.</li><li><b>One job at a time:</b> Note20에서는 concurrent browser job을 실행하지 않는다.</li><li><b>Evidence first:</b> research output은 JSON artifact로 남기고, Gemini editorial은 저장된 evidence를 기반으로 만든다.</li><li><b>PHI isolation:</b> initial test와 public research worker에는 patient-identifiable data를 넣지 않는다.</li><li><b>Fallback:</b> browser task가 불안정하면 Note20은 control node로 유지하고 laptop을 browser worker로 쓴다.</li></ul></div>
+<p class="small">Last updated: 2026-07-21 · This guide is a practical smoke-test guide, not a guarantee of Android/ARM64 Playwright support.</p>
+</main>
+</body>
+</html>
