@@ -15,3 +15,7 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+# Doctor Assist runtime artifacts (may contain medical research or protected local data)
+data/
+*.log
+naver_session.json
