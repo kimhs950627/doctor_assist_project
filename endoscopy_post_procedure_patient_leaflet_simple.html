@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내시경 검사 후 안내문</title>
+<style>
+@page { size: A4; margin: 11mm; }
+* { box-sizing: border-box; }
+body { margin:0; background:#eef2f4; color:#17242b; font-family:"Pretendard","Noto Sans KR","Malgun Gothic",Arial,sans-serif; letter-spacing:-.3px; }
+.sheet { width:210mm; min-height:297mm; margin:auto; padding:11mm; background:#fff; }
+.top { display:flex; justify-content:space-between; color:#4d6470; font-weight:800; font-size:11pt; }
+.title { margin:4mm 0; padding:5mm 7mm; border-radius:8mm; background:#155b78; color:#fff; }
+h1 { margin:0; font-size:27pt; letter-spacing:-1.8px; }
+.subtitle { margin:2mm 0 0; font-size:12pt; font-weight:600; }
+.notice { padding:4mm 5mm; border-radius:3mm; background:#fff7e7; border:1px solid #f0cf85; font-size:12pt; line-height:1.45; font-weight:700; }
+.notice b { color:#a25d00; }
+.section { margin-top:4mm; border:2px solid #d7e1e5; border-radius:4mm; overflow:hidden; break-inside:avoid; }
+.section h2 { margin:0; padding:3.5mm 5mm; background:#edf6f8; color:#13536e; font-size:18pt; }
+.content { padding:4mm 5mm; }
+.big { font-size:15pt; line-height:1.55; }
+.step { display:grid; grid-template-columns:36mm 1fr; gap:3mm; padding:3mm 0; border-bottom:1px solid #e1e8eb; }
+.step:last-child { border-bottom:0; }
+.time { color:#fff; background:#16758a; border-radius:3mm; text-align:center; align-self:start; padding:2mm; font-size:13pt; font-weight:900; }
+.action strong { color:#0d526e; font-size:17pt; }
+.small { margin-top:2.5mm; color:#485c65; font-size:11.5pt; line-height:1.45; }
+.caution { display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:4mm; }
+.box { padding:4mm 5mm; border-radius:4mm; background:#f4f7f8; font-size:12pt; line-height:1.48; }
+.box h3 { margin:0 0 2mm; color:#13536e; font-size:15pt; }
+.danger { background:#fff0f0; border:1px solid #efc4c4; }
+.danger h3 { color:#a72828; }
+.footer { margin-top:4mm; padding-top:3mm; border-top:1px solid #d7e1e5; font-size:10pt; color:#576871; line-height:1.4; }
+@media print { body{background:#fff}.sheet{margin:0;min-height:0} }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="top"><span>안전한 회복을 위한 안내</span><span>내시경실</span></div>
+  <header class="title"><h1>내시경 검사 후 안내문</h1><p class="subtitle">식사는 아래 시간부터 시작하세요</p></header>
+
+  <div class="notice"><b>※ CT, MRI, PET 등 금식 검사가 남아 있으면</b> 아래 안내와 관계없이 금식을 계속하세요.</div>
+
+  <section class="section">
+    <h2>위내시경 또는 일반 대장내시경</h2>
+    <div class="content big">
+      <p style="margin:0 0 3mm;"><b>조직검사를 한 경우도 포함</b>됩니다.</p>
+      <div class="step"><div class="time">퇴실 1시간 후</div><div class="action"><strong>물 · 죽 · 밥 모두 가능</strong><br>처음에는 물을 조금 마셔 보세요. 속이 불편하지 않으면 평소처럼 식사하셔도 됩니다.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>대장 용종을 제거한 경우</h2>
+    <div class="content big">
+      <p style="margin:0 0 3mm;">대장내시경 중 용종을 제거한 경우입니다.</p>
+      <div class="step"><div class="time">퇴실 2시간 후</div><div class="action"><strong>물부터 드세요</strong><br>한 번에 많이 마시지 말고, 조금씩 드세요.</div></div>
+      <div class="step"><div class="time">퇴실 4시간 후</div><div class="action"><strong>죽 등 부드러운 음식</strong><br>복통이나 구역감이 없으면 드세요.</div></div>
+      <div class="step"><div class="time">다음 날 아침</div><div class="action"><strong>일반식 가능</strong><br>증상이 없으면 평소 식사로 돌아가세요.</div></div>
+      <p class="small">※ 담당 의료진이 별도로 설명한 내용이 있으면 그 안내를 우선하세요.</p>
+    </div>
+  </section>
+
+  <section class="caution">
+    <div class="box"><h3>수면내시경을 받은 경우</h3><b>검사 당일에는 운전하지 마세요.</b><br>가능하면 보호자와 함께 귀가하세요. 음주, 사우나, 힘든 운동은 피하세요.</div>
+    <div class="box"><h3>약 복용</h3><b>항혈소판제·항응고제</b>는 담당 의료진이 알려준 날짜에 다시 복용하세요. 임의로 중단하거나 다시 시작하지 마세요.</div>
+  </section>
+
+  <section class="box danger" style="margin-top:4mm;">
+    <h3>이런 경우에는 바로 병원에 연락하거나 응급실로 가세요</h3>
+    <b>많은 양의 피가 섞인 변, 점점 심해지는 배 통증, 열·오한, 계속 토함, 어지러움 또는 실신</b>
+  </section>
+
+  <footer class="footer">이 안내문은 일반적인 회복을 위한 내용입니다. 시술 범위나 환자 상태에 따라 달라질 수 있으므로, 담당 의료진의 별도 안내가 있으면 반드시 그 지시를 따르세요.<br><b>문의 전화: ____________________</b></footer>
+</main>
+</body>
+</html>
