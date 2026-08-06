@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>혈액종양내과 기출 요약</title>
+    <style>
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #22a39f;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --danger-color: #e74c3c;
+            --border-color: #e1e8ed;
+        }
+        body {
+            font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .cover {
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 5px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .exam-source {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .source-label {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .exam-tip {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .topic-block {
+            margin-bottom: 30px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f8;
+            color: var(--primary-color);
+        }
+        .wrap {
+            column-count: 2;
+            column-gap: 40px;
+        }
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            .cover {
+                page-break-after: always;
+            }
+            h2, h3 {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+            .topic-block, .exam-source, table {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+
+<style id="primarycare-hemato-style">
+:root{--pc-navy:#113a63;--pc-blue:#1e64a5;--pc-line:#cbd8e6;--pc-red:#9f1d1d;--pc-purple:#6337a1}#primarycare-hemato-supplement{font-family:Arial,"Noto Sans KR",sans-serif;line-height:1.55;color:#1f2937;margin:16px auto;max-width:1180px;padding:0 16px}#primarycare-hemato-supplement h1,#primarycare-hemato-supplement h2,#primarycare-hemato-supplement h3{color:var(--pc-navy);line-height:1.25}#primarycare-hemato-supplement h1{border-bottom:4px solid var(--pc-blue);padding-bottom:8px}.pc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pc-card,.guideline-supplement,.coverage-box,.danger-box,.refer-box,.algorithm-box{border-radius:8px;padding:14px;margin:12px 0;break-inside:avoid;page-break-inside:avoid}.pc-card{border:1px solid var(--pc-line);background:#fff}.guideline-supplement{border-left:6px solid var(--pc-purple);background:#faf7ff}.coverage-box{border-left:6px solid #b7791f;background:#fffaf0}.danger-box{border-left:6px solid var(--pc-red);background:#fff4f4;color:#661616}.refer-box{border-left:6px solid #b45309;background:#fffbeb}.algorithm-box{border:1px solid #9fc3e8;background:#f3f8fe}.source-label{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;background:#e9ddff;color:#55328a;margin-bottom:6px}.pc-table{border-collapse:collapse;width:100%;margin:10px 0;font-size:.92rem}.pc-table th,.pc-table td{border:1px solid var(--pc-line);padding:8px;vertical-align:top}.pc-table th{background:#eaf2fb;color:#173f69}.pc-table tr:nth-child(even){background:#f9fbfd}.checklist{list-style:none;padding-left:0}.checklist li{margin:6px 0}.checklist li:before{content:"☐ ";font-weight:700;color:var(--pc-blue)}details{border:1px solid var(--pc-line);border-radius:6px;padding:9px 12px;margin:10px 0;background:#fff}summary{font-weight:700;color:var(--pc-navy);cursor:pointer}.small{font-size:.86rem;color:#4b5563}.toc-mini{columns:2;gap:22px;padding-left:20px}@media(max-width:760px){.pc-grid{grid-template-columns:1fr}.toc-mini{columns:1}.pc-table{font-size:.8rem}}@media print{#primarycare-hemato-supplement{max-width:none;padding:0}.pc-table{font-size:8.8pt}.pc-card,.guideline-supplement,.coverage-box,.danger-box,.refer-box,.algorithm-box,details{break-inside:avoid;page-break-inside:avoid}#primarycare-hemato-supplement h2,#primarycare-hemato-supplement h3{break-after:avoid;page-break-after:avoid}}
+</style></head>
+<body>
+    <div class="page cover">
+        <h1>혈액종양내과</h1>
+        <p>가정의학과 전문의 시험 대비 요약노트</p>
+        <p>A4 인쇄 최적화 버전</p>
+        <div style="margin-top: 50px; text-align: left; column-count: 2; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h3 style="margin-top:0;">목차</h3>
+            <ul class="toc-box" style="list-style-type: none; padding-left: 0;">
+                <li><a href="#anemia">빈혈 일반</a></li>
+                <li><a href="#microcytic">철결핍 및 기타 저증식성 빈혈</a></li>
+                <li><a href="#macrocytic">거대적혈모구 빈혈</a></li>
+                <li><a href="#hemolytic">용혈성 빈혈</a></li>
+                <li><a href="#aplastic">재생불량 빈혈</a></li>
+                <li><a href="#polycythemia">적혈구 증가증 / 골수증식성 질환</a></li>
+                <li><a href="#plasma">형질세포질환</a></li>
+                <li><a href="#platelet">혈소판 및 혈관벽 질환</a></li>
+                <li><a href="#paraneoplastic">부종양증후군</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="wrap">
+            <div class="topic-block" id="anemia">
+                <h2>빈혈 일반</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li>65세 이상에서 (철결핍) 빈혈이 있을 경우, <strong>위·대장내시경을 통한 출혈 원인 감별</strong>이 필수</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="microcytic">
+                <h2>철결핍 및 기타 저증식성 빈혈</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li><strong>철결핍 빈혈 (IDA)</strong>
+                            <ul>
+                                <li>Hb, Hct 감소 (빈혈 소견), <span style="text-decoration:underline;">MCV 감소</span> (&lt;80fL, 소적혈구), MCH, MCHC 감소 (저색소성)</li>
+                                <li><span style="text-decoration:underline;">혈청 페리틴 감소</span> (&lt;15 ng/mL, 철 저장량 부족), 혈청 철(Fe) 감소, <span style="text-decoration:underline;">총 철결합능(TIBC) 증가</span> (정상:250-400)</li>
+                                <li>말초혈액도말: 소적혈구(hypochromic, microcytic), 타겟 셀 가능</li>
+                            </ul>
+                        </li>
+                        <li><strong>만성질환빈혈(ACD)</strong>
+                            <ul>
+                                <li>페리틴 정상or증가 (염증성 단백질), 총 철결합능(TIBC) 정상, MCV 정상or약간 감소</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="macrocytic">
+                <h2>거대적혈모구 빈혈</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <p class="exam-tip">￥ MCV 증가, B12 정상, folate 정상.. → 대적혈구 빈혈</p>
+                    <ul>
+                        <li><span style="text-decoration:underline;">MCV 증가</span> (&gt;100 fL, 거대적혈구), 망상적혈구 ↓ (비효율적 조혈), <span style="text-decoration:underline;">Hypersegmented neutrophils</span> (과분엽 호중구), 혈청 LDH ↑, 간접 빌리루빈 ↑ (용혈 동반)</li>
+                        <li><strong>비타민 B12(cobalamin) 결핍:</strong> 위 절제술, 위축성 위염 (Intrinsic factor 부족), 회장 말단 질환 (크론병, 회장 절제술), 장내 세균 과증식, Vegan
+                            <ul>
+                                <li>증상: 혀가 붉고 매끈, 통증호소 / 신경학적 증상: <strong>사지 저림, 감각 이상</strong></li>
+                                <li>치료: <strong>비타민 B12 매월 근육주사</strong></li>
+                                <li>검사: <strong>Serum MMA (methylmalonate)</strong> - <span class="exam-tip">￥민감도 가장 높은 검사 (cobalamin 아님, MMA가 답)</span><br>
+                                B12 정상 200-900 pg/mL, 200-399 pg/mL 이면서 증상있으면 MMA 측정해서 결핍 확인</li>
+                            </ul>
+                        </li>
+                        <li><strong>엽산(Folate) 결핍:</strong> 만성 알코올 중독, 임신 (필요량 증가), 영양 결핍, 장 질환(셀리악병), 항대사제 사용 (MTX(류마티스관절염), TMP, Phenytoin 등)
+                            <ul>
+                                <li>치료: <strong>folate 경구 치료</strong></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="hemolytic">
+                <h2>용혈성 빈혈</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <p><strong>공통 특징:</strong> 망상적혈구(reticulocyte) 증가, LDH 증가, 간접 빌리루빈 증가, Haptoglobin 감소</p>
+                    <p class="exam-tip">￥ 빈혈 & 황달, 간, 비장비대. 더 필요한 검사? → 망상적혈구(reticulocyte) 측정<br>
+                    ￥ reticulocyte 증가, total bilirubin 4.5, 더 필요한 검사? → Haptoglobin: 용혈 표지자</p>
+                    <ul>
+                        <li><strong>유전성 구상적혈구증 (HS)</strong>
+                            <ul>
+                                <li>비장비대, 담석(색소성 담석) 위험 증가 (<span class="exam-tip">￥담석증 과거력</span>)</li>
+                                <li>구상적혈구(spherocyte), 삼투압 취약성 검사(Osmotic fragility test) 양성</li>
+                                <li>중증: <strong>비장절제술(Splenectomy)</strong> (수술 전 폐렴구균, 수막구균, 인플루엔자 백신 필수)</li>
+                                <li>경증: 대증 치료, 엽산 보충 (적혈구 생성 보조)</li>
+                            </ul>
+                        </li>
+                        <li><strong>자가면역 용혈성 빈혈(AIHA)</strong>
+                            <ul>
+                                <li>원인: 특발성, 자가면역 질환(SLE), 림프종, CLL, 약물 유발(Penicillin, Methyldopa 등)</li>
+                                <li>진단: <strong>Direct Coombs test 양성</strong></li>
+                                <li>1차 치료: 고용량 스테로이드 (Prednisone 1mg/kg/day) / 2차: 리툭시맙, 비장절제술</li>
+                                <li>응급 상황(중증 용혈, Hb 급감): 수혈(가능하면 자가수혈)</li>
+                            </ul>
+                        </li>
+                        <li><strong>발작성 야간혈색소뇨증(PNH)</strong>
+                            <ul>
+                                <li>적혈구가 보체에 의해 파괴됨. 야간 용혈 & 아침 첫 소변 적갈색</li>
+                                <li>정맥 혈전증(Budd-Chiari syndrome), 범혈구 감소증 동반 가능. Hemosiderinuria</li>
+                                <li>진단: <strong>Flow cytometry: CD55(-), CD59(-)</strong></li>
+                                <li>치료: 보체 억제제 (Eculizumab, Ravulizumab), 필요 시 스테로이드, 조혈모세포이식</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <table style="font-size: 0.9em;">
+                        <tr>
+                            <th>RPI (Reticulocyte production index)</th>
+                            <th>의미</th>
+                        </tr>
+                        <tr>
+                            <td>용혈성 빈혈(HS, AIHA, PNH) → RPI &gt; 2.5</td>
+                            <td>골수 보상 정상</td>
+                        </tr>
+                        <tr>
+                            <td>재생불량성 빈혈(Aplastic anemia) → RPI &lt; 2.0</td>
+                            <td>골수 보상 부족</td>
+                        </tr>
+                        <tr>
+                            <td>철결핍성 빈혈(IDA), 만성질환 빈혈(ACD) → RPI 낮음</td>
+                            <td>조혈 부족</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic-block" id="aplastic">
+                <h2>재생불량 빈혈 (Aplastic anemia)</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li>골수 기능 저하로 인해 Pancytopenia, 망상적혈구 감소</li>
+                        <li><strong>원인:</strong> 특발성(가장 흔함), 약물 유발(항암제, NSAIDs, <strong>Chloramphenicol</strong>, Phenytoin), 바이러스 감염(EBV, CMV, B19), 독성 물질(벤젠)</li>
+                        <li><strong>임상 증상:</strong> 빈혈, 감염 (특히 호중구 감소), 출혈</li>
+                        <li><strong>진단:</strong> 골수생검 (Bone marrow biopsy) → 조혈세포 감소, 지방 침착 증가</li>
+                        <li><strong>치료:</strong> 경증/어린이/젊은성인 - 관찰 + 조혈촉진제(EPO, G-CSF)<br>
+                        중증 - 조혈모세포이식 (1st line), 면역억제 치료 (Cyclosporine + ATG, 2nd line)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="polycythemia">
+                <h2>적혈구 증가증 / 골수증식성 질환</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li><strong>상대적 적혈구 증가증:</strong> 흡연, 탈수, 남성호르몬(Androgen) 사용, 스테로이드<br>
+                        <span class="exam-tip">￥ Hb18, PLT 14만, 치료?: 금연 (not 사혈)</span></li>
+                        <li><strong>이차성 적혈구 증가증:</strong> 만성 저산소증(COPD, 고산병), 신장 질환(EPO 증가)</li>
+                        <li><strong>진성 적혈구 증가증 (PV):</strong> JAK2 돌연변이 동반, WBC/혈소판 증가<br>
+                        <span class="exam-tip">￥ Hb19, Plt 54만, 입술 검고, 비장비대, 사우나가면 소양감 → PV → Phlebotomy(정맥절개술, 사혈)</span><br>
+                        <span class="exam-tip">￥ 진성 적혈구 증가증 의심할 수 있는 소견?: 비장비대, 혈소판 증가증 (&gt;45만/uL)</span></li>
+                        <li><strong>본태성 혈소판증가증 (Essential thrombocythemia):</strong> 혈전, 출혈 위험, 적혈구통 / 치료: <strong>Aspirin</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="plasma">
+                <h2>형질세포질환</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li><strong>다발골수종(Multiple Myeloma, MM)</strong>
+                            <ul>
+                                <li><strong>CRAB:</strong> C (Calcium ↑ 고칼슘혈증) / R (Renal impairment 신부전) / A (Anemia 빈혈) / B (Bone lesion 요통, 병적 골절), A/G ratio 역전</li>
+                                <li>혈청 & 소변 단백 전기영동 → <strong>M-spike</strong> 확인</li>
+                                <li>면역고정검사(IFE) → M 단백의 종류 확인</li>
+                                <li>골수검사 → 형질세포(Plasma cell) ≥ 10% 시 진단</li>
+                                <li>치료: 항암유도요법 후 자가조혈모세포이식(ASCT) / ASCT 불가 시: Bortezomib+Lenalidomide+Dexamethasone<br>
+                                골 보호, 신장 보호, 고칼슘혈증 치료 병행</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="platelet">
+                <h2>혈소판 및 혈관벽 질환</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li><strong>ITP (Immune thrombocytopenia):</strong> 면역성 혈소판 파괴 → 자반, 멍, 점막출혈<br>
+                        치료: PLT &lt; 30,000는 <strong>스테로이드</strong>, 재발 시 비장절제술 / PLT 3만 이상이면 추적관찰</li>
+                        <li><strong>TTP (Thrombotic thrombocytopenic purpura):</strong> FATRN (발열, 용혈, 혈소판 감소, 신경, 신장)<br>
+                        치료: <strong>혈장교환술</strong></li>
+                        <li><strong>HUS (Hemolytic uremic syndrome):</strong> O157 E. coli 감염 후 설사 + 신부전<br>
+                        치료: 대증치료(항생제 금기), <span class="exam-tip">￥수혈 (Hb 6, 5세, 설사, 발열, 소변량 줄음, helmet cell, burr cell)</span></li>
+                        <li><strong>HSP (Henoch-Schonlein purpura):</strong> 혈관염으로 인해 신장에 IgA 침착<br>
+                        자반 + 복통 + 관절통 + 신장침범소견(혈뇨/단백뇨) → <strong>소변검사 반복</strong>, 대증치료</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic-block" id="paraneoplastic">
+                <h2>부종양증후군</h2>
+                <div class="exam-source">
+                    <span class="source-label">기출 기반 요약</span>
+                    <ul>
+                        <li><strong>Spinal cord compression:</strong> NSCLC 환자, 가슴 이하 감각 마비, 하지 운동마비, 소변 못보는 증세 → <strong>Steroid 투여</strong></li>
+                        <li><strong>SVC syndrome:</strong> 경정맥 확장, 앞 흉벽 곁 정맥 수 증가, 청색증, 부종, 안구 돌출 → <strong>흉부 CT 확인</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<section id="primarycare-hemato-supplement">
+<h1>혈액종양내과: 일차진료 가이드라인 보강</h1>
+<p class="small">원본 <code>im_hemato.html</code>의 시험 정리 내용을 보존한 별도 보강본임. 외래에서 가장 흔히 마주하는 빈혈(주로 철결핍성)의 진단, 경구 및 정맥 철분제 처방 가이드라인을 추가함.</p>
+<nav class="pc-card"><strong>빠른 이동</strong><ul class="toc-mini"><li><a href="#pc-ida-diagnosis">빈혈의 접근 및 진단</a></li><li><a href="#pc-iron-po">경구 철분제 처방</a></li><li><a href="#pc-iron-iv">정맥 철분제(IV) 처방</a></li><li><a href="#pc-refer">상급병원 의뢰 기준</a></li></ul></nav>
+
+<section id="pc-ida-diagnosis"><h2>빈혈의 접근 및 진단 (일차진료)</h2>
+<div class="danger-box"><strong>즉시 내시경 의뢰:</strong> 65세 이상, 남성, 폐경 후 여성에서 발생한 철결핍 빈혈은 위장관 출혈(위암, 대장암 등) 감별이 1순위임. 즉시 위·대장내시경을 시행하거나 의뢰함.</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span><h3>초기 랩 검사 세트</h3><ul><li>CBC (Hb, Hct, MCV, MCH, MCHC, PLT, WBC), Retic count (망상적혈구)</li><li>Iron profile: Serum Iron, TIBC, Ferritin</li><li>간기능, 신기능(Cr, eGFR), 소변검사 (혈뇨 확인)</li><li>말초혈액도말(PB smear)은 자동화 장비 이상 시 보조적으로 활용</li></ul></div>
+<table class="pc-table"><thead><tr><th>분류</th><th>지표 특징</th><th>외래 감별 포인트</th></tr></thead><tbody><tr><td>철결핍 빈혈 (IDA)</td><td>MCV &lt; 80, Ferritin &lt; 15~30, TIBC 증가</td><td>가장 흔함. 가임기 여성은 생리 과다 확인. 남성/폐경 후는 위장관 출혈 확인 필수.</td></tr><tr><td>만성질환 빈혈 (ACD)</td><td>MCV 정상/감소, Ferritin 정상/증가, TIBC 감소/정상</td><td>만성 염증, 감염, 악성종양, 신부전 동반. 철분제 투여 전 염증 원인 확인 요망.</td></tr><tr><td>거대적혈모구 빈혈</td><td>MCV &gt; 100, B12 또는 Folate 감소</td><td>위절제술력, 채식주의자, 만성 음주자. 신경학적 증상(저림) 유무 확인.</td></tr></tbody></table>
+</section>
+
+<section id="pc-iron-po"><h2>경구 철분제 (PO) 처방 가이드</h2>
+<div class="algorithm-box"><h3>투여 원칙 및 목표</h3><ol><li><strong>목표:</strong> Hb 정상화 후 저장철(Ferritin) 충전될 때까지 보통 <strong>3~6개월</strong> 지속 투여함.</li><li><strong>용량:</strong> 성인 기준 원소철(Elemental iron) <strong>100~200mg/day</strong>. (최근에는 위장장애 시 격일 복용이나 저용량 60-100mg 단회 복용도 흡수율이 좋다는 연구가 있음).</li><li><strong>복용법:</strong> 공복(식전 1시간 또는 식후 2시간) 복용이 원칙이나 위장장애 심하면 식후 복용 허용 (흡수율은 떨어짐). 오렌지 주스(비타민 C)와 함께 먹으면 흡수율 증가함. 제산제(PPI), 칼슘제, 우유, 커피, 녹차 등과 병용 금지.</li></ol></div>
+<div class="pc-grid"><div class="pc-card"><h3>주요 부작용 및 대처</h3><ul class="checklist"><li>검은색 대변 (정상적 반응이므로 미리 환자에게 설명하여 안심시킴)</li><li>위장장애(오심, 구토, 변비, 설사): 식후 복용으로 변경, 용량 감량, 비이온성/액상 철분제로 변경 시도</li></ul></div><div class="pc-card"><h3>치료 반응 추적</h3><ul class="checklist"><li>망상적혈구(Retic count): 투여 7~10일 후 증가 시작</li><li>Hb: 3~4주 후 1~2 g/dL 증가</li><li>Ferritin: Hb 정상화 후 3~6개월 뒤 측정하여 저장철 충전 확인</li></ul></div></div>
+</section>
+
+<section id="pc-iron-iv"><h2>정맥 철분제 (IV) 처방 및 급여 기준</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span><p>경구 철분제에 불응성인 경우, 심한 위장관 부작용으로 경구 투여 불가능한 경우, 신속한 혈색소 상승이 필요한 경우(수술 전, 중증 빈혈 등), 만성 신질환/심부전 동반 빈혈 시 IV 철분제를 고려함.</p></div>
+<div class="coverage-box"><span class="source-label">보험·급여 기준 확인 필요</span><p>정맥 철분제는 급여 기준이 매우 까다로우며 삭감 사례가 빈번함. 실제 처방 전 반드시 최신 심평원 고시를 확인함.<br>
+(일반적 삭감 예방 기준: 일반 빈혈 Hb 8 미만 + 경구 투여 실패/불가 명시 등, 질환별 예외 규정 존재)</p></div>
+<table class="pc-table"><thead><tr><th>제제 종류</th><th>특징 및 장단점</th><th>투여 시 주의사항</th></tr></thead><tbody><tr><td>Iron Sucrose (베노훼룸 등)</td><td>일반적으로 자주 쓰임. 총 용량을 여러 번 나누어 투여해야 함.</td><td>Anaphylaxis 위험 있으므로 첫 투여 시 test dose 시행 고려 및 응급 키트 준비.</td></tr><tr><td>Ferric Carboxymaltose (페린젝트 등)</td><td>1회에 고용량(1000mg까지) 투여 가능하여 환자 편의성 높음.</td><td>저인산혈증(Hypophosphatemia) 유발 가능성. 비급여/본인부담금 비쌈.</td></tr></tbody></table>
+</section>
+
+<section id="pc-refer"><h2>상급병원 의뢰 (Refer) 기준</h2>
+<div class="refer-box"><strong>혈액내과 / 소화기내과 의뢰 고려:</strong>
+<ul class="checklist">
+<li>경구 철분제 복용 1개월 후에도 Hb 상승이 전혀 없는 경우 (출혈 지속, 흡수장애, 다른 빈혈 동반 의심)</li>
+<li>이유 없는 범혈구감소증(Pancytopenia) (백혈병, 골수이형성증후군, 재생불량성 빈혈 의심)</li>
+<li>비장비대를 동반하거나 용혈성 빈혈 소견(황달, 간접 빌리루빈↑, LDH↑, 망상적혈구↑)이 뚜렷한 경우</li>
+<li>위·대장내시경 상 출혈 병소가 확인되거나 암이 의심되는 경우 (소화기/외과 의뢰)</li>
+</ul></div>
+</section>
+
+<section><h2>근거·최신성 메모</h2><div class="pc-card small"><ul><li>일차진료_guideline_혈액 내과 섹션 (철결핍 빈혈 진단, 약제 선택, 부작용 관리)</li><li>작성일: 2026-08-06. 급여 기준, 허가사항, 최신 진료지침은 실제 처방 전 재확인 필요.</li></ul></div></section>
+</section></body>
+</html>
