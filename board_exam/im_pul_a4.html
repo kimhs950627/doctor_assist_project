@@ -1,1 +1,466 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>호흡기학 A4 인쇄본</title><style>@page{size:A4;margin:11mm}body{font-family:Arial,'Noto Sans KR',sans-serif;font-size:9.5pt;line-height:1.42;color:#172033}h1{font-size:28pt;color:#0f3d75;border-bottom:4px solid #2563eb;padding-bottom:4mm}h2{font-size:16pt;color:#0f4c81;border-bottom:1px solid #60a5fa;break-after:avoid}.cols{columns:2;column-gap:8mm}.box{break-inside:avoid;border-left:1.5mm solid #2563eb;background:#f8fbff;padding:2mm;margin:2mm 0}.red{border-color:#b91c1c;background:#fef2f2;color:#7f1d1d}.green{border-color:#047857;background:#f0fdf4}table{width:100%;border-collapse:collapse;font-size:8pt;break-inside:avoid}th,td{border:.25mm solid #cbd5e1;padding:1.2mm;vertical-align:top}th{background:#eaf3ff}</style></head><body><h1>호흡기학</h1><p>가정의학과 전문의 시험 대비 · A4 인쇄 최적화</p><div class="cols"><section><h2>폐기능검사</h2><div class="box">폐쇄성: FEV1/FVC &lt;70%. BDR에서 FEV1 12% 및 200mL 이상 증가 시 천식 지지. 제한성은 FVC·TLC 감소. 정상 PFT인데 천식 의심 시 메타콜린 검사.</div><h2>기침</h2><div class="box">급성 &lt;3주, 아급성 3–8주, 만성 &gt;8주. 만성기침은 CXR 우선. UACS, GERD, 기침형천식, 호산구성 기관지염, 흡연, ACEi/DPP-4i 감별.</div><div class="box red">객혈, 호흡곤란, 쉰목소리, 연하곤란, 체중감소·지속발열, 일측성 천명, 반복 폐렴은 red flag.</div><h2>천식</h2><div class="box">ICS 핵심. 저용량 ICS/ICS-formoterol에서 시작하여 ICS+LABA, 중증 시 생물학제제 평가. 악화 시 SABA, 중증은 ipratropium·산소·전신 스테로이드 및 전원.</div></section><section><h2>COPD</h2><div class="box">진단: 기관지확장제 후 FEV1/FVC &lt;0.70. 금연과 LAMA/LABA. 급성 고탄산성 호흡부전은 NIV 우선 고려.</div><h2>폐렴</h2><div class="box">감기는 대개 바이러스성. 고열·빈호흡·저산소증·국소 진찰 이상이면 CXR 고려. CURB-65: confusion, urea, RR≥30, BP저하, 65세 이상.</div><h2>기타·예방</h2><div class="box">기관지확장증은 CT. Light criteria로 흉수 평가, ADA 상승은 결핵성 흉막염 고려. 만성 폐질환에서 금연·인플루엔자·폐렴구균 예방접종 권유.</div><div class="box green">실제 처방·항생제·항바이러스제·급여·예방접종은 최신 지침, 허가사항, 고시 확인 필요.</div></section></div><p><small>프로젝트 내부 기출 DOCX 및 일차진료 호흡기·금연·예방접종 자료 기반 요약.</small></p></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>호흡기내과 - 가정의학과 전문의 시험 대비</title>
+<style>
+  @page { size: A4; margin: 14mm 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size: 10.5pt; line-height: 1.5; color:#1a1a1a; margin:0;
+    background:#f3f4f6;
+  }
+  .wrap-section {
+    width: 186mm; min-height: 262mm; margin: 8mm auto; padding: 12mm;
+    background:#fff; box-shadow:0 0 6px rgba(0,0,0,.15);
+    position:relative;
+  }
+  .page.cover { display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+  .page.cover h1 { font-size:26pt; color:#0f4c81; margin-bottom:4mm; }
+  .page.cover p { color:#555; }
+  h2 {
+    font-size:15pt; color:#fff; background:#0f4c81; padding:2mm 4mm;
+    margin: 0 0 4mm 0; border-radius:1mm; break-after: avoid; page-break-after: avoid;
+  }
+  h3 {
+    font-size:12.5pt; color:#0f4c81; border-bottom:0.5mm solid #93c5fd;
+    padding-bottom:1mm; margin:5mm 0 2mm 0; break-after: avoid; page-break-after: avoid;
+  }
+  h4 { font-size:11pt; color:#047857; margin:3mm 0 1mm 0; break-after: avoid; page-break-after: avoid; }
+  .cols { column-count:2; column-gap:6mm; }
+  ul { margin:1mm 0 2mm 0; padding-left:4mm; }
+  li { margin-bottom:1mm; }
+  table { width:100%; border-collapse:collapse; margin:2mm 0 3mm 0; font-size:9pt; break-inside: avoid; page-break-inside: avoid; }
+  table.full-width { column-span: all; }
+  th, td { border:0.2mm solid #cbd5e1; padding:1.2mm 1.8mm; text-align:left; vertical-align:top; }
+  th { background:#dbeafe; color:#0f4c81; font-weight:700; }
+  .exam-source { margin:2mm 0; padding:1.5mm 2.2mm; border-left:1mm solid #2563eb; background:#f8fbff; break-inside:avoid; page-break-inside:avoid; }
+  .source-label { display:inline-block; margin-bottom:1mm; padding:0.5mm 1.5mm; border-radius:1mm; font-size:8pt; font-weight:800; color:#1d4ed8; background:#dbeafe; }
+  .danger-box { margin:3mm 0; padding:2.5mm 3mm; border-left:1.2mm solid #b91c1c; background:#fef2f2; color:#7f1d1d; break-inside:avoid; page-break-inside:avoid; }
+  .exam-tip { margin:2mm 0; padding:2mm 2.5mm; border:0.3mm dashed #f59e0b; background:#fffbeb; border-radius:1mm; break-inside:avoid; page-break-inside:avoid; font-size:9.5pt; }
+  .exam-tip .source-label { color:#92400e; background:#fef3c7; }
+  .note { margin:2mm 0; padding:1.5mm 2.2mm; border-left:1mm solid #64748b; background:#f8fafc; break-inside:avoid; page-break-inside:avoid; font-size:9.5pt; color:#475569; }
+  .toc-box { list-style:none; padding-left:0; column-count:1; }
+  .toc-box li { margin-bottom:2mm; font-size:11pt; }
+  .toc-box a { text-decoration:none; color:#0f4c81; font-weight:600; }
+  .toc-box a:hover { text-decoration:underline; }
+  .full-width { column-span: all; }
+  u { text-decoration: underline; }
+  mark { background:#fff59d; }
+  figure { margin:2mm 0; break-inside:avoid; page-break-inside:avoid; }
+  figure img { max-width:100%; display:block; margin:0 auto; }
+  figcaption { font-size:8.5pt; color:#667085; text-align:center; margin-top:1mm; }
+
+  .wrap-section { break-inside: auto; page-break-inside: auto; margin-bottom:6mm; }
+  .wrap-section.cover { page-break-after: always; }
+  table, figure, .img-row, .danger-box, .note, .exam-tip, .exam-source { break-inside: avoid; page-break-inside: avoid; }
+  h2, h4, h3 { break-after: avoid; page-break-after: avoid; }
+</style>
+</head>
+<body>
+
+<div class="wrap-section cover">
+  <h1>호흡기내과</h1>
+  <p>가정의학과 전문의 시험 대비 요약 (A4 인쇄용)</p>
+  <p style="margin-top:6mm;font-size:9pt;color:#888;">원본: 2권 심혈관,호흡기,류마티스.docx (호흡기 파트 전문)</p>
+  <ul class="toc-box" style="margin-top:10mm;">
+  <li><a href="#pul-pft">폐기능검사</a></li>
+  <li><a href="#pul-asthma">천식</a></li>
+  <li><a href="#pul-hp-ep">과민성 폐렴 / 호산구 폐침윤</a></li>
+  <li><a href="#pul-occupational">환경성(직업성) 폐질환</a></li>
+  <li><a href="#pul-pneumonia">폐렴</a></li>
+  <li><a href="#pul-pneumonia-tx">폐렴 치료 - 상황별 항생제 선택</a></li>
+  <li><a href="#pul-abscess-bronchiectasis">기관지 확장증 / 폐농양</a></li>
+  <li><a href="#pul-copd">COPD</a></li>
+  <li><a href="#pul-pleural">흉수</a></li>
+  <li><a href="#pul-pneumothorax">기흉</a></li>
+  </ul>
+</div>
+<div class="wrap-section">
+<h2 id="pul-pft">폐기능검사</h2>
+<div class="cols">
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>말초 소기도 병변 진단할 때 도움: <b>FEF 25-75%</b></li>
+<li><b>FEV₁/FVC &lt; 70% → 폐쇄성(obstructive)</b>: COPD, 천식 등</li>
+<li>PFT에서 <u>폐쇄성 패턴(FEV₁/FVC &lt; 70%)</u>이 보일 때: <b>기관지 확장제 반응 검사(BDR)</b> 시행 → 천식 or COPD 감별
+  <ul>
+  <li>양성(가역성 O, ￥<b>FEV₁ ≥ 12%</b>(base에서 상승률) &amp; 200mL 증가) → 천식</li>
+  <li>음성(가역성 X, 변화 없음) → COPD</li>
+  </ul>
+</li>
+<li><u>PFT 정상</u>이지만 <u>천식 의심되거나, 천식 확진이 필요</u>할 때: <b>메타콜린 유발 검사(기관지 수축 유발 검사)</b> 시행 → 기관지 과민성(BHR) 평가
+  <ul>
+  <li>양성(PC20 ≤ 4 mg/mL) → 천식 가능성 높음</li>
+  <li>음성(PC20 &gt; 16 mg/mL) → 천식 가능성 낮음</li>
+  </ul>
+</li>
+<li><b>FVC 감소, FEV₁/FVC 정상 또는 증가 → 제한성(restrictive)</b>: 미만성간질성폐렴, ILD, 폐결핵 후유증 등</li>
+<li>TLC 감소 → 제한성 질환 강력 시사</li>
+<li>DLCO 감소 → 간질성 폐질환, 폐혈관질환 가능성</li>
+</ul>
+</div>
+
+<h4>호산구성 기관지염</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>천식과 유사하지만 기관지 과민성(BHR)이 없음, <u>만성 기침(기침만 있고 호흡곤란 없음)</u></li>
+<li>진단: PFT 정상(FEV₁/FVC &gt; 70%), 메타콜린 유발 검사 음성(천식과 차이점), 객담 호산구 증가(≥2~3%) 확인</li>
+<li>치료: <b>흡입 스테로이드(ICS)</b> → 효과적</li>
+</ul>
+</div>
+
+<h4>급성 기관지염</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>야외활동 후 발생, <b>Parainfluenza virus</b>, 감염 후 기침, <u>X-ray 정상</u>, <u>객혈</u>도 보일 수 있음</li>
+</ul>
+</div>
+
+<div class="exam-tip">
+<span class="source-label">시험 빈출</span>
+흉수 ADA 증가 → <b>결핵성 흉막염</b>
+</div>
+
+<h4>만성 기침 주요 감별진단</h4>
+<div class="note">
+원문에 표/그림으로 제시된 만성기침(&gt;8주) 감별진단 알고리즘: UACS(상기도기침증후군), GERD, 기침형천식(CVA), 호산구성 기관지염, ACEi/DPP-4i 약물유발, 흡연 등이 주요 원인이며 CXR 우선 시행 후 순차 감별함. 도식 원본은 docx 참조 필요.
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-asthma">천식</h2>
+<div class="cols">
+
+<h4>천식 치료 단계별 전략</h4>
+<table class="full-width">
+<tr><th>step</th><th>치료 전략</th><th>대상 환자</th></tr>
+<tr><td>step 1 (간헐적 천식)</td><td>필요 시 저용량 ICS-formoterol 사용(PRN)</td><td>증상 경미하고 간헐적으로 발생</td></tr>
+<tr><td>step 2 (경증 지속성 천식)</td><td>매일 저용량 ICS 유지 or 필요시 저용량 ICS-formoterol</td><td>주 2회 이상 증상 발생, 야간 증상 존재</td></tr>
+<tr><td>step 3 (중등도 지속성 천식)</td><td>저용량 ICS + LABA (유지 치료)</td><td>일주일에 3회 이상 증상 발생</td></tr>
+<tr><td>step 4 (중증 지속성 천식)</td><td>중등도~고용량 ICS + LABA</td><td>증상 지속적, 중증 악화 위험 높음</td></tr>
+<tr><td>step 5 (최중증 천식)</td><td>고용량 ICS + LABA + 생물학적 제제 추가(Anti-IgE, Anti-IL5)</td><td>기존 치료에도 조절되지 않는 중증 천식</td></tr>
+</table>
+
+<h4>1) 염증 조절제 (천식의 근본 치료)</h4>
+<table>
+<tr><th>약물군</th><th>예시</th><th>기능</th></tr>
+<tr><td>흡입 스테로이드(ICS)</td><td>Budesonide, Fluticasone, Beclometasone</td><td>가장 효과적인 천식 조절제(항염증 작용)</td></tr>
+<tr><td>류코트리엔 조절제(LTRA)</td><td>Montelukast, Zafirlukast</td><td>운동유발성 천식, 알레르기성 천식에 효과적</td></tr>
+<tr><td>생물학적 제제(Biologics)</td><td>Omalizumab(Anti-IgE), Mepolizumab(Anti-IL5)</td><td>중증 호산구성 천식에 사용</td></tr>
+</table>
+
+<h4>2) 기관지 확장제 (증상 완화)</h4>
+<table>
+<tr><th>약물군</th><th>예시</th><th>기능</th></tr>
+<tr><td>속효성 β2-작용제(SABA)</td><td>Salbutamol(Ventolin)</td><td>급성 증상 완화(응급 시 사용)</td></tr>
+<tr><td>지속성 β2-작용제(LABA)</td><td>Formoterol, Salmeterol</td><td>ICS와 병용하여 장기 조절제 역할</td></tr>
+<tr><td>항콜린제(LAMA, 흡입형 무스카린 길항제)</td><td>Tiotropium(Spiriva)</td><td>LABA에 반응이 부족한 중증 천식에 추가</td></tr>
+</table>
+
+<h4>3) 천식 급성악화</h4>
+<table class="full-width">
+<tr><th>증상 심한 정도</th><th>치료방법</th></tr>
+<tr><td>경증~중등도 악화</td><td>Salbutamol(SABA) 흡입 + 경구 스테로이드(PO Prednisolone 40~50mg)</td></tr>
+<tr><td>중증 악화(호흡곤란 심함, 말하기 어려움, SpO2&lt;90%)</td><td>네블라이저 SABA + Ipratropium(항콜린제) + IV 스테로이드</td></tr>
+<tr><td>삽관 필요(Life-threatening)</td><td>고유량 산소, IV Magnesium sulfate, 기계환기 고려</td></tr>
+</table>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>임신 중 천식: SABA(<b>흡입 salbutamol, 흡입 terbutaline</b>) 먼저 사용(즉각 기관지 확장) → 유지치료 ICS</li>
+<li>천식 치료 효과 판정: <b>FEV₁ ≥ 80%</b> &amp; <b>PEFR ≥ 80%</b> → 치료 양호</li>
+<li>알레르기 천식 환자가 항원 노출이 예상될 때 예방적 약물: <b>Cromolyn Sodium</b>(비만세포 안정화제)</li>
+<li>테오필린 부작용: <u>오심, 구토, 식욕감소, 두통, 불면증, 중추신경계 흥분</u>, 심한 경우 부정맥, 발작(경련) 발생 가능 → <b>혈중 테오필린 농도</b> 검사, 테오필린 용량조절 또는 중단(테오필린 지금은 거의 안쓴다.. 보조치료)</li>
+<li>테오필린 농도가 정상보다 낮게 유지되는 상황: <b>흡연</b>, <b>phenytoin</b>, rifampin, carbamazepine, phenobarbital</li>
+</ul>
+</div>
+
+<h4>아스피린 유발 천식 (AERD)</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><b>NSAIDs 복용 후 천식 악화</b>, 만성 부비동염, <b>비용종</b></li>
+<li>NSAID/아스피린이 COX-1을 억제하여 류코트리엔 증가 → 기관지 수축 심화</li>
+<li>진단은 병력 청취가 가장 중요, 필요 시 아스피린 유발 검사 시행 가능</li>
+<li>치료는 NSAID 회피 + ICS/LABA + 류코트리엔 조절제(Montelukast)가 기본</li>
+<li>진통제 필요시: <b>AAP</b>, COX-2 억제제(<b>celecoxib</b>)</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-hp-ep">과민성 폐렴 / 호산구 폐침윤</h2>
+<div class="cols">
+
+<h4>과민성 폐렴 (Hypersensitivity pneumonitis)</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>유기물(￥<b>버섯</b>, 곰팡이, 새 깃털 등) 반복 노출 후 발생</li>
+<li>HRCT: 모자이크 패턴, 중심엽 침윤, BAL: 림프구 증가(&gt;40%)</li>
+<li>폐 기능 검사: 제한성 폐질환(TLC 감소)</li>
+<li>치료: <b>￥원인 회피</b> + 필요 시 스테로이드</li>
+</ul>
+</div>
+
+<h4>호산구 폐렴 (EP)</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>말초 혈액 &amp; 폐포 내 호산구 증가</li>
+<li><b>HRCT</b>: GGO 및 consolidation. 말초부위에 발생, 양측성으로 발생(일반 세균성 폐렴은 특정 lobe나 segment에 국한되어 나타남)</li>
+</ul>
+</div>
+
+
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>BAL: 호산구 증가(&gt;25%)</li>
+<li>폐결절 이동성 패턴(￥몇개월 전 결절이 사라지고 다른 부위에 생김)</li>
+<li>치료: 경과 관찰, 증상 있으면 스테로이드</li>
+</ul>
+</div>
+
+<h4>폐흡충증에 의한 eosinophilic lung disease</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><u>민물 회</u> 즐겨 먹음. cough, hemoptysis, dyspnea, CXR 상 불규칙한 폐침윤, 흉수에서 호산구 증가</li>
+<li>확진 검사: <b>대변검사</b></li>
+</ul>
+</div>
+
+<h4>회충에 의한 eosinophilic lung disease</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><i>Ascaris lumbricoides</i>, <i>Paragonimus westermani</i></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-occupational">환경성(직업성) 폐질환</h2>
+<div class="cols">
+
+<h4>석면폐증 (Asbestosis)</h4>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><u>조선소</u>, 단열재 작업(<u>보일러공</u>), 건설, 철도..</li>
+<li>CXR, CT 소견: 하엽 침범, <u>흉막반(pleural plaques)</u>, 흉막비후, 간질성 폐섬유화</li>
+</ul>
+</div>
+
+<h4>규폐증 (Silicosis)</h4>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>광산, 유리, 도자기 공장, 주물공장, <u>터널공사</u>, <u>대리석 가공</u></li>
+<li>CXR, CT 소견: 폐상부~중부의 small, round nodule, 규폐 결절, 계란껍질 석회화</li>
+</ul>
+</div>
+
+<h4>면분증 (Byssinosis)</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><u>면직물, 방직, 섬유 공장</u></li>
+<li>CXR, CT 소견: 비특이적 폐섬유화, 주로 기도 과민성 증가(천식 유사 증상), Monday chest tightness</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-pneumonia">폐렴</h2>
+<div class="cols">
+
+<h4>1) 감염 경로에 따른 분류</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>지역사회획득폐렴(CAP), 병원획득폐렴(HAP), 인공호흡기연관폐렴(VAP), 흡인성폐렴(Aspiration pneumonia)으로 분류</li>
+</ul>
+</div>
+
+<h4>2) 원인균에 따른 분류</h4>
+<div class="exam-tip">
+<span class="source-label">시험 빈출</span>
+￥<u>독감 후 폐렴</u> 원인균: <b>S. aureus</b>(급격한 진행, 폐 괴사, 공동 형성 가능)
+</div>
+
+<h4>3) 주요 폐렴의 임상적 특징</h4>
+
+
+<h4>4) 입원 치료 기준 - 폐렴 중증 지표 (CURB-65)</h4>
+
+<div class="exam-tip">
+<span class="source-label">시험 빈출</span>
+￥지역사회 폐렴환자에서 심하다고 판단할 수 있는 소견: <b>호흡수(RR) ≥ 30회</b>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-pneumonia-tx">폐렴 치료 - 상황별 항생제 선택</h2>
+
+<table class="full-width">
+<tr><th>치료 환경</th><th>항생제 원칙</th><th>구체 약제</th></tr>
+<tr><td>외래환자</td><td>β-lactam(경구) ± macrolide(경구)</td><td>amoxicillin/clavulanate, <b>ampicillin/sulbactam</b>, cefotaxime, <b>ceftriaxone</b>, cefpodoxime, cefditoren ± <b>azithromycin</b>, clarithromycin, roxithromycin</td></tr>
+<tr><td>외래환자(대안)</td><td>또는 respiratory quinolone</td><td>levofloxacin, <b>moxifloxacin</b>, gemifloxacin, gatifloxacin</td></tr>
+<tr><td>P.aeruginosa(녹농균) 의심 안되는 일반 병실 환자</td><td>β-lactam(경정맥) ± macrolide(경구,경정맥)</td><td>amoxicillin/clavulanate, ampicillin/sulbactam, <b>cefotaxime</b>, ceftriaxone, cefpodoxime, cefditoren ± azithromycin, <b>clarithromycin</b>, roxithromycin</td></tr>
+<tr><td>일반 병실(대안)</td><td>또는 respiratory quinolone</td><td>levofloxacin(경정맥/경구), moxifloxacin(경정맥/경구), gemifloxacin(경구), gatifloxacin</td></tr>
+<tr><td>흡인성 폐렴; 치아위생불량, 알코올중독, <b>항생제 사용 후 발생</b>(혐기성 감염 의심)</td><td>metronidazole 또는 <b>piperacillin/tazobactam</b>, 또는 imipenem</td><td>plus Quinolone(<b>levofloxacin</b>), 또는 ceftriaxone 1일 1g 정주, 또는 cefotaxime 2g을 6시간마다 정주</td></tr>
+<tr><td><b>Legionella</b></td><td>macrolide</td><td><b>azithromycin</b></td></tr>
+<tr><td><b>Mycoplasma</b>(젊은사람!!)</td><td>macrolide 또는 tetracycline</td><td>azithromycin, <b>erythromycin</b> 또는 doxycycline</td></tr>
+<tr><td>Pneumocystis jirovecii(PCP)</td><td>TMP-SMX</td><td>Trimethoprim-Sulfamethoxazole(Bactrim)</td></tr>
+</table>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>폐렴 영상 악화 but 증상호전: <b>경과관찰</b></li>
+<li>폐렴 치료반응 평가: <b>해열</b></li>
+</ul>
+</div>
+
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-abscess-bronchiectasis">기관지 확장증 / 폐농양</h2>
+<div class="cols">
+
+<h4>폐농양 (Lung abscess)</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>기침, 전신쇠약, 발열, 오한, 몸살</li>
+<li>혐기성균 포함 항생제 치료(Ampicillin/sulbactam, Clindamycin, Carbapenem), 경구 전환 가능 시 Augmentin or Clindamycin PO 사용</li>
+<li>￥ceftriaxone + clindamycin</li>
+<li>치료 기간 최소 4~6주, 6cm 이상이거나 치료 반응 없을 시 배액 고려</li>
+</ul>
+</div>
+
+<h4>기관지확장증 (Bronchiectasis)</h4>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>백일해 hx, 만성 기침과 가래, <u>반복 폐렴 입원</u></li>
+<li>￥<b>흉부 CT</b>에서 기관지 확장(signet ring sign) 확인 → 확진</li>
+<li>치료 핵심: 객담 배출 + 감염 예방 + <u>급성기엔</u> 항생제 치료(￥levofloxacin)</li>
+<li>Pseudomonas(녹농균) 감염이 흔하므로, 항녹농균 항생제 필요 시 사용</li>
+<li>급성기 치료 후 ￥<b>호흡재활치료</b></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-copd">COPD</h2>
+<div class="cols">
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li><b>COPD</b>: 만성 기침, 가래, 호흡곤란, 가장 중요한 원인은 <b>흡연</b></li>
+<li>진단: <b>폐기능검사(FEV1/FVC &lt; 70%)</b></li>
+<li>치료: <b>금연</b> + 기관지 확장제(LAMA/LABA; <b>indacaterol+tiotropium</b>)</li>
+<li>급성 악화 시: 기관지 확장제 증량 + 스테로이드 + 필요 시 항생제</li>
+</ul>
+</div>
+
+<div class="danger-box">
+<strong>COPD의 자연경과 변화시킬 수 있는 유일한 3가지 치료:</strong> 금연, 산소요법, 폐용적 감소술<br>
+￥산소 치료: PaO₂ ≤ 55 mmHg(SpO₂ ≤ 88%)일 때 저유량 산소 공급 → <b>생존률 향상치료!!</b>
+</div>
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>급성 고탄산혈증 호흡부전: 비침습적 <b>기계환기(NIV, BiPAP)</b>가 1차 치료</li>
+<li>폐절제술 시행여부 판단: <b>FEV1 예측치</b></li>
+<li>기관지 확장효과 없지만 삶의 질 개선시키는 약: <b>PDE-4 억제제</b>(보조치료개념, 정신과병력 주의)</li>
+</ul>
+</div>
+
+
+<div class="note">
+COPD 안정기 치료: GOLD 그룹(A/B/E)에 따라 기관지확장제(LAMA 또는 LAMA+LABA) 단계적 적용, 급성악화 반복 시 ICS 추가 고려. 세부 알고리즘은 GOLD 최신 가이드라인 확인 필요.
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-pleural">흉수</h2>
+<div class="cols">
+
+<h4>Light's criteria</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>pleural/serum protein &gt; 0.5</li>
+<li>pleural/serum LDH &gt; 0.6</li>
+<li>pleural fluid LDH가 serum LDH <mark>upper limit의 2/3 이상</mark></li>
+</ul>
+</div>
+
+<div class="note">
+Light's criteria 중 1개 이상 만족 시 삼출액(exudate)으로 판정, 모두 미충족 시 누출액(transudate)으로 판정함.
+</div>
+
+<h4>흉관 삽입 적응증</h4>
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>loculated pleural fluid</li>
+<li>pleural fluid pH ≤ 7.2</li>
+<li>pleural fluid glucose &lt; 3.3mmol/L (60mg/dL)</li>
+<li>그람염색 양성, 흉막액 배양검사 양성</li>
+<li>흉강 내 육안상 pus 발견(empyema)</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<div class="wrap-section">
+<h2 id="pul-pneumothorax">기흉</h2>
+<div class="cols">
+
+<div class="exam-source">
+<span class="source-label">기출 기반 요약</span>
+<ul>
+<li>&lt;50% - <b>바늘 흉강천자</b> / &gt;50% - 흉관삽입술</li>
+<li>재발성 기흉 - <b>VATS</b>(Video-assisted thoracoscopic surgery)</li>
+<li>기흉을 가장 잘 볼 수 있는 X-ray 사진: <b>최대 호기 chest PA</b></li>
+</ul>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
