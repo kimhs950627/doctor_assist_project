@@ -14,6 +14,12 @@ h2{font-size:16pt;color:#173b6c;border-bottom:1.4px solid #93b4dc;padding-bottom
 h3{font-size:11.5pt;margin:4mm 0 1.5mm;color:#1e4e86}
 h4{font-size:10pt;margin:2mm 0 1mm;color:#28578f}
 p{margin:0 0 2mm}
+figure{margin:2mm 0 3mm}
+figure img{max-width:100%;height:auto;border:1px solid #d7dee8;border-radius:4px;background:#fff}
+figcaption{font-size:8.3pt;color:#5b6577;margin-top:1mm}
+.img-row{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin:2mm 0 3mm}
+.img-row figure{margin:0}
+@media(max-width:800px){.img-row{grid-template-columns:1fr}}
 ul{margin:1mm 0 2.5mm;padding-left:4.7mm}
 li{margin:.7mm 0}
 a{color:#1d4ed8;text-decoration:none}
@@ -59,6 +65,7 @@ mark{background:#fff3b0}
 <h2 id="cv-exam">심혈관계 신체검사(진찰) &amp; 판막질환</h2>
 <div class="exam-source">
 <span class="source-label">기출 기반 요약</span>
+<figure><img src="assets/cv_media/image20.png" alt="심장 판막 해부도"><figcaption>원문 삽입 이미지 — 심장판막 위치</figcaption></figure>
 <table>
 <tr><th>잡음 시기</th><th>부위</th><th>질환</th><th>특징</th></tr>
 <tr><td rowspan="4">수축기 잡음</td><td>우측 제2늑간</td><td>대동맥판 협착증(AS)</td><td>실신, 흉통, <u>우측 박출성 수축기 심잡음</u>, 양측 경동맥 radiation</td></tr>
@@ -80,11 +87,13 @@ mark{background:#fff3b0}
 <p>● 기립성 저혈압 치료</p>
 <p>- 생활습관 조절 → 천천히 일어나기, 수분·염분 섭취 증가, 압박 스타킹 착용, 식후 저혈압 방지</p>
 <p>- 약물 치료(증상 지속) → <b>Fludrocortisone(혈액량 증가)</b>, Midodrine(혈관 수축), Droxidopa</p>
+<figure><img src="assets/cv_media/image2.png" alt="실신 감별 표"><figcaption>원문 삽입 이미지 — 실신 감별 접근</figcaption></figure>
 </div>
 
 <h2 id="cv-chestpain">심혈관계 증상 — 흉통(Chest pain / Discomfort)</h2>
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
-<p>흉통 감별은 원인별 특징적 유발/완화 요인, 방사통 양상을 기준으로 접근함 (원문 표/이미지 참조).</p>
+<p>흉통 감별은 원인별 특징적 유발/완화 요인, 방사통 양상을 기준으로 접근함.</p>
+<figure><img src="assets/cv_media/image30.png" alt="협심증 CCS 분류"><figcaption>원문 삽입 이미지 — CCS 협심증 중증도 분류</figcaption></figure>
 </div>
 
 <h2 id="cv-edema">심혈관계 증상 — 부종(Edema)</h2>
@@ -107,6 +116,7 @@ mark{background:#fff3b0}
 <div class="page">
 <h2 id="cv-ekg">심전도 해석 — Hyperkalemia</h2>
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
+<figure><img src="assets/cv_media/image4.png" alt="고칼륨혈증 심전도 변화"><figcaption>원문 삽입 이미지 — Hyperkalemia EKG progression</figcaption></figure>
 <p>● <b>Hyperkalemia:</b> ACEi/ARB, BB, 과일 섭취(￥과일을 갈아서 먹었다)</p>
 <p>- EKG: tall T wave, <b>PR간격과 QRS 간격 연장</b></p>
 <table>
@@ -119,6 +129,11 @@ mark{background:#fff3b0}
 
 <h2 id="cv-brady">서맥성 부정맥</h2>
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
+<div class="img-row">
+<figure><img src="assets/cv_media/image3.png" alt="3도 방실차단"><figcaption>3도 AV block</figcaption></figure>
+<figure><img src="assets/cv_media/image5.png" alt="Mobitz I"><figcaption>Mobitz type I</figcaption></figure>
+</div>
+<figure><img src="assets/cv_media/image13.png" alt="Mobitz II"><figcaption>Mobitz type II</figcaption></figure>
 <table>
 <tr><th>구분</th><th>EKG 소견</th><th>치료</th></tr>
 <tr><td><b>3도 방실차단(Complete AV block)</b></td><td>P파와 QRS파가 완전 해리(따로따로)</td><td>약물 치료 불가 → <b>영구 인공 심박동기(PPM) 삽입</b></td></tr>
@@ -132,6 +147,7 @@ mark{background:#fff3b0}
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
 <p>● 심방조기박동(PAC) → 조기 P파 + 정상 QRS(좁고 정상 형태), 대부분 양성(경과관찰)</p>
 <p>● 심실조기박동(VPC) → P파 없음 + 넓은 QRS(≥120ms, 비정상 형태), 필요시 평가</p>
+<figure><img src="assets/cv_media/image22.png" alt="PSVT 심전도"><figcaption>원문 삽입 이미지 — PSVT example</figcaption></figure>
 <h4>PSVT (Paroxysmal supraventricular tachycardia)</h4>
 <p>- Regular, narrow QRS</p>
 <p>- <u>1차 치료</u>: 발살바, 경동맥마사지 → Adenosine → (반응없으면) Verapamil</p>
@@ -139,6 +155,10 @@ mark{background:#fff3b0}
 <p>- <u>장기 치료(예방약)</u>: Verapamil, <mark>β-blocker(metoprolol)</mark> / 반복 재발시 Catheter ablation</p>
 
 <h4>심방세동(Atrial fibrillation, AF)</h4>
+<div class="img-row">
+<figure><img src="assets/cv_media/image1.png" alt="심방세동 심전도"><figcaption>AF example</figcaption></figure>
+<figure><img src="assets/cv_media/image7.png" alt="CHA2DS2-VASc"><figcaption>CHA₂DS₂-VASc score</figcaption></figure>
+</div>
 <p>- Irregularly irregular</p>
 <table>
 <tr><th>상태</th><th>치료</th></tr>
@@ -154,6 +174,7 @@ mark{background:#fff3b0}
 <p>- WPW 증상 없고 간헐적이면 경과관찰 가능(고위험군 아니면 치료 불필요)</p>
 <p>- 빈맥 발생 시 <b>전극도자절제술(RFCA)</b> 1차 치료 고려</p>
 <p>- WPW+AFib 발생 시 AV차단제(BB,CCB,Digoxin) 금기 → Class Ic 또는 III 항부정맥제 사용가능. 혈역학적 불안정 → <b>cardioversion</b></p>
+<figure><img src="assets/cv_media/image18.png" alt="심방조동 심전도"><figcaption>Atrial flutter example</figcaption></figure>
 <h4>심방조동(Atrial flutter, AFL)</h4>
 <p>- 전형적인 톱날모양 P파, 2번or4번의 P파마다 한번씩 규칙적 QRS</p>
 <p>- 치료: A.fib과 같음</p>
@@ -271,6 +292,7 @@ EKG(가능한 소견): Electrical alternans(QRS 진폭 변화), 저전압<br>
 <h2 id="cv-ischemic">허혈성 심질환</h2>
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
 <h4>1) 안정형 협심증(Stable angina)</h4>
+<figure><img src="assets/cv_media/image6.png" alt="이형 협심증과 안정형 협심증 비교"><figcaption>원문 삽입 이미지 — Variant vs Stable angina</figcaption></figure>
 <p>- 관상동맥 협착(≥70%) → 운동 시 허혈 발생</p>
 <p>- 특징적 흉통: <u>운동</u>, 감정적 스트레스 시 발생, <u>휴식 또는 NTG(니트로글리세린) 사용 시 호전</u></p>
 <p>- 진단: <b>운동부하검사(운동가능할때)</b>, <b>관상동맥CT</b>, <b>관상동맥조영술(CAG)</b></p>
@@ -278,6 +300,10 @@ EKG(가능한 소견): Electrical alternans(QRS 진폭 변화), 저전압<br>
 <p>- 2차 치료: PCI or CABG</p>
 
 <h4>2) 급성 관상동맥 증후군(ACS)</h4>
+<div class="img-row">
+<figure><img src="assets/cv_media/image19.png" alt="심근경색 유도와 관상동맥"><figcaption>MI lead-coronary territory</figcaption></figure>
+<figure><img src="assets/cv_media/image29.png" alt="하벽경색과 전벽경색 비교"><figcaption>Inferior vs anterior wall MI</figcaption></figure>
+</div>
 <table>
 <tr><th>구분</th><th>특징</th></tr>
 <tr><td><b>불안정형 협심증</b></td><td>진단은 주로 임상 양상에 의존. 죽상판 파열+혈전 형성→협착 심화, <u>휴식 중에도 흉통</u>(30분 이상 지속가능). <u>Troponin 정상</u>, ECG: ST분절 변화없거나 비특이적</td></tr>
@@ -307,6 +333,7 @@ EKG(가능한 소견): Electrical alternans(QRS 진폭 변화), 저전압<br>
 <div class="page">
 <h2 id="cv-htn">고혈압</h2>
 <div class="exam-source"><span class="source-label">기출 기반 요약</span>
+<figure><img src="assets/cv_media/image11.png" alt="혈압 기준"><figcaption>원문 삽입 이미지 — 혈압 진단 cut-off</figcaption></figure>
 <h4>이차성 고혈압</h4>
 <table>
 <tr><th>질환</th><th>증상</th><th>선별/확진검사</th></tr>
@@ -315,6 +342,7 @@ EKG(가능한 소견): Electrical alternans(QRS 진폭 변화), 저전압<br>
 <tr><td>크롬친화세포종</td><td>두통, 발한, 빈맥, 기립성 저혈압, 운동시 호흡곤란</td><td>24시간 소변 내 메타네프린 및 노르-메타네프린(24시간 요 catecholamine)</td></tr>
 </table>
 
+<figure><img src="assets/cv_media/image14.png" alt="동반질환에 따른 추천 고혈압약"><figcaption>동반질환별 추천 항고혈압약</figcaption></figure>
 <h4>치료 약제별 특징</h4>
 <table>
 <tr><th>약제</th><th>기전/특징</th></tr>
@@ -324,6 +352,7 @@ EKG(가능한 소견): Electrical alternans(QRS 진폭 변화), 저전압<br>
 <tr><td><b>Diuretics(thiazide, spironolactone)</b></td><td>체액감소로 혈압강하. Thiazide 부작용: 고요산혈증(통풍)악화가능, hypo Na, hypo K, hyper Ca, 고혈당, 고지혈증. Spironolactone 부작용: hyper K(ACEi/ARB 병용x), 여유증, 성욕감소, 발기부전</td></tr>
 </table>
 <div class="note">￥ACEi, thiazide 복합제 복용 중 심한 피로감, 팔다리 힘 없음 → <b>칼륨 검사</b></div>
+<figure><img src="assets/cv_media/image24.png" alt="DHP vs non-DHP CCB"><figcaption>DHP CCB vs Non-DHP CCB</figcaption></figure>
 <table>
 <tr><th>임상 상황</th><th>대응</th></tr>
 <tr><td>4제(ARB,CCB,BB,thiazide)로 조절안되는 저항성 고혈압</td><td><b>spironolactone 추가</b></td></tr>
