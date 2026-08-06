@@ -2,7 +2,7 @@
 name: linux_github_git
 version: 1.0
 language: ko
-summary: Linux terminal에서 GitHub repository를 안전하게 clone, pull, file download, commit, push하는 재사용 Skill.
+summary: Linux shell 우선 방식으로 GitHub repository를 안전하게 clone, pull, file download, commit, push하는 재사용 Skill.
 ---
 
 # Linux GitHub Git Skill
@@ -13,6 +13,7 @@ Linux shell 환경에서 GitHub repository 및 특정 파일을 확보하고, �
 
 기본 원칙:
 
+- **저장소가 로컬에 없으면 Linux shell 명령으로 clone을 우선 수행함.** Python `subprocess`는 shell 직접 실행이 불가한 환경에서만 대안으로 사용함.
 - `main`을 기본 branch로 사용함.
 - 실행 전 Git identity 설정함.
 - PAT는 명령 출력, commit, source file, remote 영구 설정에 남기지 않음.
@@ -70,9 +71,72 @@ git remote get-url origin
 
 ## Clone workflow
 
-### Repository가 없는 경우
+### 실행 우선순위
 
-Python subprocess를 우선 사용함. PAT는 환경변수에서 읽고 stdout/stderr는 캡처함.
+```text
+1. Linux shell/bash 직접 실행
+2. shell 실행 래퍼가 제공하는 terminal tool
+3. Python subprocess는 최후 대안
+```
+
+로컬 저장소 부재는 오류가 아니라 clone 조건임. 먼저 경로를 점검한 뒤, 없으면 shell에서 `git clone` 수행함.
+
+### Repository가 없는 경우: Linux shell 우선
+
+`GITHUB_PAT`는 shell session의 secret 환경변수로 주입되어 있다고 가정함. 명령 출력에는 token이 나타나지 않게 `set +x`를 먼저 실행함.
+
+```bash
+set +x
+REPO_DIR="$HOME/REPOSITORY"
+OWNER_REPO="OWNER/REPOSITORY"
+BRANCH="main"
+PUBLIC_URL="https://github.com/${OWNER_REPO}.git"
+AUTH_URL="https://x-access-token:${GITHUB_PAT}@github.com/${OWNER_REPO}.git"
+
+mkdir -p "$(dirname "$REPO_DIR")"
+if [ ! -e "$REPO_DIR" ]; then
+  git clone --branch "$BRANCH" --single-branch "$AUTH_URL" "$REPO_DIR"
+  CLONE_STATUS=$?
+  git -C "$REPO_DIR" remote set-url origin "$PUBLIC_URL" 2>/dev/null || true
+  [ "$CLONE_STATUS" -eq 0 ] || exit "$CLONE_STATUS"
+elif [ -d "$REPO_DIR/.git" ]; then
+  git -C "$REPO_DIR" pull --ff-only origin "$BRANCH"
+else
+  printf '%s\n' "Target path exists but is not a Git repository" >&2
+  exit 1
+fi
+unset AUTH_URL
+```
+
+필수 사항:
+
+- `set -x` 사용 금지. token이 command trace에 노출될 수 있음.
+- clone 성공 뒤 즉시 `origin`을 PAT 없는 `PUBLIC_URL`로 복원함.
+- clone 실패 후에도 `.git`이 생성됐을 수 있으므로 public remote 복원을 시도함.
+- remote URL 확인은 `git remote get-url origin`으로 하되, 인증 URL일 가능성이 있으면 사용자-facing output에 그대로 출력하지 않음.
+
+### 이미 clone된 경우
+
+작업 트리가 깨끗한지 먼저 확인한 뒤 fast-forward pull만 수행함.
+
+```bash
+REPO_DIR="$HOME/REPOSITORY"
+BRANCH="main"
+
+git -C "$REPO_DIR" status --short
+if [ -n "$(git -C "$REPO_DIR" status --porcelain)" ]; then
+  printf '%s\n' "Working tree is not clean; do not pull automatically" >&2
+  exit 1
+fi
+git -C "$REPO_DIR" fetch origin "$BRANCH"
+git -C "$REPO_DIR" pull --ff-only origin "$BRANCH"
+```
+
+`pull --ff-only` 실패 시 merge/rebase를 자동으로 강행하지 않음. 원격 변경·로컬 branch·충돌을 확인한 뒤 사용자 판단을 받음.
+
+### Python subprocess fallback
+
+Linux shell tool을 사용할 수 없는 경우에만 아래 방식을 사용함. 실행 결과의 stdout/stderr를 캡처하고 token을 절대 출력하지 않음.
 
 ```python
 import os
@@ -86,36 +150,14 @@ pat = os.environ["GITHUB_PAT"]
 auth_url = f"https://x-access-token:{pat}@github.com/{owner_repo}.git"
 public_url = f"https://github.com/{owner_repo}.git"
 
-subprocess.run(
-    ["git", "clone", "--branch", branch, "--single-branch", auth_url, str(local_dir)],
-    check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-)
-subprocess.run(["git", "-C", str(local_dir), "remote", "set-url", "origin", public_url], check=True)
-```
-
-실패해도 remote에 token이 남지 않게 `finally`에서 public URL 복원을 시도함.
-
-```python
 try:
-    subprocess.run(["git", "clone", auth_url, str(local_dir)], check=True, text=True,
-                   stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    subprocess.run(["git", "clone", "--branch", branch, "--single-branch", auth_url, str(local_dir)],
+                   check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 finally:
     if (local_dir / ".git").exists():
         subprocess.run(["git", "-C", str(local_dir), "remote", "set-url", "origin", public_url],
-                       check=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                       check=False, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 ```
-
-### 이미 clone된 경우
-
-작업 트리가 깨끗한지 먼저 확인함.
-
-```bash
-git -C /path/to/repository status --short
-git -C /path/to/repository fetch origin main
-git -C /path/to/repository pull --ff-only origin main
-```
-
-`pull --ff-only`가 실패하면 merge/rebase를 자동으로 강행하지 않음. 사용자 변경, 원격 변경, branch 상태를 확인한 뒤 결정함.
 
 ## 특정 파일만 받기
 
@@ -197,7 +239,30 @@ git commit -m "feat: concise imperative message"
 
 ## Push workflow
 
-`origin`은 공개 URL로 유지함. push 직전에만 인증 URL을 사용하고, `finally`에서 반드시 원복함.
+Linux shell push를 우선 사용함. `origin`은 공개 URL로 유지하고, push 직전에만 인증 URL을 사용한 뒤 shell trap으로 반드시 원복함. Python subprocess는 shell 실행이 불가한 경우에만 사용함.
+
+
+### Linux shell push 우선
+
+```bash
+set +x
+REPO_DIR="$HOME/REPOSITORY"
+OWNER_REPO="OWNER/REPOSITORY"
+BRANCH="main"
+PUBLIC_URL="https://github.com/${OWNER_REPO}.git"
+AUTH_URL="https://x-access-token:${GITHUB_PAT}@github.com/${OWNER_REPO}.git"
+
+restore_remote() {
+  git -C "$REPO_DIR" remote set-url origin "$PUBLIC_URL" >/dev/null 2>&1 || true
+  unset AUTH_URL
+}
+trap restore_remote EXIT INT TERM
+
+git -C "$REPO_DIR" remote set-url origin "$AUTH_URL"
+git -C "$REPO_DIR" push origin "$BRANCH"
+```
+
+`trap`은 push 성공, 실패, interrupt 모두에서 remote 복원을 보장함. `git push` 결과를 사용자에게 표시할 때 credential 문자열이 포함된 raw log는 출력하지 않음.
 
 ```python
 import os
