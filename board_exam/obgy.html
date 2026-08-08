@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>산부인과 기출 정리 (OBGY)</title>
+<style>
+  :root{
+    --blue:#1d4ed8; --blue-bg:#eff6ff; --blue-border:#93c5fd;
+    --red:#b91c1c; --red-bg:#fef2f2;
+    --green:#047857; --green-bg:#f0fdf4;
+    --amber:#92400e; --amber-bg:#fffbeb;
+    --ink:#1f2937;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0; color:var(--ink);
+    font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    font-size:10.5pt; line-height:1.55; background:#e5e7eb;
+  }
+  .wrap{max-width:190mm; margin:0 auto; background:#fff; padding:14mm 12mm;}
+  @media print{
+    body{background:#fff; font-size:9.5pt;}
+    .wrap{max-width:none; margin:0; padding:0;}
+    a{color:inherit; text-decoration:none;}
+  }
+  h1{font-size:22pt; color:var(--blue); margin:0 0 2mm;}
+  h2{
+    font-size:14pt; color:#fff; background:var(--blue);
+    padding:2mm 3mm; border-radius:1mm; margin:7mm 0 3mm;
+    break-after:avoid; page-break-after:avoid;
+  }
+  h2 .part-tag{font-size:9pt; font-weight:400; opacity:.85; margin-right:2mm;}
+  h3{
+    font-size:11.5pt; color:var(--blue); border-bottom:0.4mm solid var(--blue-border);
+    padding-bottom:1mm; margin:4.5mm 0 2mm; break-after:avoid; page-break-after:avoid;
+  }
+  ul,ol{margin:1.5mm 0 2.5mm; padding-left:6mm;}
+  li{margin-bottom:1mm;}
+  strong{color:#111827;}
+  u{text-underline-offset:2px;}
+  table{
+    width:100%; border-collapse:collapse; margin:2.5mm 0; font-size:9.5pt;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  th{background:var(--blue); color:#fff; padding:1.5mm 2mm; text-align:left; border:0.2mm solid var(--blue-border);}
+  td{padding:1.5mm 2mm; border:0.2mm solid #cbd5e1; vertical-align:top;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .exam-source{
+    margin:2mm 0; padding:1.5mm 2.2mm;
+    border-left:1mm solid #2563eb; background:#f8fbff;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .source-label{
+    display:inline-block; margin-bottom:1mm; padding:0.5mm 1.5mm; border-radius:1mm;
+    font-size:8pt; font-weight:800; line-height:1.2;
+    color:#1d4ed8; background:#dbeafe;
+  }
+  .danger-box{
+    margin:2.5mm 0; padding:2mm 2.5mm;
+    border-left:1.2mm solid var(--red); background:var(--red-bg); color:#7f1d1d;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .note{
+    margin:2mm 0; padding:1.5mm 2.2mm;
+    border-left:1mm solid var(--green); background:var(--green-bg);
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .exam-tip{
+    margin:2.5mm 0; padding:2mm 2.5mm;
+    border:0.3mm solid #f59e0b; background:var(--amber-bg); border-radius:1mm;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .exam-tip::before{
+    content:"★ 시험 빈출"; display:block; font-weight:800; color:var(--amber); font-size:8.5pt; margin-bottom:1mm;
+  }
+  .cover{min-height:250mm; display:flex; flex-direction:column; justify-content:flex-start;}
+  .cover .subtitle{color:#6b7280; margin:1mm 0 8mm;}
+  .toc-box{
+    border:0.3mm solid var(--blue-border); background:var(--blue-bg);
+    border-radius:2mm; padding:4mm 5mm; margin-top:4mm;
+  }
+  .toc-box h3{border:none; margin:0 0 2mm; padding:0;}
+  .toc-box ul{list-style:none; padding-left:2mm; margin:0;}
+  .toc-box li{margin:1.2mm 0; font-size:10.5pt;}
+  .toc-box a{color:var(--blue); text-decoration:none;}
+  .toc-box a::before{content:"▸ ";}
+  .toc-part{font-weight:800; color:#1e3a8a; margin-top:3mm;}
+  @media print{ .cover{page-break-after:always;} }
+  .hl{background:#fef08a; padding:0 1mm;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= 표지 + 목차 ================= -->
+<div class="cover">
+  <h1>산부인과 (OBGY)</h1>
+  <p class="subtitle">가정의학과 전문의 시험 대비 기출 정리 · 원문: 7권 산부인과,소아과.docx (산과/부인과 부분)</p>
+  <div class="toc-box">
+    <h3>목차</h3>
+    <ul>
+      <li class="toc-part">[산과]</li>
+      <li><a href="#ob-prenatal">1. 산전관리</a></li>
+      <li><a href="#ob-postnatal">2. 산후관리 — 유방울혈 vs 유방염</a></li>
+      <li><a href="#ob-htn">3. 임신 중 고혈압</a></li>
+      <li><a href="#ob-dm">4. 임신과 당뇨</a></li>
+      <li><a href="#ob-med">5. 임신 중 약물·질환 관리 (GERD/설사/천식/갑상선)</a></li>
+      <li><a href="#ob-infection">6. 임신 중 요로감염·질염·풍진</a></li>
+      <li class="toc-part">[부인과]</li>
+      <li><a href="#gy-contraception">7. 피임</a></li>
+      <li><a href="#gy-dysmenorrhea">8. 월경통·월경전증후군</a></li>
+      <li><a href="#gy-bleeding">9. 월경 과다·비정상 자궁출혈</a></li>
+      <li><a href="#gy-sti">10. 질염·성전파성 질환</a></li>
+      <li><a href="#gy-cervix">11. 자궁경부암 선별검사 해석</a></li>
+      <li><a href="#gy-amenorrhea">12. 무월경·PCOS·불임·기타</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= 산과 ================= -->
+
+<h2 id="ob-prenatal"><span class="part-tag">[산과]</span>1. 산전관리</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li><strong>임신주수 계산</strong>: LMP 날짜에서 <strong>월: +9 or -3, 일: +7</strong></li>
+    <li>기형 유발 시 유산, 아니면 큰 영향 없는 시기 (All or none): 마지막 생리~4주 (<strong>수정 후 ~2주</strong>)</li>
+    <li><strong>10주경 산전진찰</strong>: 혈액형, 감염병 선별검사, 빈혈 검사, 요검사, 초음파 검사, <strong>PAP</strong> 등</li>
+    <li>적절한 체중 증가량을 결정하는 기준: <strong>임신 전 체질량지수(BMI)</strong></li>
+    <li><strong>엽산</strong>: <strong>0.4 mg/day (400 µg/day)</strong>, <strong>임신 한 달 전 ~ 2~3개월(제1삼분기)</strong>까지 복용</li>
+    <li><strong>철분</strong>: 임신 16주 이후부터 매일 24 mg</li>
+  </ul>
+</div>
+<h3>임신 중 권장 체중 증가량 (임신 전 BMI 기준)</h3>
+<table>
+  <tr><th>분류</th><th>BMI</th><th>권장 체중 증가량</th></tr>
+  <tr><td>저체중</td><td>&lt; 18.5</td><td>12.5 ~ 18 kg</td></tr>
+  <tr><td><u>정상 체중</u></td><td>18.5 ~ 24.9</td><td><strong>11.5 ~ 16 kg</strong></td></tr>
+  <tr><td><u>과체중</u></td><td>25 ~ 29.9</td><td><strong>7 ~ 11.5 kg</strong></td></tr>
+  <tr><td>비만</td><td>≥ 30</td><td>5 ~ 9 kg</td></tr>
+</table>
+
+<h2 id="ob-postnatal"><span class="part-tag">[산과]</span>2. 산후관리 — 유방울혈 vs 유방염</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+</div>
+<table>
+  <tr><th>항목</th><th>유방울혈</th><th>유방염 (Mastitis)</th></tr>
+  <tr><td>범위</td><td><u>양측</u> 유방</td><td><u>편측</u> 유방</td></tr>
+  <tr><td>증상</td><td>단단함, 붓기, 통증 경미</td><td>통증 심함, 국소적 발적, <u>발열</u> 동반</td></tr>
+  <tr><td>치료</td><td>수유 지속, 마사지, 온찜질</td><td>수유 지속 + <strong>항생제</strong> (Dicloxacillin, <strong>Cephalexin</strong>, MRSA 의심 시 Clindamycin)</td></tr>
+  <tr><td>원인</td><td>—</td><td>주로 <strong>S. aureus 감염</strong></td></tr>
+</table>
+
+<h2 id="ob-htn"><span class="part-tag">[산과]</span>3. 임신 중 고혈압</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li>임신부 투여 가능 고혈압약: <strong>Methyldopa</strong>, <strong>Nifedipine</strong>, Hydralazine, Labetalol</li>
+    <li><strong>임신성 고혈압</strong>: 임신 20주 이후 처음 고혈압 발생, 단백뇨 X, 분만 12주 이내 혈압 정상화 → 출산 후 진단</li>
+  </ul>
+</div>
+<div class="danger-box">
+  <strong>절대 금기:</strong> 임신 제 2·3분기에 ACEi (<strong>Ramipril</strong>) 복용 시 → 자궁 내 성장지연, 동맥관 개존 등의 부작용
+</div>
+
+<h2 id="ob-dm"><span class="part-tag">[산과]</span>4. 임신과 당뇨</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li>임신성당뇨 검사 시기: <strong>24~28주</strong></li>
+    <li><strong>선별검사: 50 g OGTT</strong> / 확진검사: 100 g OGTT</li>
+    <li>진단기준: <span class="hl">95 - 180 - 155 - 140</span> (fasting - 1hr - 2hr - 3hr)</li>
+  </ul>
+</div>
+
+<h2 id="ob-med"><span class="part-tag">[산과]</span>5. 임신 중 약물·질환 관리</h2>
+<h3>임신부 GERD 단계별 치료</h3>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <table>
+    <tr><th>단계</th><th>약제</th></tr>
+    <tr><td>1차</td><td><strong>제산제</strong>, 위점막 보호제 (<strong>Sucralfate, Mg hydroxide, Al hydroxide</strong>)</td></tr>
+    <tr><td>2차</td><td>H2 수용체 차단제 (Ranitidine, Famotidine)</td></tr>
+    <tr><td>3차</td><td>PPI (Omeprazole) → 중증 GERD 시 고려</td></tr>
+  </table>
+  <ul>
+    <li>* Metoclopramide는 위장운동 장애 동반 시 사용 가능하지만 1차 약제는 아님</li>
+  </ul>
+</div>
+<div class="danger-box">
+  <strong>절대 금기:</strong> <strong>Misoprostol</strong> — 자궁수축 유발!! (합성 프로스타글란딘 E1 유도체, 위점막 보호제)
+</div>
+<h3>임신 중 질환별 약물 선택</h3>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <table>
+    <tr><th>상황</th><th>치료 / 선택</th></tr>
+    <tr><td>여행자 설사</td><td><strong>Azithromycin</strong> (<span class="hl">Ciprofloxacin 금기</span>)</td></tr>
+    <tr><td>천식 1차 치료제</td><td>흡입 스테로이드(ICS): Budesonide, Beclomethasone</td></tr>
+    <tr><td>사용 가능한 항히스타민제</td><td><strong>Chlorpheniramine</strong>(1세대), Cetirizine, Loratadine(2세대)</td></tr>
+    <tr><td><u>산후 갑상선염</u> (출산 후 1년 이내 항진증 증상)</td><td>증상조절 — 두근거림: <strong>propranolol</strong></td></tr>
+    <tr><td>임신 중 <u>갑상선 항진증</u></td><td>항갑상선제 (<strong>PTU 선호</strong>) <strong>최소용량 복용</strong></td></tr>
+    <tr><td>임신 중 갑상선 초음파상 <u>유두암</u></td><td><strong>분만 후 수술</strong></td></tr>
+    <tr><td>뇌하수체 선종으로 bromocriptine 복용 중 임신</td><td><strong>bromocriptine 복용 중지</strong></td></tr>
+  </table>
+</div>
+
+<h2 id="ob-infection"><span class="part-tag">[산과]</span>6. 임신 중 요로감염·질염·풍진</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li><strong>임신 중 무증상 세균뇨</strong>: 요배양검사 10⁵ CFU/mL 이상이면 치료 (<u>1회 나와도 치료</u> — 합병증 위험 높아서)
+      <br>→ 치료: <strong>경구</strong>항생제 — <strong>Nitrofurantoin</strong>, <strong>Amoxicillin-clavulanate</strong>, <strong>Cephalexin</strong>, Fosfomycin</li>
+    <li><strong>재발성 요로감염 위험 임산부</strong>: 임신 말기의 4개월 동안을 제외하고, nitrofurantoin이나 cephalexin으로 지속적 또는 성교 후 예방요법</li>
+    <li>임신 중 <strong>칸디다 질염</strong> (<u>냄새 없는</u> 희고 치즈양상·끈끈한 분비물, 현미경상 위균사): <strong>Clotrimazole 국소도포</strong></li>
+    <li>임산부 <strong>헤르페스 외음부 질염</strong>: <strong>제왕절개</strong></li>
+    <li>임신 중 <strong>풍진</strong> (미열, 홍반구진, 림프절비대) 접촉: <strong>풍진 항체검사</strong> (IgG, IgM)</li>
+    <li>선천성 풍진 증후군에 이환되기 쉬운 시기: <strong>임신 1분기 (0~3개월)</strong> (심장기형, 난청, 백내장, 소두증 등)</li>
+  </ul>
+</div>
+
+<!-- ================= 부인과 ================= -->
+
+<h2 id="gy-contraception"><span class="part-tag">[부인과]</span>7. 피임</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+</div>
+<h3>응급 사후 피임</h3>
+<table>
+  <tr><th>방법</th><th>시기</th></tr>
+  <tr><td><strong>Levonorgestrel</strong></td><td><strong>3일 이내</strong></td></tr>
+  <tr><td>Ulipristal acetate</td><td>5일 이내</td></tr>
+  <tr><td><strong>구리 IUD</strong></td><td><strong>5~7일</strong></td></tr>
+</table>
+<div class="exam-tip">
+  경구피임약과 같이 복용 시 피임 실패할 수 있는 약: <strong>Rifampin</strong>, amoxicillin, metronidazole, tetracycline
+</div>
+
+<h2 id="gy-dysmenorrhea"><span class="part-tag">[부인과]</span>8. 월경통·월경전증후군</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li><strong>원발생리통</strong>: AAP보다 <strong>NSAIDs</strong>가 효과적 (<strong>Mefenamic acid, Naproxen</strong>)</li>
+    <li><strong>월경전증후군</strong>: SSRI (<strong>Sertraline, Fluoxetine</strong>, Paroxetine), <strong>Ca</strong>, Mg, Vit D, B6, E</li>
+  </ul>
+</div>
+
+<h2 id="gy-bleeding"><span class="part-tag">[부인과]</span>9. 월경 과다·비정상 자궁출혈</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li><strong>과다월경</strong>: 1차 치료 OCP, 빠른 증상 조절 <strong>Tranexamic acid</strong>
+      <br>— 간기능 저하는 OCP 금기 → <strong>Levonorgestrel-IUD (미레나)</strong> 삽입으로 <u>장기증상조절</u></li>
+    <li><strong>무배란성 자궁출혈</strong> (불규칙한 생리 + 최근 무월경 + 갑작스러운 출혈): <strong>OCP</strong></li>
+  </ul>
+</div>
+<div class="danger-box">
+  <strong>폐경 후 여성, estrogen 보충요법 중 질출혈</strong> → <strong>자궁내막 조직검사</strong> 반드시 필요
+</div>
+
+<h2 id="gy-sti"><span class="part-tag">[부인과]</span>10. 질염·성전파성 질환</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+  <ul>
+    <li><strong>PID 검사</strong>: STD PCR, <strong>Wet smear</strong>, 혈액 검사 등</li>
+    <li>임신 중 <strong>임질</strong> (화농성 분비물, 배뇨통, 빈뇨, G(-) diplococcus): <strong>Ceftriaxone + Azithromycin</strong></li>
+    <li><strong>연 6회 이상 재발성 헤르페스</strong>: 지속적 anti viral 복용</li>
+  </ul>
+</div>
+<h3>질염 감별</h3>
+<table>
+  <tr><th>항목</th><th>세균성 질염</th><th>트리코모나스 질염</th><th>위축성 질염</th></tr>
+  <tr><td>분비물/소견</td><td>맑고 균질한 회백색 분비물, 생선냄새</td><td>황녹색 분비물, Strawberry cervix, 생선비린내, 편모 달린 타원형 원충류</td><td>폐경 후 위축</td></tr>
+  <tr><td>Whiff 검사</td><td><strong>양성</strong> (KOH 후 fishy odor)</td><td><u>양성 가능</u> (세균성질염 동반 시)</td><td>—</td></tr>
+  <tr><td>치료</td><td><strong>Metronidazole</strong>, metronidazole gel, Clindamycin cream</td><td><strong>Metronidazole</strong>, <strong>Tinidazole</strong></td><td><strong>에스트로겐 질정</strong></td></tr>
+</table>
+<div class="danger-box">
+  <strong><u>Metronidazole 복용 중에는 금주!!</u></strong>
+</div>
+
+<h2 id="gy-cervix"><span class="part-tag">[부인과]</span>11. 자궁경부암 선별검사(Pap) 해석</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+</div>
+<table>
+  <tr><th>Pap 결과</th><th>다음 단계</th></tr>
+  <tr><td>ASC-US</td><td>HPV 검사 후 결정 (양성이면 <strong>Colposcopy, 질확대경검사</strong>)</td></tr>
+  <tr><td>ASC-H</td><td>즉시 <strong>Colposcopy</strong></td></tr>
+  <tr><td>LSIL</td><td>25세 이상이면 HPV 검사 후 <strong>Colposcopy</strong> 고려</td></tr>
+  <tr><td>HSIL</td><td>즉시 <strong>Colposcopy</strong> 시행 (CIN2+ 시 치료)</td></tr>
+  <tr><td>AGC</td><td><strong>Colposcopy</strong> + 내막검사 시행</td></tr>
+  <tr><td>CIS/침윤암 의심</td><td>Colposcopy + 생검, 필요 시 원추절제술/자궁절제술</td></tr>
+</table>
+
+<h2 id="gy-amenorrhea"><span class="part-tag">[부인과]</span>12. 무월경·PCOS·불임·기타</h2>
+<div class="exam-source">
+  <span class="source-label">기출 기반 요약</span>
+</div>
+<h3>무월경</h3>
+<ul>
+  <li><strong>모든 가임기 여성 무월경으로 내원 시: urine hCG 검사</strong></li>
+  <li>운동선수 무월경: <strong>LH pulse 빈도 감소</strong></li>
+</ul>
+<h3>다낭성 난소 증후군 (PCOS)</h3>
+<ul>
+  <li>검사: <strong>FSH/LH 비율</strong> → LH 상승, FSH 정상 or 감소, <strong>LH:FSH 비율 2~3배 이상 증가</strong></li>
+</ul>
+<table>
+  <tr><th>목적</th><th>치료</th></tr>
+  <tr><td>무월경 조절</td><td>복합 경구피임약, 프로게스테론 주기요법</td></tr>
+  <tr><td>난임치료</td><td>Letrozole, <strong>Clomiphene</strong> citrate</td></tr>
+  <tr><td>여드름, 다모증</td><td>OCP, 스피로노락톤</td></tr>
+</table>
+<h3>불임·기타</h3>
+<ul>
+  <li>폐경 후 안면홍조, 호르몬 치료 거부 시 권할 수 있는 대체 치료: <strong>콩단백</strong></li>
+  <li>불임, <u>남편이 볼거리</u> 앓은 경우 먼저 할 검사: <strong>정자검사</strong> (볼거리 합병증: 고환염, 부고환염)</li>
+  <li><strong>생식기 사마귀 (Condyloma acuminatum)</strong>: HPV 6, <strong>11</strong>, 통증 없음, 둥근 모양의 양성 병변
+    <br>— 크기 작으면 추적관찰 / 크거나 증상 있으면 <strong>냉동요법(Cryotherapy)</strong>, 트리클로로아세트산(Topical TCA)</li>
+</ul>
+
+<div class="exam-tip">
+  <ul style="margin:0; padding-left:5mm;">
+    <li>임신부 사용 가능 항고혈압제 = Methyldopa / Nifedipine / Hydralazine / Labetalol, ACEi는 금기</li>
+    <li>GDM 진단 숫자 = <strong>95-180-155-140</strong>, 검사시기 <strong>24~28주</strong>, 선별 50 g / 확진 100 g</li>
+    <li>유방울혈(양측, 수유지속+온찜질) vs 유방염(편측+발열, Cephalexin)</li>
+    <li>응급피임 = LNG 3일 / UPA 5일 / 구리 IUD 5~7일</li>
+    <li>폐경 후 질출혈 → 자궁내막 조직검사 필수</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
