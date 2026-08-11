@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IM GI — 기출 + 일차진료 가이드라인 보강</title>
+<style>
+@page{size:A4 portrait;margin:13mm 12mm 14mm}
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#172033;font-family:'Noto Sans KR','Malgun Gothic',sans-serif;font-size:10pt;line-height:1.45}
+.page{width:210mm;min-height:297mm;margin:10px auto;background:#fff;padding:13mm 12mm 14mm;box-shadow:0 1px 10px #0002;position:relative;page-break-after:always}
+.cover{display:flex;flex-direction:column;justify-content:center;min-height:270mm}
+h1{font-size:30pt;margin:0 0 4mm;color:#173b6c}
+h2{font-size:16pt;color:#173b6c;border-bottom:1.4px solid #93b4dc;padding-bottom:2mm;margin:0 0 3mm;break-after:avoid}
+h3{font-size:10.5pt;margin:3mm 0 1mm;color:#1e4e86}
+p{margin:0 0 2mm}
+ul{margin:1mm 0 2.5mm;padding-left:4.7mm}
+li{margin:.7mm 0}
+a{color:#1d4ed8;text-decoration:none}
+.subtitle{color:#596579;font-size:13pt}
+.meta{margin-top:12mm;color:#667085}
+.toc{column-count:1}
+.toc li{break-inside:avoid}
+.columns{column-count:1}
+.topic{break-inside:avoid;page-break-inside:avoid;margin:0 0 5mm}
+.exam-source{padding:2.2mm 2.6mm;border-left:1.1mm solid #2563eb;background:#f7faff}
+.source-label{display:inline-block;font-size:8pt;font-weight:700;color:#1d4ed8;background:#dbeafe;padding:.5mm 1.4mm;border-radius:2mm;margin-bottom:1mm}
+.note{font-size:8.4pt;color:#735814;background:#fffbeb;border-left:.8mm solid #d6a529;padding:1.6mm 2mm;margin-top:1.5mm}
+.footer{position:absolute;bottom:6mm;left:12mm;right:12mm;border-top:.3mm solid #d7dee8;padding-top:1.5mm;font-size:8pt;color:#667085;display:flex;justify-content:space-between}
+.tag{display:inline-block;background:#e8f0fc;color:#28578f;border-radius:4mm;padding:1mm 2.5mm;font-size:9pt;font-weight:700;margin:1mm 1mm 0 0}
+.guideline-supplement{border-left:1mm solid #7c3aed;background:#faf5ff;padding:2.2mm 2.6mm;margin:2.5mm 0;break-inside:avoid}
+.guideline-supplement .source-label{background:#ede9fe;color:#6d28d9}
+.danger-box{border-left:1.2mm solid #b91c1c;background:#fef2f2;color:#7f1d1d;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.refer-box{border-left:1mm solid #0891b2;background:#ecfeff;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.coverage-box{border-left:1mm solid #d97706;background:#fffbeb;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.coverage-box .source-label{background:#fef3c7;color:#92400e}
+table{width:100%;border-collapse:collapse;margin:2mm 0;font-size:8.7pt;break-inside:avoid}
+th{background:#1d4ed8;color:#fff;padding:1.3mm 2mm;text-align:left;border:.2mm solid #93b4dc}
+td{border:.2mm solid #cbd5e1;padding:1.3mm 2mm;vertical-align:top}
+tr:nth-child(even) td{background:#f8fafc}
+.checklist li{list-style:none;padding-left:5mm;position:relative}
+.checklist li:before{content:"\2610";position:absolute;left:0;color:#1d4ed8}
+.algorithm-box{border:.3mm solid #93b4dc;border-radius:2mm;padding:3mm;margin:2.5mm 0;background:#f8fafc;break-inside:avoid}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<section class="page cover"><div>
+<span class="tag">Internal Medicine</span><span class="tag">Gastro Intestine</span>
+<h1>IM GI</h1>
+<p class="subtitle">소화기내과 기출 정리 + 일차진료 가이드라인 보강(합집합판)</p>
+<p class="meta">원문: 3권 소화기,내분비.docx · 2026-07-31<br>보강: 일차진료_guideline #14~22 소화기 전체 · 2026-08-11<br>보라색 박스 = [일차진료 가이드라인 보강] 레이어이며 기출 원문과 구분됨.</p>
+<h2 style="margin-top:16mm">목차</h2>
+<ol class="toc">
+<li><a href="#gi-core">총론(약제·검사)</a></li>
+<li><a href="#esophagus">식도</a></li>
+<li><a href="#peptic-ulcer">소화성 궤양 · 위염 · H. pylori</a></li>
+<li><a href="#gastric-polyp-surveillance">위용종·미란 Surveillance</a></li>
+<li><a href="#colon-polyp-surveillance">대장용종 Surveillance</a></li>
+<li><a href="#ibd">염증성 장질환</a></li>
+<li><a href="#ibs">과민성 장증후군</a></li>
+<li><a href="#acute-bowel">급성 장질환</a></li>
+<li><a href="#liver-function">간기능 이상·담즙정체</a></li>
+<li><a href="#viral-hepatitis">바이러스성 간염</a></li>
+<li><a href="#cirrhosis">간경변</a></li>
+<li><a href="#biliary">담도·담낭</a></li>
+<li><a href="#pancreas">췌장</a></li>
+<li><a href="#pc-gerd">[보강] GERD 실전</a></li>
+<li><a href="#pc-ppi">[보강] PPI·P-CAB·H2RA</a></li>
+<li><a href="#pc-prokinetics">[보강] Prokinetics·진경제</a></li>
+<li><a href="#pc-diarrhea">[보강] 설사</a></li>
+<li><a href="#pc-constipation">[보강] 변비</a></li>
+<li><a href="#pc-fd">[보강] 기능성 소화불량·복통</a></li>
+<li><a href="#pc-liver-rx">[보강] 간장용제 심평의학</a></li>
+<li><a href="#pc-elderly">[보강] 노인 식욕부진</a></li>
+<li><a href="#pc-refer">[보강] Red flag·의뢰 기준</a></li>
+</ol>
+</div>
+<div class="footer"><span>IM GI</span><span>기출+가이드라인 합집합</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="gi-core"><h2>총론(약제·검사)</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>소화기 약제 총론</h3>
+<ul>
+<li>위장관운동촉진제: <strong>Mosapride</strong>(5-HT4 작용제), Metoclopramide(D2 길항제), erythromycin(모틸린 작용제)</li>
+<li>부피형성 완하제: <strong>Psyllium</strong> / 자극성 완하제: <strong>Bisacodyl, senna</strong></li>
+<li>GI bleeding: 상부 출혈은 BUN/Cr ratio 상승, 흑색변·토혈; 하부 출혈은 혈변</li>
+</ul>
+<h3>검사·기타</h3>
+<ul>
+<li>EUS: 췌담도 질환, 점막하 종양 평가</li>
+<li>Candida 식도염: 면역저하자, <strong>Fluconazole</strong></li>
+</ul>
+</div>
+<div class="note">본 문서는 기출 원문과 일차진료 가이드라인의 합집합임. 약물 용량·급여 기준은 처방 전 최신 고시 확인.</div>
+</section>
+
+<section class="topic" id="esophagus"><h2>식도</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>GERD</h3>
+<ul>
+<li>1차 치료: <strong>PPI</strong> 표준용량 4~8주</li>
+<li>역류를 악화시키는 약물: CCB, BB, 항콜린제, nitrate, BZD, theophylline, NSAIDs, aspirin</li>
+<li>알약 식도염 유발 약물: bisphosphonate, doxycycline, 철분제, KCl — 복용 후 바로 눕지 않기, 충분한 물과 복용</li>
+</ul>
+<h3>기능성 식도 증상·신경조절제</h3>
+<ul>
+<li>기능성 가슴쓰림·globus 등 PPI 불응 시 신경조절제: Clonazepam, amitriptyline, gabapentin, pregabalin</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — GERD 분류(#19)</span>
+<ul>
+<li><strong>ERD</strong>: 내시경상 식도염 확인 / <strong>NERD</strong>: 내시경 정상 + 24h 식도산도검사상 병적 역류 / <strong>역류과민성</strong>: 생리적 역류에 증상 연관 / <strong>기능성 가슴쓰림</strong>: 역류 없음 + PPI 불응</li>
+<li>Barrett 식도: 원주상피化生 + 장상피化生, 선암 위험 — 정기 감시</li>
+<li>이완불능증: 고체+액체 모두 삼킴곤란, bird's beak, 식도내압검사로 확진 → 의뢰</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="peptic-ulcer">
+<h2 class="chapter-title">소화성 궤양 · 위염 · H. pylori</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기 + 로드맵 삽입물</span>
+<h3 class="section-kicker">위궤양(GU)·십이지장궤양(DU) 치료 로드맵</h3>
+<table>
+<thead><tr><th></th><th>D-day</th><th>2주</th><th>4주</th><th>8주</th></tr></thead>
+<tbody>
+<tr><td><strong>Gastric ulcer (GU)</strong></td><td>PPI 또는 P-CAB 시작 (K-CAB 50mg QD 또는 Lansoprazole QD)</td><td>치료 지속</td><td>치료 지속</td><td><strong>8주 후 EGD f/u 필수</strong>(치유 확인·암 배제)</td></tr>
+<tr><td><strong>Duodenal ulcer (DU)</strong></td><td>Lansoprazole QD 4주</td><td>치료 지속</td><td>4주 종결 평가</td><td>NSAID 사용력·HP 확인; 재발 시 EGD</td></tr>
+</tbody></table>
+<div class="danger-box"><strong>GU는 추적 내시경 필수:</strong> GU는 치유 확인과 위암 감별을 위해 8주 후 EGD f/u를 원칙으로 함. 증상만 보고 종결하지 않음.</div>
+<h3 class="section-kicker"><i>H. pylori</i> 제균 요법</h3>
+<ul>
+<li><strong>1차 14일 3제요법</strong>: K-CAB(또는 PPI) BID + Clarithromycin 500mg BID + Amoxicillin 1g BID</li>
+<li>보조: Bioflor(S. boulardii) 250mg 1C BID, Promac(zinc) 75mg BID 병용 시 항생제 설사 예방에 도움</li>
+<li><strong>제균 확인: 치료 종료 후 4주 이상 지나 UBT</strong>(PPI/P-CAB는 2주 이상 중단 후 검사)</li>
+<li>제균 적응증: 소화성궤양, MALT 림프종, 조기위암 절제 후, 특발성 혈소판감소자반증(ITP) 등</li>
+</ul>
+<h3 class="section-kicker">GU + <i>H. pylori</i> 동반 시 로드맵</h3>
+<table>
+<tbody>
+<tr><td>D-day</td><td>14일 3제요법 시작(α 증량 고려)</td></tr>
+<tr><td>제균 종료 후</td><td>GU 유지용량(K-CAB 50mg QD 또는 Lansoprazole QD)으로 총 6~8주까지 연장</td></tr>
+<tr><td>8주</td><td>EGD f/u + CLO 재검</td></tr>
+<tr><td>이후</td><td>12주경 EGD f/u + CLO·UBT로 제균 확인</td></tr>
+</tbody></table>
+<h3 class="section-kicker">급여·청구 실무 메모</h3>
+<table>
+<thead><tr><th>항목</th><th>실무 메모</th></tr></thead>
+<tbody>
+<tr><td>HP 양성 근거</td><td>급여·전액본인부담 제균 모두 HP 감염 확인이 전제. CLO, 조직검사, UBT 등 검사 결과를 진료기록과 특정내역(JX999 또는 MX999)에 기록</td></tr>
+<tr><td>제균요법 일수</td><td>기본 7일이지만 14일 처방도 인정되는 기준이 안내되어 있음. 처방일수·약제조합을 일치시켜 청구</td></tr>
+<tr><td>검사 비급여 여부</td><td>HP 검사를 비급여로 시행했더라도 양성이 확인되면 제균치료는 해당 급여 또는 전액본인부담 기준으로 산정 가능</td></tr>
+<tr><td>PPI/P-CAB</td><td>약제별 허가사항과 개별 급여기준 확인. PPI는 HP 제균요법 일부 저용량 제형이 기준 대상에서 제외될 수 있음</td></tr>
+<tr><td>의인성 위궤양</td><td>경구섭취 시작 후 각 약제의 위궤양 허가 용법·용량으로 투여 시 최대 8주 급여 인정 기준</td></tr>
+</tbody></table>
+<h3 class="section-kicker">상병코드</h3>
+<ul>
+<li><strong>주상병</strong>: 실제 내시경 소견에 맞는 위·십이지장 소화성궤양 코드(K25~K27) 선택; 출혈/천공, 급성/만성 여부는 KCD 세부코드에 맞춤</li>
+<li><strong>B98.0</strong> <i>Helicobacter pylori</i> 부가코드</li>
+<li>위축성 위염 감시 목적: <strong>K29.4 만성 위축성 위염</strong> (예시). 위암 가족력은 가족력 코드, 기타 사유는 임상 필요성·환자 동의 기록을 함께 남김</li>
+</ul>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>1</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic gastric-surveillance" id="gastric-polyp-surveillance">
+<h2>위용종·미란 Surveillance</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 위용종·미란 surveillance 삽입물</span>
+<p>위용종은 대장용종처럼 개수만으로 장기 추적 간격을 정하지 않음. <strong>조직형, dysplasia, 절제 완전성, H. pylori 및 배경 위축·장상피화생</strong>을 함께 반영함.</p>
+<h3>병리 전 임시 계획</h3>
+<ul>
+<li>대표 병변 생검 또는 가장 큰 병변 생검, 주변 위점막 및 H. pylori 평가. 병리 확인 전 장기 F/U 확정하지 않음.</li>
+<li>생검만으로 종결하지 말고 가능한 완전절제(EMR/ESD) 또는 조기 치료내시경 계획. 조기위암 의심이면 확대관찰·병기평가 경로로 진행.</li>
+</ul>
+<table>
+<thead><tr><th>의심 조직형</th><th>전형적 육안 소견</th><th>병리 전 조치</th><th>임시 일정</th></tr></thead>
+<tbody>
+<tr><td>위저선용종(FGP)</td><td>체부·위저부, 작고 매끈한 돔형, 균일한 색조, 다발성 가능</td><td>전형적이고 10mm 미만이면 대표 생검 고려. 10mm 이상, 전정부 위치, 미란·궤양·비대칭 또는 이형성 의심이면 절제 또는 충분한 조직확인. PPI 적응증 재검토.</td><td>병리 확인 후 결정. 전형적 소병변은 장기 F/U 선확정하지 않음</td></tr>
+<tr><td>과증식성 용종(Hyperplastic)</td><td>전정부 우세, 발적, 표면 미란 가능, 유경 또는 무경</td><td>대표 생검 + 주변 위점막 생검 + H. pylori 검사. 10mm 이상, 출혈·빈혈·증상, 크기 증가, 표면 불규칙이면 가능한 완전절제 고려</td><td>병리 확인 후 결정. 고위험 소견이면 치료내시경 또는 조기 재내시경</td></tr>
+<tr><td>Adenoma / LGD 의심</td><td>전정부·위각, 편평융기 또는 융기형, 색조 변화·결절·불규칙 표면</td><td>생검만으로 종결하지 않음. 병변 경계 평가 후 가능한 en bloc 절제(EMR/ESD) 계획 또는 치료내시경 의뢰</td><td>조기 치료내시경. 병리 결과로 장기 F/U 확정 전 완전절제 여부 확인</td></tr>
+<tr><td>HGD / 조기위암 의심</td><td>함몰·궤양·자발출혈, 비대칭, 불규칙 경계·표면, 융기-함몰 혼합</td><td>확대관찰·표적 생검 및 조기위암 치료 경로. 단순 장기 관찰 금지, ESD 적응증 평가</td><td>신속 재평가·전문의 의뢰</td></tr>
+<tr><td>미란성·염증성 병변</td><td>발적·미란 중심, 약물/담즙역류/감염 등 원인 가능, 종양성 패턴 뚜렷하지 않음</td><td>원인 교정 및 표적 생검. 불규칙 경계·출혈·함몰 또는 치료 후 지속 시 neoplasia 재평가</td><td>치료 반응 따라 재평가. 지속·악화 시 조기 EGD</td></tr>
+</tbody></table>
+<h3>최종 병리에 따른 계획</h3>
+<table>
+<thead><tr><th>최종 병리</th><th>조건</th><th>계획</th></tr></thead>
+<tbody>
+<tr><td>위저선용종(FGP)</td><td>10mm 미만, dysplasia 없음, 전형적 산발성</td><td>용종 자체 정기 F/U 불필요 가능. PPI 적응증 재평가, 배경위험·국가검진 일정에 따라 EGD</td></tr>
+<tr><td>과증식성 용종</td><td>작음, dysplasia 없음, 완전 절제 또는 소실</td><td>H. pylori 검사·제균. 이후 일정은 위축·장상피화생 등 배경점막 위험으로 결정</td></tr>
+<tr><td>비종양성 염증성/미란성 병변</td><td>악성·이형성 배제, 증상 호전</td><td>원인 치료 후 증상·출혈 지속 시 조기 재평가. 반복 정기 F/U는 배경점막 위험에 따름</td></tr>
+</tbody></table>
+<h3>병리·상황별 권고 일정</h3>
+<table>
+<thead><tr><th>결과·상황</th><th>권고 일정</th><th>핵심 행동</th></tr></thead>
+<tbody>
+<tr><td>Adenoma/LGD 완전 절제</td><td><strong>1년 EGD</strong></td><td>절제부·동시성/이시성 병변 및 배경점막 확인</td></tr>
+<tr><td>LGD 생검만 시행 또는 불완전 절제</td><td><strong>6개월 이내</strong></td><td>재평가 및 완전절제 계획</td></tr>
+<tr><td>HGD 완전 절제</td><td><strong>6개월 EGD</strong></td><td>절제부 및 동시성 병변 조기 확인 후 장기 surveillance</td></tr>
+<tr><td>HGD 생검만 시행 또는 불완전 절제</td><td><strong>3개월 이내</strong></td><td>지체 없이 재평가·완전절제/ESD 경로</td></tr>
+<tr><td>Hyperplastic polyp 10mm 이상, 출혈·증상 또는 dysplasia</td><td>절제 후 단기 확인</td><td>완전절제 확인, H. pylori 제균. dysplasia면 dysplasia 일정 적용</td></tr>
+<tr><td>조기위암 curative ER</td><td><strong>6–12개월</strong></td><td>한국: 6–12개월 정기 EGD. 일본 eCuraA: 매년, eCuraB: 연 1–2회 EGD + 전이 평가</td></tr>
+<tr><td>비치유 절제·malignant polyp/pT1 의심</td><td>즉시 전문경로</td><td>수술/다학제 평가 및 병기검사. 일반 용종 F/U 적용 금지</td></tr>
+</tbody></table>
+<div class="note">위 surveillance의 기준은 H. pylori·배경 위축·장상피화생이 adenomatous·hyperplastic polyp의 장기 위험을 좌우함.</div>
+<div class="danger-box"><strong>즉시 전문경로:</strong> 출혈·빈혈 동반 병변 / 함몰·궤양·자발출혈 / HGD, carcinoma, malignant polyp / 불완전절제 / 다발·급속 성장</div>
+</div>
+</section>
+
+<section class="topic polyp-surveillance" id="colon-polyp-surveillance">
+<h2>대장용종 Surveillance</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 대장용종 surveillance 삽입물 (2022 개정 한국 지침)</span>
+<p><strong>암기 요약:</strong> 저위험(선종 1–2개·&lt;10mm·LGD / SSL 1–2개·&lt;10mm·dysplasia 없음) → <strong>5–10년</strong>; 선종/SSL 3–4개 → <strong>3–5년</strong>; 선종 5–10개, SSL 5개 이상, 10mm 이상, villous/HGD/TSA/dysplastic SSL → <strong>3년</strong>; 선종 10개 초과 → <strong>1년</strong>; 20mm 이상 piecemeal → <strong>6개월</strong> scar check.</p>
+<h3>조직형별 위험도</h3>
+<table>
+<thead><tr><th>유형</th><th>위험도</th><th>핵심 포인트</th></tr></thead>
+<tbody>
+<tr><td>Hyperplastic polyp</td><td>낮음</td><td>원위부 작은 HP는 저위험. 근위부·큰·다발성 HP는 SSL 감별</td></tr>
+<tr><td>Tubular adenoma</td><td>낮음~중간</td><td>개수, 크기, 이형성에 따라 재분류</td></tr>
+<tr><td>SSL / TSA</td><td>중간~높음</td><td>SSL은 편평·점액성 근위부 병변. TSA/dysplastic SSL은 고위험</td></tr>
+<tr><td>Villous / HGD</td><td>높음</td><td>융모성 성분 또는 HGD는 진행성 선종 인자</td></tr>
+</tbody></table>
+<h3>위험 상승 기준과 통상 F/U</h3>
+<table>
+<thead><tr><th>항목</th><th>위험 상승 기준</th><th>통상 F/U</th></tr></thead>
+<tbody>
+<tr><td>개수</td><td>선종/SSL 3개 이상; 선종 10개 초과는 초고위험</td><td>3–5년; &gt;10개는 1년</td></tr>
+<tr><td>크기</td><td>선종 또는 serrated polyp 10mm 이상</td><td>3년</td></tr>
+<tr><td>Bx/병리</td><td>Villous/tubulovillous, HGD, TSA, SSL with dysplasia</td><td>3년</td></tr>
+<tr><td>절제법</td><td>20mm 이상 piecemeal EMR/ESD, 불완전절제 의심</td><td>6개월</td></tr>
+</tbody></table>
+<h3>기준 내시경 소견별 F/U</h3>
+<table>
+<thead><tr><th>기준 내시경 소견</th><th>다음 F/U</th><th>메모</th></tr></thead>
+<tbody>
+<tr><td>정상 대장내시경</td><td><strong>5–10년</strong></td><td>장정결 양호, 맹장 도달, 충분한 관찰 전제</td></tr>
+<tr><td>직장·S상결장 HP만, 모두 10mm 미만</td><td><strong>5–10년</strong></td><td>근위부·큰·다발성 HP는 SSL 감별 필요</td></tr>
+<tr><td>관상선종 1–2개, 모두 10mm 미만, LGD</td><td><strong>5–10년</strong></td><td>완전절제 확인</td></tr>
+<tr><td>SSL 1–2개, 모두 10mm 미만, dysplasia 없음</td><td><strong>5–10년</strong></td><td>병리진단 신뢰도와 완전절제 확인</td></tr>
+<tr><td>선종 또는 SSL 3–4개, 모두 10mm 미만, non-advanced</td><td><strong>3–5년</strong></td><td>장정결·절제확실성 고려</td></tr>
+<tr><td>선종 5–10개, SSL 5개 이상, adenoma/serrated polyp 10mm 이상</td><td><strong>3년</strong></td><td>진행성 또는 다발성 병변</td></tr>
+<tr><td>Tubulovillous/villous adenoma, HGD adenoma, TSA, SSL with dysplasia</td><td><strong>3년</strong></td><td>완전절제 전제</td></tr>
+<tr><td>선종 10개 초과</td><td><strong>1년</strong></td><td>누적 개수·연령·가족력 검토, 유전평가 고려</td></tr>
+<tr><td>20mm 이상 adenoma/SSL piecemeal 절제 또는 불완전절제 의심</td><td><strong>6개월</strong></td><td>Scar check 후 단계적 추적</td></tr>
+</tbody></table>
+<div class="note">근거: Korean Guidelines for Postpolypectomy Colonoscopic Surveillance 2022 Revised Edition (Clin Endosc 2022). CRC 가족력, IBD, serrated polyposis, malignant polyp/pT1은 별도 경로.</div>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>2</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="ibd"><h2>염증성 장질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>궤양성 대장염(UC)</h3>
+<ul>
+<li>직장부터 연속적 침범, 점막/점막하층, <strong>p-ANCA(+)</strong>, 혈변·점액변·뒤무직</li>
+<li>치료 단계: 5-ASA → steroid → azathioprine → anti-TNF</li>
+<li><strong>Toxic megacolon</strong>: 횡행결장 6cm 이상 확장 + 전신 독성 — 약제(지사제·항콜린제) 중단, 응급 평가</li>
+</ul>
+<h3>Crohn's disease</h3>
+<ul>
+<li>전층 침범, 비연속적(skip lesion), 누공·농양·협착, 회맹부 우세, <strong>ASCA</strong> 연관</li>
+<li>석조(cobblestone) 점막, 비유즙 육아종(noncaseating granuloma)</li>
+</ul>
+<h3>감별</h3>
+<ul>
+<li>장결핵: 회맹부, 가로방향 궤양, 치즈상 육아종(caseating)</li>
+<li>Behçet 장염: 회맹부 큰 원형 궤양</li>
+<li>허혈성 대장염: 고령·혈관 위험인자, 급성 좌측 복통+혈변</li>
+</ul>
+</div>
+<div class="refer-box"><strong>의뢰 기준:</strong> IBD 신규 진단·치료 방침 결정, 스테로이드 이상 단계 약제, toxic megacolon·누공·협착 등 합병증은 상급기관 의뢰. 일차의료에서는 5-ASA 유지요법과 증상 모니터링이 중심.</div>
+</section>
+
+<section class="topic" id="ibs"><h2>과민성 장증후군(IBS)</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>IBS-D(설사형)</h3>
+<ul>
+<li><strong>Loperamide</strong> 1차(급성 감염 배제 후), <strong>TCA</strong> 복통 완화(저용량)</li>
+<li>Ramosetron(5-HT3 길항제) — K58.1 급여 인정</li>
+</ul>
+<h3>IBS-C(변비형)</h3>
+<ul>
+<li><strong>Psyllium</strong>, <strong>lactulose</strong>(삼투성 완하제)</li>
+<li>Prucalopride(5-HT4 작용제) — 완하제 불응 만성변비</li>
+</ul>
+<h3>복통 조절 — 진경제</h3>
+<ul>
+<li>Scopolamine(부스코판), trimebutine(포리부틴), cimetropium bromide(알피움)</li>
+</ul>
+<h3>진단(ROME IV)</h3>
+<ul>
+<li>최근 3개월 동안 주 1일 이상 반복되는 복통 + 배변 관련 2가지 이상(배변과 연관/횟수 변화/형태 변화), 증상 시작은 6개월 이상 전</li>
+<li>Alarm sign: 50세 이상 신발 증상, IBD/대장암 가족력, 철결핍 빈혈, 체중감소, 혈변, 야간 설사</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — IBS 실전(#17·20)</span>
+<ul>
+<li>치료는 대증 원칙: 설사는 설사 치료, 변비는 변비 치료. 약효가 바로 나타나지 않는다고 환자에게 미리 설명.</li>
+<li>Rifaximin: SIBO 동반 의심, 타 약제 불응 IBS-D에서 고려 — 급여 기준상 장염 코드 + JX999 '타 약제에 호전 없음', 7일 제한.</li>
+<li>TCA 저용량(amitriptyline/nortriptyline 10mg): 복통에 근거. amitriptyline은 항콜린 효과 커서 IBS-C는 악화 가능 → IBS-C/M은 nortriptyline 선호. K58.8/58.9 코드로 급여 가능.</li>
+<li>Low FODMAP 식이, 신체활동, 잘 씹기, NSAID 회피 권고. Probiotics는 비급여 제품으로 4주 이상 투여 후 효과 평가.</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="acute-bowel"><h2>급성 장질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>급성 장간막 허혈</h3>
+<ul>
+<li>신체검사보다 심한 diffuse 복통, 고령·심방세동·심부전·죽상경화 위험인자</li>
+<li>진단: <strong>CT angiography</strong>, lactate 상승 — 응급</li>
+</ul>
+<h3>장폐색·volvulus</h3>
+<ul>
+<li>장폐색: diffuse colicky pain, 구토, 장음 변화(과다→소실), 복부 팽만, 수술력 — 단순복부X선/CT, 금식·감압</li>
+<li><strong>Sigmoid volvulus: coffee-bean sign</strong>, rectal tube로 감압 시도, 재발·전천공 징후 시 수술</li>
+</ul>
+<h3>게실염</h3>
+<ul>
+<li>좌측 하복부 통증+발열, CT로 진단, 경증은 외래 경구 항생제 가능, 농양·천공·폐색은 입원/수술</li>
+</ul>
+<h3>충수염·허혈성 대장염</h3>
+<ul>
+<li>충수염: 배꼽→우하복부 이동통, CT; 허혈성 대장염: 급성 좌측 복통+혈변, CT상 분절성 장벽 비후</li>
+</ul>
+</div>
+<div class="danger-box"><strong>즉시 응급/수술 평가:</strong> 복막 자극 징후(rebound tenderness, muscle guarding), 장음 소실, 혈압 불안정, 유리 공기(free air), volvulus 전천공 징후, 장간막 허혈 의심 — 진경제·지사제 투여로 증상을 가리지 말 것.</div>
+</section>
+
+<section class="topic" id="liver-function"><h2>간기능 이상·담즙정체성 질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>PBC(원발성 담즙성 담관염)</h3>
+<ul>
+<li>중년 여성, <strong>ALP/GGT 상승</strong>, 소양증, <strong>AMA(+)</strong>, 치료 <strong>UDCA</strong></li>
+</ul>
+<h3>Gilbert syndrome</h3>
+<ul>
+<li>비포합형 빌리루빈 상승, 금식·스트레스 시 악화, 간기능 정상 — 안심 교육</li>
+</ul>
+<h3>Wilson disease</h3>
+<ul>
+<li>젊은 나이 간질환, <strong>ceruloplasmin 감소, 24시간 요 동(copper) 증가, Kayser–Fleischer ring</strong></li>
+</ul>
+<h3>자가면역 간염(AIH)</h3>
+<ul>
+<li><strong>ANA, SMA, LKM-1, IgG</strong> 상승, 조직검사, 스테로이드·azathioprine</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 간수치 패턴 접근</span>
+<ul>
+<li>간세포형(ALT/AST 우세 상승): 바이러스, 약물, MASLD, 자가면역 감별 / 담즙정체형(ALP/GGT 우세): 담석·담관 질환, PBC, 약제 감별, 초음파 우선</li>
+<li>MASLD: FIB-4로 섬유화 위험 분류(고령에서 기준치 상향), 고위험은 elastography·의뢰</li>
+<li>간경변·HBV/HCV 고위험군: 6개월마다 초음파+AFP로 간암 감시</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="viral-hepatitis"><h2>바이러스성 간염</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>검사 해석</h3>
+<ul>
+<li>anti-HCV(+)이면 <strong>HCV RNA</strong>로 현재 감염 확인; HBV는 HBsAg/anti-HBs/anti-HBc 조합으로 해석</li>
+</ul>
+<h3>B형 간염</h3>
+<ul>
+<li>치료제: <strong>tenofovir, entecavir, besifovir</strong></li>
+<li><strong>IgM anti-HBc</strong>: 급성 HBV 감염(또는 만성 B형 간염 급성 악화)</li>
+<li>치료 결정: HBeAg, HBV DNA, ALT, 간섬유화 정도 종합</li>
+</ul>
+<h3>C형 간염</h3>
+<ul>
+<li>anti-HCV, HCV RNA로 진단, <strong>DAA로 완치 가능</strong> — 진단되면 치료 경로 연결</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 표지자 해석표</span>
+<table>
+<thead><tr><th>표지자</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td>HBsAg(+)</td><td>현재 HBV 감염(만성 보유자 포함)</td></tr>
+<tr><td>anti-HBs(+)</td><td>면역(백신 또는 회복 후)</td></tr>
+<tr><td>IgM anti-HBc(+)</td><td>급성 감염 또는 급성 악화</td></tr>
+<tr><td>HBeAg(+)/HBV DNA 높음</td><td>복제 활발, 전염력 높음</td></tr>
+</tbody></table>
+<p>항바이러스제 시작·중단은 상급기관과 협의하되, 일차의료에서 항바이러스제 복용 중단 금지·복약순응도 교육과 간수기·HBV DNA 추적 일정 관리를 담당함. HCV는 DAA로 대부분 완치되므로 방치하지 말고 치료 연결.</p>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>3</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="cirrhosis"><h2>간경변</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>알코올성 간염</h3>
+<ul>
+<li><strong>mDF &gt; 32</strong>이면 중증 — prednisolone 또는 pentoxifylline 고려</li>
+</ul>
+<h3>간섬유화 평가</h3>
+<ul>
+<li>transient elastography로 간경도 측정</li>
+</ul>
+<h3>복수·SAAG</h3>
+<ul>
+<li><strong>SAAG ≥1.1 g/dL</strong>: 문맥압상승성 복수</li>
+<li>치료: 염분 제한, <strong>spironolactone + furosemide</strong>(100:40 비율)</li>
+</ul>
+<h3>SBP·간성뇌증·정맥류</h3>
+<ul>
+<li>SBP: 복수 <strong>PMN ≥250/mm³</strong>, 3세대 cephalosporin</li>
+<li>간성뇌증: <strong>lactulose, rifaximin</strong></li>
+<li>식도정맥류 출혈: vasoactive + <strong>EVL</strong>(내시경 정맥류 결찰술)</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 간경변 외래 관리</span>
+<ul>
+<li>간경변 확진 환자는 간암 감시(6개월 초음파+AFP), 식도정맥류 선별 내시경, 예방접종(HAV/HBV/폐렴구균/인플루엔자)을 체계화함.</li>
+<li>복수 환자에서 NSAID·ACEi/ARB(저혈압 시)는 신관류를 악화시켜 주의. 급격한 복수 증가·발열·의식변화는 SBP·간성뇌증 감별 후 의뢰.</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="biliary"><h2>담도·담낭</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>담석증·담낭염</h3>
+<ul>
+<li>담도산통: 식후(기름진 음식) 우상복부 통증, 수십 분~수 시간 지속</li>
+<li>급성 담낭염: Murphy sign, 발열, WBC 상승, 초음파상 담낭벽 비후·담낭비대·결석 — <strong>LCC</strong>(복강경 담낭절제술)</li>
+</ul>
+<h3>CBD stone·담관염</h3>
+<ul>
+<li><strong>CBD stone: ERCP</strong>로 제거 후 LCC</li>
+<li>급성 담관염: <strong>Charcot triad</strong>(발열·황달·우상복부 통증), Reynolds pentad(+저혈압·의식변화) — 응급 ERCP 배액</li>
+</ul>
+<h3>기타</h3>
+<ul>
+<li>담낭 용종: 10mm 이상, 빠른 성장, 50세 이상, 담석 동반 시 절제 고려</li>
+<li>담낭절제 후 설사(담즙산 설사): <strong>Cholestyramine</strong>(현재 유통 중단 상태로 대체 확인 필요)</li>
+</ul>
+</div>
+<div class="refer-box"><strong>의뢰·응급:</strong> Charcot triad·Reynolds pentad, 폐쇄성 황달, 담낭염 중증(괴저·기종성), 반복 담도산통 — 수술/ERCP 가능 기관으로 의뢰.</div>
+</section>
+
+<section class="topic" id="pancreas"><h2>췌장</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 3권 소화기</span>
+<h3>급성 췌장염</h3>
+<ul>
+<li>상복부 통증(등으로 방사), <strong>amylase/lipase 3배 이상</strong>, 담석·알코올이 주 원인</li>
+<li>치료: <strong>NPO, 수액, 진통</strong>; 중증도는 <strong>BISAP</strong>(BUN, 의식, SIRS, 나이, 흉수)로 평가</li>
+</ul>
+<h3>만성 췌장염</h3>
+<ul>
+<li>석회화, 지방변, 당뇨병 동반, 알코올이 주 원인 — 췌장효소 보충, 절주</li>
+</ul>
+<h3>췌장 낭종</h3>
+<ul>
+<li>IPMN 등 낭종은 <strong>EUS</strong>로 평가, 고위험 소견(주췌관 확장, 벽 결절) 시 의뢰</li>
+</ul>
+<h3>췌장암</h3>
+<ul>
+<li>무통성 황달, <strong>Courvoisier sign</strong>(만져지는 무통성 담낭), 체중감소, new-onset DM — CT/MRI 후 의뢰</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 췌장효소제(#21)</span>
+<ul>
+<li>외분비 췌장기능부전(만성 췌장염, 위절제 후 등)에 enteric coated mini-microspheres 제형(크레온, 노자임)을 식사마다 보충하는 것이 근거 있는 사용임.</li>
+<li>일반 소화불량에 대한 소화효소제는 근거가 부족하나 경험적 사용 가능 — 기질 질환 감별이 우선.</li>
+</ul>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>4</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="pc-gerd"><h2>[보강] GERD 실전 (가이드라인 #19)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<p>전형 증상(가슴쓰림·위산 역류)은 PPI 시험적 투여로 진단 가능. 경고증상(삼킴곤란·출혈·체중감소)이 있으면 내시경 먼저. PPI는 아침 식전 30~60분, 초치료 4~8주.</p>
+<div class="algorithm-box"><h3>PPI 불응성(표준용량 8주에도 증상 지속) 접근</h3>
+<ol>
+<li>생활습관 교정 확인(체중감량이 유일하게 강한 근거, 식후 눕지 않기·카페인/알코올 제한·머리 올려 자기)</li>
+<li>진단 재확인: NERD·역류과민성·기능성 가슴쓰림·호산구성 식도염·이완불능증·위마비 감별</li>
+<li>복약순응도·복용법 재교육 → 식사 무관 PPI(Dexlansoprazole) 또는 P-CAB 변경</li>
+<li>야간 산 돌파(환자 약 40%): PPI BID 또는 취침 전 H2RA 간헐 병용</li>
+<li>비산 역류(음식물이 넘어옴): Baclofen 5~20mg TID(서울 컨센서스) / 기능성 가슴쓰림: 저용량 TCA·SSRI·SNRI</li>
+</ol></div>
+<table>
+<thead><tr><th>상황</th><th>권고 전략</th></tr></thead>
+<tbody>
+<tr><td>초치료</td><td>표준용량 PPI QD 4~8주</td></tr>
+<tr><td>유지</td><td>중증·재발 잦으면 지속 요법(최저 유효용량, quarter dose 제형 활용). 경증 ERD·NERD는 on-demand(증상 시 2~3일 복용)가 지속 요법과 비열등 — on-demand에는 P-CAB이 유리</td></tr>
+<tr><td>LPRD(인후두 역류)</td><td>속쓰림 없는 경우 50% 이상. PPI BID 또는 PPI+H2RA 병용, 16주 이상 투여해야 효과</td></tr>
+<tr><td>산 포켓(식후 역류)</td><td>Alginate(라미나지)가 효과적 — 식후 위산층 제거 기전</td></tr>
+<tr><td>열공탈장 동반 불응</td><td>위저부성형술(fundoplication) 고려 → 의뢰</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section class="topic" id="pc-ppi"><h2>[보강] PPI·P-CAB·H2RA (가이드라인 #15)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>약제 선택 포인트</h3>
+<table>
+<thead><tr><th>계열</th><th>특징</th><th>선택 상황</th></tr></thead>
+<tbody>
+<tr><td>PPI</td><td>주간·야간 산분비 모두 억제, prodrug로 식전 복용 필요, 4~5일 후 최대 효과</td><td>표준 1차. Clopidogrel 복용자는 Omeprazole 회피 → <strong>Rabeprazole</strong>(비효소 대사) 사용</td></tr>
+<tr><td>P-CAB</td><td>식사 무관, 첫 복용부터 최대 효과, 반감기 김, 야간 산 돌파 적음, CYP2C19 영향 적음</td><td>빠른 효과 필요, on-demand, PPI 순응도 낮을 때</td></tr>
+<tr><td>H2RA</td><td>야간 산분비 억제 강함, 분복 편리, <strong>tachyphylaxis(48시간~2주 내 효과 감소)</strong></td><td>NSAID 병용 위장 보호, 야간 증상 보조. <strong>Famotidine 선호</strong>(상호작용 적음, 신기능 저하 시 감량)</td></tr>
+</tbody></table>
+<p><strong>PPI 강도(full dose):</strong> Esomeprazole &gt; Rabeprazole &gt; Lansoprazole &gt; Omeprazole ≒ Pantoprazole. <strong>CYP2C19 영향 적은 PPI: Rabeprazole·Pantoprazole</strong> — acid break 반복 시 변경 고려.</p>
+<p><strong>장기 복용 부작용(설명 의무):</strong> 골절(척추·고관절), Mg/B12 흡수 장애, C. difficile·위장관 감염, 급성 간질성 신염, 급단 시 반동성 산 과다분비. 증상 조절 후 격일 또는 on-demand로 전환 권고.</p>
+<div class="coverage-box"><span class="source-label">심평의학·급여</span>
+<ul>
+<li>H2RA·PPI·P-CAB 중 <strong>1종만</strong> 처방. PPI+H2RA 병용은 JX999에 'PPI 투여에도 야간 산 과다분비' 또는 'PPI로 증상 호전 없음' 기입.</li>
+<li>상병: ERD = K21.0(주로 full dose), NERD = K21.9(주로 half dose; 장기 처방은 K21.0이 합당, NERD 유지는 Rabeprazole만 허가).</li>
+<li>BID 가능 PPI: Pantoprazole 40mg BID, S-Pantoprazole 20mg BID, Rabeprazole 10~20mg BID(단 20mg BID는 중증 점막손상 확인 시에만 — 내시경 없이 처방 지양).</li>
+<li>위장관 코드 없이 사용 가능한 PPI: Esomeprazole 20mg QD / Omeprazole 20mg QD / Pantoprazole 20mg QD / Lansoprazole 15mg(12주). Naproxen+Esomeprazole 복합제(낙소졸)는 위장관 상병 없이 가능.</li>
+<li>P-CAB(Tegoprazan): ERD 50mg QD 4~8주, NERD 50mg QD 4주, 위궤양 50mg QD 8주 급여. Vonoprazan(보신티)은 비급여·유통 중단.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="topic" id="pc-prokinetics"><h2>[보강] Prokinetics·진경제 (가이드라인 #16)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<table>
+<thead><tr><th>약제</th><th>기전</th><th>주요 부작용·주의</th></tr></thead>
+<tbody>
+<tr><td>Metoclopramide(맥페란)</td><td>D2 길항제(중추+말초)</td><td>EPS·지연성 운동장애·고프로락틴혈증. <strong>국내 5일 제한</strong>. 파킨슨 환자 IV 투여 악화 판결 사례</td></tr>
+<tr><td>Domperidone</td><td>D2 길항제(말초)</td><td><strong>QT 연장·TdP·돌연심장사</strong>. CYP3A4 억제제·QT 연장약 병용 금기, 60세 이상 30mg/일 초과 금지, <strong>7일 제한</strong></td></tr>
+<tr><td>Levosulpiride(레보프라이드)</td><td>D2 길항제(중추+말초)</td><td><strong>약제유발 운동장애의 90%를 차지</strong>(파킨슨증후군 93%, 50% 비가역적). 고령·여성·당뇨에서 피함</td></tr>
+<tr><td>Mosapride(가스모틴)</td><td>5-HT4 작용제</td><td>부작용 적어 노인·여성 우선. 대장에도 작용. QT 보고 없음</td></tr>
+<tr><td>Prucalopride(레졸로)</td><td>고선택 5-HT4</td><td>만성변비 허가(2종 완하제 6개월 실패 시 급여). 65세 이상·중증 간/신장애 1mg 감량. 심장질환·부정맥 시 ECG 모니터링</td></tr>
+<tr><td>Motilitone(모티리톤)</td><td>생약(현호색·견우자)</td><td>다른 prokinetics와 병용 가능(동일 효능 분류 아님)</td></tr>
+<tr><td>Trimebutine(포리부틴)</td><td>Enkephalin 수용체 이중 조절</td><td>항콜린 작용 없어 녹내장·BPH에서 비교적 안전. 설사형·변비형 IBS 모두 사용</td></tr>
+</tbody></table>
+<p><strong>선택 전략:</strong> 증상 심하면 D2 길항제 단기 → 호전 시 Mosapride 전환. 노인·여성은 Mosapride 우선, 부족 시 D2 길항제. <strong>도파민 길항제 장기 복용은 비가역 부작용 가능 → 단기 최소 사용(기능성 소화불량 지침 2020, 강한 권고).</strong></p>
+<h3>진경제 요약</h3>
+<ul>
+<li>항콜린(부스코판·알피움): BBB 통과는 적으나 항콜린 부작용(구강건조·변비·배뇨장애) 주의 — <strong>녹내장·중증근무력증·위장관 협착·BPH 금기</strong></li>
+<li>Pinaverium(디세텔)·Octylonium(메녹틸): 사차 암모늄으로 위장관 선택성 높아 전신 부작용 적음</li>
+<li>Phloroglucinol(후로스판): 빠른 효과(15~20분), 드물게 AGEP(급성 전신성 농포증)</li>
+<li>Trimebutine: 항콜린 없음, 위장관 항진/저하 모두 조절</li>
+</ul>
+<div class="danger-box"><strong>진경제 금기 상황:</strong> 장폐색 의심, 세균성 장염(독소 배출 지연) — 복통에 진경제를 함부로 쓰지 말고 기질 질환 먼저 감별.</div>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>5</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="pc-diarrhea"><h2>[보강] 설사 감별·처방 (가이드라인 #17)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>분류·초기 접근</h3>
+<ul>
+<li>급성(&lt;2주) / 지속성(2~4주) / 만성(&gt;4주). 급성은 90% 이상 감염성, 만성은 대부분 비감염성(IBS가 최다)</li>
+<li>분비성(금식해도 지속, &gt;1L) vs 삼투성(음식 섭취 시 악화, 금식 시 감소) vs 염증성(대변 WBC+, 발열, 복부 압통)</li>
+<li><strong>전원 Red flag</strong>: 분출성 구토, 황달, 혈변, 토혈, V/S 불안정, rebound tenderness, muscle guarding, 고열, 잠에서 깰 정도 복통, 등으로 방사 통증, 비전형 부위 복통</li>
+</ul>
+<h3>검사 적응증</h3>
+<p>탈수 / 38.5℃ 이상 발열 / 혈성 설사 / 대변 WBC 검출 / 48시간 이상 호전 없음 / 최근 항생제 사용 / 50세 이상 심한 복통 / 70세 이상 / 면역저하자.</p>
+<h3>원인 추정</h3>
+<table>
+<thead><tr><th>단서</th><th>원인</th></tr></thead>
+<tbody>
+<tr><td>김밥(짧은 잠복기 1~6h, 구토)</td><td>S. aureus</td></tr>
+<tr><td>볶음밥</td><td>B. cereus</td></tr>
+<tr><td>덜 익힌 닭고기·우유, 염증성</td><td>Campylobacter(국내 증가 추세)</td></tr>
+<tr><td>발열 없이 혈성 설사+우측 복통, 햄버거</td><td><strong>EHEC(STEC) — 항생제 금기(HUS 위험)</strong></td></tr>
+<tr><td>좌측 대장·뒤무직, 동남아 여행력</td><td>Shigella(이질)</td></tr>
+<tr><td>굴·조개, 겨울철, 집단 발생</td><td>Norovirus</td></tr>
+<tr><td>8~12주 내 항생제 복용</td><td>C. difficile</td></tr>
+<tr><td>14일 이상 지속, 여행자</td><td>기생충(Giardia 최다)</td></tr>
+</tbody></table>
+<h3>치료</h3>
+<table>
+<thead><tr><th>항목</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>수분·전해질</td><td>ORT가 기본(경증 50mL/kg, 중등도 100mL/kg을 4~6시간). 콜라·과일주스는 고장액으로 탈수 악화 가능. 대변으로 K+ 손실 커서 저칼륨 주의(바나나 등)</td></tr>
+<tr><td>지사제</td><td>비염증성에서만. <strong>Loperamide는 발열·혈변·감염 미배제 시 금기</strong>(독성거대결장). Dioctahedral smectite(포타겔·스타빅)는 흡착 기전으로 비교적 안전(다른 약과 1~2시간 간격)</td></tr>
+<tr><td>경험적 항생제</td><td>적응증: 발열+혈변/점액변, 이질 증상, 38.5℃ 이상 여행자 설사, 면역저하자 혈변. Ciprofloxacin 500mg BID 3일 또는 Azithromycin 500mg QD 3일(Campylobacter 타겟). <strong>STEC 의심 시 금기</strong></td></tr>
+<tr><td>식사</td><td>구토 있으면 금식 하루→미음→죽→밥(단백질→지방 순). 1주일간 차갑고·달고·맵고·기름진 음식·유제품·식이섬유 많은 음식 회피</td></tr>
+</tbody></table>
+<h3>항생제 관련 설사</h3>
+<ul>
+<li><strong>C. difficile</strong>: GDH/Toxin A·B ELISA 또는 PCR. 경증-중등도: Metronidazole 500mg PO TID 10~14일 또는 Vancomycin 125mg PO QID 10~14일. 중증·합병증은 의뢰. 유발 항생제 중단</li>
+<li><strong>Klebsiella oxytoca</strong>: 페니실린·퀴놀론·세팔로스포린 관련 우측 출혈성 장염 — 항생제 중단 시 호전</li>
+</ul>
+<h3>만성 설사 감별</h3>
+<ul>
+<li>Alarm sign(+) → 대장내시경·lab. 없으면 약물(마그네슘 제산제·완하제·metformin·SSRI 등)·내분비·흡수장애 감별 후 기능성 접근</li>
+<li>설사량으로 추정: 소장 &gt;1L, 우측대장 ~1L, 좌측대장 ~200mL+빈번, IBS는 250mL 초과 드묾</li>
+<li>담즙산 설사(담낭절제 후·야간 설사): cholestyramine(유통 확인)</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pc-constipation"><h2>[보강] 변비 처방 (가이드라인 #18)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>진단</h3>
+<ul>
+<li>Rome IV: 2개 이상(배변 25% 이상 힘줌, BSFS 1~2 25% 이상, 불완전 배변감, 폐쇄감, 수동 조작, 주 3회 미만 자발 배변) + 완하제 없이 설사 드묾 + IBS 기준 미달 — 6개월 전 시작, 최근 3개월 충족</li>
+<li>환자는 '힘주는 것'을 변비로 인식하므로 횟수만으로 판단 금지. Bristol 3점 미만이면 transit 지연 예측</li>
+<li>DRE에서 배변조절장애(dyssynergia) 소견: 힘줘도 손가락이 안 밀림, 오히려 올라감(puborectalis 역설 수축) → 의뢰</li>
+</ul>
+<h3>단계별 치료</h3>
+<table>
+<thead><tr><th>단계</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>0. 생활습관</td><td>섬유질 20~35g/일(1주일간 서서히 증량), 수분. 단 심한 서행성·배변출구폐쇄·분변매복·약인성은 부피형성제가 오히려 악화</td></tr>
+<tr><td>1. 부피형성</td><td>Psyllium(아기오) 선호. 많은 물과 복용, 효과 12~72시간 — 천천히 온다고 설명</td></tr>
+<tr><td>2. 삼투성</td><td><strong>PEG(폴락스산)</strong>: 가스 없음, 노인·당뇨·간/신장애 안전, 메타분석에서 가장 효과적 / Lactulose(듀락칸): 당뇨 사용 가능하나 가스·팽만, 간성뇌증에도 사용 / 마그밀: 저가·속효(30분~3h)이나 <strong>CKD 금기(고마그네슘혈증), 임부·수유부 금기</strong></td></tr>
+<tr><td>3. 자극성</td><td>Bisacodyl(듀오락스)·Senna·Sodium picosulfate — 장기 안전성 미확립, <strong>최대 1주 rescue</strong>. 장폐색·급성복부질환 금기</td></tr>
+<tr><td>4. Enterokinetics</td><td>Prucalopride(레졸로): 2종 이상 완하제 6개월 실패 만성변비에 급여(4주 후 효과 보고 지속 결정), 65세 이상 1mg</td></tr>
+</tbody></table>
+<div class="refer-box"><strong>의뢰 기준:</strong> Red flag(빈혈·혈변·잠혈 양성·체중감소 — 대장암 선별 내시경), 12주 이상 치료 불응, dyssynergia 소견.</div>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM GI</span><span>6</span></div>
+</section>
+
+<section class="page">
+<div class="columns">
+
+<section class="topic" id="pc-fd"><h2>[보강] 기능성 소화불량·복통 (가이드라인 #20)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>복통에서 먼저 배제할 기질 질환</h3>
+<ul>
+<li>급성 상복부 통증: 간담췌·상부 GI + <strong>협심증/MI</strong>(고령은 비전형적) — chest PA, SBP, EKG 고려</li>
+<li>등으로 방사: 췌장 질환·대동맥 박리</li>
+<li>장폐색(수술력): diffuse colicky pain, 장음 변화, 가스 배출 중단 — <strong>진경제 금기</strong></li>
+<li>급성 장간막 허혈: 검사보다 심한 diffuse 통증 + AF/심부전/죽상경화</li>
+<li>췌장암: 40세 이상 + 위장약 불응 + new-onset DM/체중감소/황달</li>
+<li>배변·식사와 무관한 복통 + Carnett test(+)(복벽 긴장 시 압통 악화): 만성 복벽 통증 — lidocaine+triamcinolone 주사, TCA/gabapentin</li>
+</ul>
+<h3>소화불량 접근</h3>
+<ul>
+<li><strong>40세 이상 또는 alarm sign(+)(새로 발생, 지속 구토, 체중감소, 연하곤란, 철결핍 빈혈, GI 출혈, 복부 종괴, 상부 GI암 가족력) → 위내시경 먼저</strong>. 국내는 NSAID/항응고제/항혈소판제 복용도 포함해 더 적극적으로 내시경 권고</li>
+<li>40세 미만 alarm sign(-): PPI + Prokinetics 경험적 치료, 호전 시 필요시 복용으로 전환</li>
+</ul>
+<h3>FD 아형별 치료</h3>
+<table>
+<thead><tr><th>아형</th><th>주 증상</th><th>1차</th><th>불응 시</th></tr></thead>
+<tbody>
+<tr><td>EPS</td><td>상복부 통증·속쓰림(식사 무관)</td><td>PPI 8주</td><td>TCA(nortriptyline 10mg 선호, amitriptyline이 근거 최다) / 체중감소 동반 시 mirtazapine</td></tr>
+<tr><td>PDS</td><td>식후 포만감·조기 만복감</td><td>Prokinetics</td><td>Buspirone(위저부 이완, F41.9 코드), PPI 추가</td></tr>
+<tr><td>Overlap</td><td>혼재</td><td>PPI+Prokinetics</td><td>gastric emptying scan·심리 평가, H. pylori 제균 고려</td></tr>
+</tbody></table>
+<p>기능성 소화불량 지침(2020): <strong>Prokinetics는 증상 호전에 효과적(강한 권고)</strong>, 특히 PDS에서 1차. TCA는 정신과 용량보다 훨씬 적게(10mg) 사용, 고령은 EKG(QT) 확인. 치료 1~2개월 후에도 무호전이면 다른 진단 고려.</p>
+</div>
+</section>
+
+<section class="topic" id="pc-liver-rx"><h2>[보강] 간장용제 심평의학 (가이드라인 #21)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<div class="coverage-box"><span class="source-label">급여 기준</span>
+<ul>
+<li>간질환에 간장용제 급여 처방: <strong>AST 또는 ALT ≥60 U/L</strong>, 또는 40~60 U/L이 <strong>3개월 이상 지속</strong> 시. 한번 급여 인정되면 이후 수치 무관하게 지속 인정</li>
+<li>경구 간장용제는 <strong>이담제 포함 2종 이내</strong> 인정. 항바이러스제 병용 시 1종은 전액본인부담</li>
+<li>γ-GTP만 상승해도 AST/ALT 기준으로 처방해야 함</li>
+</ul>
+</div>
+<table>
+<thead><tr><th>제품</th><th>성분</th><th>허가사항</th></tr></thead>
+<tbody>
+<tr><td>우루사정 100mg(일반-급여)</td><td>UDCA 100mg</td><td>담즙분비 부전 간질환·담도계 질환</td></tr>
+<tr><td>우루사정 200mg·250mg·300mg(전문-급여)</td><td>UDCA</td><td>콜레스테롤 담석증, PBC 간기능 개선, 만성 C형 간염 간기능 개선, 급격한 체중감소 비만 환자 담석 예방, 위절제 후 담석 예방 — <strong>200mg은 '이담제'로 분류가 달라 100mg TID 대체로 쓰면 안 됨</strong></td></tr>
+<tr><td>고덱스(전문-급여)</td><td>Carnitine orotate 등</td><td>만성 간질환의 간기능 개선(ALT 상승 시)</td></tr>
+<tr><td>닛셀·유디비(전문-급여)</td><td>BDD 등</td><td>SGPT(ALT) 상승된 간질환</td></tr>
+<tr><td>레가론(일반-급여)</td><td>Silymarin</td><td>독성 간질환·만성 간염·간경변 보조</td></tr>
+</tbody></table>
+<p><strong>상병코드:</strong> K73.8(기타 만성간염), K70(알코올성), K71(독성) 등 허가사항에 맞게 사용. <strong>K76.0(지방간)·K76.9(상세불명 간질환)는 사용하지 않음</strong>. 담석질환은 초음파 소견으로 간수치 없이 급여 처방 가능.</p>
+</div>
+</section>
+
+<section class="topic" id="pc-elderly"><h2>[보강] 노인 식욕부진 (가이드라인 #22)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<p>가장 중요한 것은 <strong>가역적 원인을 찾아 교정</strong>하는 것. MEALS-ON-WHEELS(약물, 우울, 알코올, 만기 편집증, 삼킴 장애, 구강 문제, 감염·경제적 원인, 치매, 갑상선항진·고칼슘혈증·부신기능저하, 장 문제, 식사 문제, 치료적 식단, 담낭 질환)로 체계적 감별.</p>
+<h3>평가</h3>
+<ul>
+<li><strong>SNAQ 설문(4문항): 14점 미만이면 체중감소 위험</strong></li>
+<li>혈액: CBC, albumin(3.5 이하 의미), prealbumin(반감기 48시간), lipid, TFT, B12·folate·Zn·Mg</li>
+<li>약물 복용력: metformin→B12, PPI→Ca/Fe/B12, loop 이뇨제→Mg/K, thiazide→Ca/Mg/K/Zn, isoniazid→B6 등</li>
+<li>노인 우울척도(GDS) 병행 — 요양시설 체중감소의 36%가 우울 관련</li>
+</ul>
+<h3>치료</h3>
+<ul>
+<li>비약물: 소량·잦은 식사, 가장 잘 먹는 끼니에 고칼로리, 경구영양보충제(당뇨는 당류 확인), 단백질 보충, 운동, 함께 식사, 노인장기요양·주간보호 연계</li>
+<li>약물: Mirtazapine(우울 동반 식욕저하, R63.0/R63.4, 비정신과 60일 이내), Megestrol(암·AIDS 악액질 허가, 일반 노인은 비급여 제품), Cyproheptadine(항콜린 부작용·빠른 내성 주의)</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pc-refer"><h2>[보강] Red flag·의뢰 기준 종합</h2>
+<div class="danger-box"><strong>즉시 응급 평가:</strong>
+<ul>
+<li>토혈·대량 혈변/흑색변 + 혈압 저하·빈맥</li>
+<li>복막 자극 징후, 장음 소실, free air — 장폐색·천공</li>
+<li>Charcot triad/Reynolds pentad — 급성 담관염</li>
+<li>신체검사보다 심한 diffuse 복통 + AF/심부전 — 장간막 허혈</li>
+<li>Toxic megacolon, 중증 급성 췌장염(BISAP 고위험)</li>
+</ul></div>
+<div class="refer-box"><strong>상급병원 의뢰 고려:</strong>
+<ul class="checklist">
+<li>Alarm sign 동반 소화불량·복통·설사·변비</li>
+<li>GU 8주 후 치유 미확인, 재발 궤양, H. pylori 2차 치료 실패</li>
+<li>내시경상 암·IBD 신규·고위험 용종, 조기위암·HGD 의심</li>
+<li>간경변 합병증(정맥류 출혈·난치 복수·간성뇌증·SBP), 간암 의심, 지속 간수치 상승 원인 불명</li>
+<li>폐쇄성 황달, 췌장암·담도암 의심, 췌장 낭종 고위험 소견</li>
+<li>치료 불응 GERD(16주)·FD(3개월)·만성 변비(12주)·만성 설사 원인 불명</li>
+<li>설명되지 않는 체중감소·빈혈</li>
+</ul></div>
+<h3>근거·최신성 메모</h3>
+<ul>
+<li>일차진료_guideline #14 소화기약 심평의학, #15 PPI·P-CAB·H2RA, #16 Prokinetics·진경제, #17 설사, #18 변비, #19 GERD, #20 기능성 소화기 질환, #21 기타 소화기 약제, #22 노인 식욕부진</li>
+<li>대장용종 감시: Korean Guidelines for Postpolypectomy Colonoscopic Surveillance 2022 Revised Edition (Clin Endosc 2022)</li>
+<li>작성일: 2026-08-11. 급여 기준·허가사항·최신 지침은 실제 처방 전 재확인 필요.</li>
+</ul>
+</section>
+
+</div>
+<div class="footer"><span>IM GI</span><span>7</span></div>
+</section>
+</body>
+</html>
