@@ -1,1 +1,505 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><title>호흡기내과 기출·일차의료 통합</title><style>body{font-family:Arial;line-height:1.55;max-width:920px;margin:auto;padding:24px}h1,h2{color:#12377b}table{border-collapse:collapse;width:100%}th,td{border:1px solid #9cc;padding:7px;vertical-align:top}th{background:#eaf3ff}.exam{border-left:5px solid #2563eb;padding:9px;background:#f8fbff}.guide{border-left:5px solid #7c3aed;padding:9px;background:#faf5ff}.danger{border-left:6px solid #b91c1c;padding:10px;background:#fef2f2}</style><h1>호흡기내과: 기출·일차의료 통합 노트</h1><p>기출의 PFT·천식·COPD·폐렴과 일차외래 감기/기침 알고리즘을 통합함.</p><h2>기침·가래 진입</h2><div class="guide">콧물·후비루·인후불편은 상기도, 가슴 깊은 기침·객담·wheeze·호흡곤란은 하기도를 우선 평가. 가래 색만으로 항생제 적응증을 정하지 않음. 고령은 발열 없이 기능저하/혼돈으로 폐렴이 가능함.</div><h2>감기 대증치료</h2><table><tr><th>증상</th><th>원칙·안전성</th></tr><tr><td>발열/통증</td><td>해열진통·수분·휴식, 복합감기약 중복과 간/신기능·출혈 위험 확인</td></tr><tr><td>콧물/코막힘</td><td>생리식염수 세척·증상완화; 경구 비충혈제거제는 고혈압·부정맥·전립선비대·녹내장 주의</td></tr><tr><td>기침/인후통</td><td>수분·금연·가습·단기 대증치료, 후비루·천식·GERD도 확인</td></tr></table><div class="guide">감기는 대체로 7일 전후 호전하나 기침/콧물은 1–2주 이상 가능하며 항생제는 통상 불필요. 호전 후 재악화, 10일 이상 호전 없음, 지속 고열, 숨참·빈호흡, 발작기침, 객혈은 재평가함.</div><div class="danger"><b>응급:</b> stridor, 침흘림·연하곤란·hot-potato voice, 청색증/저산소증, 의식저하, 심한 흉통/급격한 호흡곤란.</div><h2>폐렴·PFT·천식·COPD</h2><div class="exam">FEV1/FVC 감소는 폐쇄성. 가역성 반응은 천식을 지지. ICS는 천식 조절 근간이며 LABA는 ICS와 병용. COPD는 금연이 핵심, 고탄산성 호흡부전은 NIV를 고려. 기관지확장증은 반복 감염/객담과 CT 확진을 기억.</div><div class="guide">발열·빈맥·빈호흡·저산소증·국소 청진 이상/호흡곤란은 CXR 고려. 폐렴은 활력·SpO2·중증도·외래 추적 가능성을 함께 판단하고 48–72시간 반응을 확인. 만성기침은 CXR 후 UACS·GERD·기침형천식·호산구기관지염·흡연·ACEi/DPP4i를 평가함.</div><p>항생제/항바이러스제·흡입제 용량과 급여는 최신 지침·국내 허가·심사기준 확인 필요.</p></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IM PUL — 기출 + 일차진료 가이드라인 보강</title>
+<style>
+@page{size:A4 portrait;margin:13mm 12mm 14mm}
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:#172033;font-family:'Noto Sans KR','Malgun Gothic',sans-serif;font-size:10pt;line-height:1.45}
+.page{width:210mm;min-height:297mm;margin:10px auto;background:#fff;padding:13mm 12mm 14mm;box-shadow:0 1px 10px #0002;position:relative;page-break-after:always}
+.cover{display:flex;flex-direction:column;justify-content:center;min-height:270mm}
+h1{font-size:30pt;margin:0 0 4mm;color:#173b6c}
+h2{font-size:16pt;color:#173b6c;border-bottom:1.4px solid #93b4dc;padding-bottom:2mm;margin:0 0 3mm;break-after:avoid}
+h3{font-size:10.5pt;margin:3mm 0 1mm;color:#1e4e86}
+h4{font-size:11pt;color:#047857;margin:3mm 0 1mm;break-after:avoid}
+p{margin:0 0 2mm}
+ul{margin:1mm 0 2.5mm;padding-left:4.7mm}
+li{margin:.7mm 0}
+a{color:#1d4ed8;text-decoration:none}
+.subtitle{color:#596579;font-size:13pt}
+.meta{margin-top:12mm;color:#667085}
+.toc{column-count:1}
+.toc li{break-inside:avoid}
+.topic{break-inside:avoid;page-break-inside:avoid;margin:0 0 5mm}
+.exam-source{padding:2.2mm 2.6mm;border-left:1.1mm solid #2563eb;background:#f7faff}
+.source-label{display:inline-block;font-size:8pt;font-weight:700;color:#1d4ed8;background:#dbeafe;padding:.5mm 1.4mm;border-radius:2mm;margin-bottom:1mm}
+.note{font-size:8.4pt;color:#735814;background:#fffbeb;border-left:.8mm solid #d6a529;padding:1.6mm 2mm;margin-top:1.5mm}
+.footer{position:absolute;bottom:6mm;left:12mm;right:12mm;border-top:.3mm solid #d7dee8;padding-top:1.5mm;font-size:8pt;color:#667085;display:flex;justify-content:space-between}
+.tag{display:inline-block;background:#e8f0fc;color:#28578f;border-radius:4mm;padding:1mm 2.5mm;font-size:9pt;font-weight:700;margin:1mm 1mm 0 0}
+.guideline-supplement{border-left:1mm solid #7c3aed;background:#faf5ff;padding:2.2mm 2.6mm;margin:2.5mm 0;break-inside:avoid}
+.guideline-supplement .source-label{background:#ede9fe;color:#6d28d9}
+.danger-box{border-left:1.2mm solid #b91c1c;background:#fef2f2;color:#7f1d1d;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.refer-box{border-left:1mm solid #0891b2;background:#ecfeff;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.coverage-box{border-left:1mm solid #d97706;background:#fffbeb;padding:2mm 2.5mm;margin:2.5mm 0;break-inside:avoid}
+.coverage-box .source-label{background:#fef3c7;color:#92400e}
+.exam-tip{margin:2mm 0;padding:2mm 2.5mm;border:.3mm dashed #f59e0b;background:#fffbeb;border-radius:1mm;break-inside:avoid;font-size:9.5pt}
+.exam-tip .source-label{color:#92400e;background:#fef3c7}
+table{width:100%;border-collapse:collapse;margin:2mm 0 3mm;font-size:9pt;break-inside:avoid}
+th{background:#1d4ed8;color:#fff;padding:1.3mm 2mm;text-align:left;border:.2mm solid #93b4dc}
+td{border:.2mm solid #cbd5e1;padding:1.3mm 2mm;vertical-align:top}
+tr:nth-child(even) td{background:#f8fafc}
+.checklist li{list-style:none;padding-left:5mm;position:relative}
+.checklist li:before{content:"\2610";position:absolute;left:0;color:#1d4ed8}
+.algorithm-box{border:.3mm solid #93b4dc;border-radius:2mm;padding:3mm;margin:2.5mm 0;background:#f8fafc;break-inside:avoid}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none}}
+</style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=99756"></script>
+</head>
+<body>
+
+<section class="page cover"><div>
+<span class="tag">Internal Medicine</span><span class="tag">Pulmonology</span>
+<h1>IM PUL</h1>
+<p class="subtitle">호흡기내과 기출 정리 + 일차진료 가이드라인 보강(합집합판)</p>
+<p class="meta">원문: 2권 심혈관,호흡기,류마티스.docx (호흡기 파트 전문)<br>보강: 일차진료_guideline #23~26 호흡기 전체 · 2026-08-11<br>보라색 박스 = [일차진료 가이드라인 보강] 레이어이며 기출 원문과 구분됨.</p>
+<h2 style="margin-top:16mm">목차</h2>
+<ol class="toc">
+<li><a href="#pul-pft">폐기능검사(PFT)·기도과민성</a></li>
+<li><a href="#pul-asthma">천식</a></li>
+<li><a href="#pul-hp-ep">과민성 폐장염·호산구 폐질환</a></li>
+<li><a href="#pul-occupational">직업성 폐질환</a></li>
+<li><a href="#pul-pneumonia">폐렴 — 분류·중증도</a></li>
+<li><a href="#pul-pneumonia-tx">폐렴 — 항생제 치료</a></li>
+<li><a href="#pul-abscess-bronchiectasis">폐농양·기관지확장증</a></li>
+<li><a href="#pul-copd">COPD</a></li>
+<li><a href="#pul-pleural">흉수·흉막질환</a></li>
+<li><a href="#pul-pneumothorax">기흉</a></li>
+<li><a href="#pc-uri">[보강] 감기·상기도감염 대증치료</a></li>
+<li><a href="#pc-ddx">[보강] 호흡기 감염 감별·폐렴 외래 진료</a></li>
+<li><a href="#pc-rhinitis">[보강] 알레르기 비염·부비동염</a></li>
+<li><a href="#pc-cough">[보강] 오래가는 기침</a></li>
+<li><a href="#pc-refer">[보강] Red flag·의뢰 기준</a></li>
+</ol>
+</div>
+<div class="footer"><span>IM PUL</span><span>기출+가이드라인 합집합</span></div>
+</section>
+
+<section class="page">
+
+<section class="topic" id="pul-pft"><h2>폐기능검사(PFT)·기도과민성</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<ul>
+<li><strong>FEV1/FVC &lt; 70% → 폐쇄성(obstructive)</strong> — COPD, 천식 등</li>
+<li>PFT상 FEV1/FVC &lt;70%이면 <u>BDR(기관지확장제 반응검사)</u>로 천식 vs COPD 감별: <strong>FEV1 12% 이상 + 200mL 이상 증가</strong> 시 양성(가역성 → 천식 시사)</li>
+<li><u>PFT 정상</u>인데 천식 의심 시 <strong>BHR(기관지과민반응) 검사</strong>: <strong>PC20 &lt; 4 mg/mL</strong> 양성(과민), <strong>PC20 &gt; 16 mg/mL</strong> 정상</li>
+<li><strong>FVC 감소, FEV1/FVC 정상·증가 → 제한성(restrictive)</strong> — ILD 등. TLC 감소로 확인, <strong>DLCO</strong>로 실질질환 평가</li>
+<li>FEF 25-75: 소기도 평가 지표</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 오래가는 기침과 PFT(#26)</span>
+<ul>
+<li>만성기침(8주 이상)에서 CXR 정상이면 폐기능검사±기관지유발검사로 기침이형천식(CVA) 감별</li>
+<li>흡입 스테로이드(ICS) 경험적 치료 후 호전 여부는 4~6주 뒤 판단</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-asthma"><h2>천식</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>단계별 유지 치료 (GINA)</h4>
+<table>
+<thead><tr><th>step</th><th>치료 전략</th><th>대상 환자</th></tr></thead>
+<tbody>
+<tr><td>step 1 (간헐적 천식)</td><td>필요 시 저용량 ICS-formoterol 사용(PRN)</td><td>증상 경미하고 간헐적으로 발생</td></tr>
+<tr><td>step 2 (경증 지속성 천식)</td><td>매일 저용량 ICS 유지 or 필요시 저용량 ICS-formoterol</td><td>주 2회 이상 증상 발생, 야간 증상 존재</td></tr>
+<tr><td>step 3 (중등도 지속성 천식)</td><td>저용량 ICS + LABA (유지 치료)</td><td>일주일에 3회 이상 증상 발생</td></tr>
+<tr><td>step 4 (중증 지속성 천식)</td><td>중등도~고용량 ICS + LABA</td><td>증상 지속적, 중증 악화 위험 높음</td></tr>
+<tr><td>step 5 (최중증 천식)</td><td>고용량 ICS + LABA + 생물학적 제제 추가(Anti-IgE, Anti-IL5)</td><td>기존 치료에도 조절되지 않는 중증 천식</td></tr>
+</tbody></table>
+<h4>조절제(Controller)</h4>
+<table>
+<thead><tr><th>약물군</th><th>예시</th><th>기능</th></tr></thead>
+<tbody>
+<tr><td>흡입 스테로이드(ICS)</td><td>Budesonide, Fluticasone, Beclometasone</td><td>가장 효과적인 천식 조절제(항염증 작용)</td></tr>
+<tr><td>류코트리엔 조절제(LTRA)</td><td>Montelukast, Zafirlukast</td><td>운동유발성 천식, 알레르기성 천식에 효과적</td></tr>
+<tr><td>생물학적 제제(Biologics)</td><td>Omalizumab(Anti-IgE), Mepolizumab(Anti-IL5)</td><td>중증 호산구성 천식에 사용</td></tr>
+</tbody></table>
+<h4>완화제(Reliever)</h4>
+<table>
+<thead><tr><th>약물군</th><th>예시</th><th>기능</th></tr></thead>
+<tbody>
+<tr><td>속효성 β2-작용제(SABA)</td><td>Salbutamol(Ventolin)</td><td>급성 증상 완화(응급 시 사용)</td></tr>
+<tr><td>지속성 β2-작용제(LABA)</td><td>Formoterol, Salmeterol</td><td>ICS와 병용하여 장기 조절제 역할</td></tr>
+<tr><td>항콜린제(LAMA)</td><td>Tiotropium(Spiriva)</td><td>LABA에 반응이 부족한 중증 천식에 추가</td></tr>
+</tbody></table>
+<h4>급성 악화 시 치료</h4>
+<table>
+<thead><tr><th>증상 심한 정도</th><th>치료방법</th></tr></thead>
+<tbody>
+<tr><td>경증~중등도 악화</td><td>Salbutamol(SABA) 흡입 + 경구 스테로이드(PO Prednisolone 40~50mg)</td></tr>
+<tr><td>중증 악화(호흡곤란 심함, 말하기 어려움, SpO2&lt;90%)</td><td>네블라이저 SABA + Ipratropium(항콜린제) + IV 스테로이드</td></tr>
+<tr><td>삽관 필요(Life-threatening)</td><td>고유량 산소, IV Magnesium sulfate, 기계환기 고려</td></tr>
+</tbody></table>
+<h4>천식 조절 평가·약물 주의</h4>
+<ul>
+<li>SABA 단독(salbutamol, terbutaline) 사용은 지양하고 <strong>ICS 기반</strong> 치료로 전환</li>
+<li>조절 평가: FEV1 80% 이상, PEFR 80% 이상이면 양호</li>
+<li>Cromolyn Sodium: 예방 목적(肥大세포 안정제)</li>
+<li>theophylline: 혈중농도 모니터링 필요, phenytoin·rifampin·carbamazepine·phenobarbital 등과 상호작용</li>
+</ul>
+<h4>AERD(aspirin-exacerbated respiratory disease)</h4>
+<ul>
+<li><strong>NSAIDs 복용 후 천식 악화·비염(비용종 동반) — Samter triad</strong></li>
+<li>NSAID 중 COX-1 억제제에서 발생</li>
+<li>NSAIDs 필요 시: ICS/LABA + Montelukast로 조절 후, <strong>AAP(아세트아미노펜)</strong> 또는 COX-2 선택적(<strong>celecoxib</strong>) 사용</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 천식 실전(#23·26)</span>
+<ul>
+<li>천식·COPD 상병에서는 진해거담제 4종 이상도 급여 가능</li>
+<li>만성기침 감별에서 기침이형천식: 야간·새벽 발작적 마른기침, 운동·찬 공기에 악화 — ICS로 경험적 치료 후 4~6주 평가, 호전 없으면 증량 또는 LTRA/지속성 기관지확장제 추가</li>
+<li>금연 교육을 모든 흡연 천식 환자에서 시행</li>
+</ul>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM PUL</span><span>1</span></div>
+</section>
+
+<section class="page">
+
+<section class="topic" id="pul-hp-ep"><h2>과민성 폐장염·호산구 폐질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>Hypersensitivity pneumonitis(과민성 폐장염)</h4>
+<ul>
+<li>반복된 항원 노출(먼지·곰팡이·조류 등), 발열·기침·호흡곤란</li>
+<li>HRCT로 평가, BAL에서 <strong>림프구 &gt;40%</strong></li>
+<li>TLC 감소(제한성), 원인 회피가 치료의 기본</li>
+</ul>
+<h4>EP(eosinophilic pneumonia, 호산구 폐렴)</h4>
+<ul>
+<li>HRCT상 GGO·consolidation — 말초·상엽 우세</li>
+<li>BAL <strong>호산구 &gt;25%</strong>, 말초혈액 호산구 증가</li>
+<li>스테로이드에 반응이 좋음</li>
+</ul>
+<h4>기생충성 호산구 폐질환</h4>
+<ul>
+<li>기침·객혈·호흡곤란 + CXR 이상, 말초 혈액 호산구 증가</li>
+<li><i>Ascaris lumbricoides</i>, <i>Paragonimus westermani</i> 등 — 음식력(민물 게·가재) 확인</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-occupational"><h2>직업성 폐질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>Asbestosis(석면증)</h4>
+<ul>
+<li>석면 노출력, 하폐엽 우세 침윤, <strong>CXR/CT상 pleural plaques(흉막반)</strong> — 간질성 폐섬유화</li>
+</ul>
+<h4>Silicosis(규폐증)</h4>
+<ul>
+<li>규산(실리카) 분진 노출, 상폐엽 우세 <strong>small round nodule</strong>, 난계란난(egg-shell) 림프절 석회화</li>
+<li>결핵 동반 위험 증가</li>
+</ul>
+<h4>Byssinosis(면직물 폐증)</h4>
+<ul>
+<li>면·목화 분진 노출, <strong>Monday chest tightness</strong>(주말 후 첫 출근일 흉부 압박감)</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-pneumonia"><h2>폐렴 — 분류·중증도</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>분류</h4>
+<ul>
+<li>CAP(지역사회), HAP(병원), VAP(인공호흡기), Aspiration pneumonia(흡인성)</li>
+</ul>
+<div class="exam-tip"><span class="source-label">시험 팁</span>
+인플루엔자 이후 발생하는 2차 세균성 폐렴의 대표 균은 <strong>S. aureus</strong>임.</div>
+<h4>중증도 — CURB-65</h4>
+<div class="exam-tip"><span class="source-label">시험 팁</span>
+CURB-65의 R은 <strong>RR ≥30</strong>회/분임.</div>
+<ul>
+<li>C: 혼돈(Confusion) / U: BUN &gt;7mmol/L / R: 호흡수 ≥30회/분 / B: SBP &lt;90 또는 DBP ≤60mmHg / 65: 나이 ≥65세</li>
+<li>0~1점 외래, 2점 입원 고려, 3점 이상 중환자실 고려</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 폐렴 외래 진단(#24)</span>
+<ul>
+<li>폐렴 진단 3조건: 감염 증거(발열·오한·WBC 상승) + 호흡기 증상/징후 + <strong>흉부 X선 이상(GGO 또는 consolidation)</strong></li>
+<li>CRB-65(혈액 없이): <strong>0점이 아니면 입원 전원</strong> — 단 65세 이상만 만족하고 다른 지표가 안정적이면 외래 고려</li>
+<li>CXR 적응증(AAFP): 37.8℃ 이상 발열, HR&gt;100, RR&gt;20 중 1개 + 호흡음 감소·Crackles·천식 부재 중 2개 이상</li>
+<li>노인은 발열 없이도 폐렴 가능(식사부진·기력저하·인지저하 등 비특이적 증상)</li>
+<li>오한전율(rigor)은 bacteremia 시사, 야간발한은 폐렴·결핵·림프종 감별</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-pneumonia-tx"><h2>폐렴 — 항생제 치료</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<table>
+<thead><tr><th>치료 환경</th><th>항생제 원칙</th><th>구체 약제</th></tr></thead>
+<tbody>
+<tr><td>외래환자</td><td>β-lactam(경구) ± macrolide(경구)</td><td>amoxicillin/clavulanate, <b>ampicillin/sulbactam</b>, cefotaxime, <b>ceftriaxone</b>, cefpodoxime, cefditoren ± <b>azithromycin</b>, clarithromycin, roxithromycin</td></tr>
+<tr><td>외래환자(대안)</td><td>또는 respiratory quinolone</td><td>levofloxacin, <b>moxifloxacin</b>, gemifloxacin, gatifloxacin</td></tr>
+<tr><td>P.aeruginosa(녹농균) 의심 안되는 일반 병실 환자</td><td>β-lactam(경정맥) ± macrolide(경구,경정맥)</td><td>amoxicillin/clavulanate, ampicillin/sulbactam, <b>cefotaxime</b>, ceftriaxone, cefpodoxime, cefditoren ± azithromycin, <b>clarithromycin</b>, roxithromycin</td></tr>
+<tr><td>일반 병실(대안)</td><td>또는 respiratory quinolone</td><td>levofloxacin(경정맥/경구), moxifloxacin(경정맥/경구), gemifloxacin(경구), gatifloxacin</td></tr>
+<tr><td>흡인성 폐렴; 치아위생불량, 알코올중독, 항생제 사용 후 발생(혐기성 감염 의심)</td><td>metronidazole 또는 <b>piperacillin/tazobactam</b>, 또는 imipenem</td><td>plus Quinolone(<b>levofloxacin</b>), 또는 ceftriaxone 1일 1g 정주, 또는 cefotaxime 2g을 6시간마다 정주</td></tr>
+<tr><td><b>Legionella</b></td><td>macrolide</td><td><b>azithromycin</b></td></tr>
+<tr><td><b>Mycoplasma(젊은사람!!)</b></td><td>macrolide 또는 tetracycline</td><td>azithromycin, <b>erythromycin</b> 또는 doxycycline</td></tr>
+<tr><td>Pneumocystis jirovecii(PCP)</td><td>TMP-SMX</td><td>Trimethoprim-Sulfamethoxazole(Bactrim)</td></tr>
+</tbody></table>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 외래 폐렴 실전(#24)</span>
+<ul>
+<li>외래 경험적 항생제: β-lactam(amoxicillin 500mg q8h 또는 amoxicillin-clavulanate 625mg q8h, cefpodoxime 100mg 2T bid) ± Macrolide(중증 또는 atypical pattern이면 추가, 단독 사용 X) 또는 respiratory quinolone(levofloxacin 750mg QD, moxifloxacin 400mg QD)</li>
+<li>치료 종료: 최소 5일 + 48~72시간 무열 + 임상 징후(과호흡, 심박수 100 이상, 저혈압, 저산소증, 백혈구 상승)가 없어야 함</li>
+<li>퀴놀론은 결핵과의 감별을 어렵게 하여 신중 사용, macrolide는 NTM 증가로 신중 사용</li>
+<li>마이코플라즈마 폐렴(소아~20대 초반, 천명 동반): 1차 macrolide 3일 → <strong>48시간 내 호전 없으면 2차 doxycycline 7~14일(12세 미만 치아착색 주의)</strong> 또는 levofloxacin(18세 미만 근골격계 주의) — 최근 macrolide resistant gene 다수 확인됨</li>
+<li>위험인자(최근 입원력·항생제 사용력) 있으면 MRSA·Pseudomonas 커버 필요성 검토 후 전원 고려</li>
+</ul>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM PUL</span><span>2</span></div>
+</section>
+
+<section class="page">
+
+<section class="topic" id="pul-abscess-bronchiectasis"><h2>폐농양·기관지확장증</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>Lung abscess(폐농양)</h4>
+<ul>
+<li>흡인·치아 위생 불량·알코올 중독 등 위험인자, 발열·야성성 객담, CXR상 air-fluid level</li>
+<li>항생제: Ampicillin/sulbactam, Clindamycin, Carbapenem; 경구 전환은 Augmentin or Clindamycin PO</li>
+<li>혐기성 커버 필요 시 ceftriaxone + clindamycin</li>
+<li>기간 4~6주, 크기 6cm 이상·불응 시 배액 고려</li>
+</ul>
+<h4>Bronchiectasis(기관지확장증)</h4>
+<ul>
+<li>만성 기침·다량 화농성 객담 병력, 재발 감염</li>
+<li>진단: <strong>CT상 signet ring sign</strong></li>
+<li>급성 악화 시 항생제(<u>levofloxacin 등</u>), <strong>Pseudomonas</strong> 정착 여부 확인</li>
+</ul>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — 기관지확장증 관리(#26)</span>
+<ul>
+<li>만성기침+화농성 객담이 주증상으로 반복 감염 시 의심. X선 정상이라도 의심되면 HRCT 의뢰</li>
+<li>일차의료에서 관리 중 급성 악화는 항생제(2주가량 길게)를 신중히 사용 — 내성 고려</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-copd"><h2>COPD</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<ul>
+<li><strong>COPD</strong>: 장기 흡연력, 진행성 호흡곤란, 만성 기침·객담</li>
+<li>진단: <strong>FEV1/FVC &lt; 70%</strong>(BDR 후에도 비가역적)</li>
+<li>유지 치료: <strong>LAMA/LABA 복합제(indacaterol/tiotropium 등)</strong></li>
+<li>급성 악화 시 <strong>NIV(BiPAP)</strong>가 1차 지지 요법</li>
+<li>중증·반복 악화(FEV1 저하)는 <strong>PDE-4 억제제(roflumilast)</strong> 등 추가 고려</li>
+</ul>
+<div class="danger-box"><strong>COPD 산소 치료 3대 원칙:</strong> 산소는 저산소혈증 교정이 목적이며, 목표 <strong>PaO2 55~60 mmHg / SpO2 88~92%</strong> — 고유량 산소 남용은 CO2 narcosis 위험이 있어 <strong>주의!!</strong></div>
+<div class="note">COPD GOLD 분류(A/B/E군)에 따라 LAMA 또는 LAMA+LABA로 시작하고, ICS는 호산구·악화 이력에 따라 추가함. GOLD 최신판 참조.</div>
+</div>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강 — COPD 급성 악화(#24)</span>
+<ul>
+<li>일중 변동을 넘어서는 호흡곤란·기침·가래 악화 시 의심</li>
+<li>항생제 처방 고려(세균 감염 흔함), 빈맥·빈호흡 있으면 폐렴 동반 여부 검사</li>
+<li>장기간 흡연력인데 진단이 내려지지 않은 환자에서 숨겨진 COPD 가능성 고려</li>
+<li>만성기관지염(3개월 이상 객담 동반 기침이 2년 이상): 금연이 가장 중요(90%에서 호전), 거담제 사용. 안정기 경구 스테로이드는 근거 없음</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-pleural"><h2>흉수·흉막질환</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<h4>Light's criteria(삼출액 판정 — 하나라도 만족 시 exudate)</h4>
+<ul>
+<li>pleural/serum <strong>protein &gt; 0.5</strong></li>
+<li>pleural/serum <strong>LDH &gt; 0.6</strong></li>
+<li>pleural fluid LDH &gt; serum LDH 정상 상한의 <mark>2/3</mark></li>
+</ul>
+<div class="note">Light's criteria를 하나도 만족하지 않으면 transudate(심부전·간경변·신증후군 등)로 판정함.</div>
+<h4>배액(tube) 적응이 되는 소견</h4>
+<ul>
+<li>loculated pleural fluid(격실화)</li>
+<li>pleural fluid <strong>pH &lt; 7.2</strong></li>
+<li>pleural fluid <strong>glucose &lt; 3.3mmol/L (60mg/dL)</strong></li>
+<li>육안적으로 pus면 empyema</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pul-pneumothorax"><h2>기흉</h2>
+<div class="exam-source"><span class="source-label">기출 원문: 2권 호흡기</span>
+<ul>
+<li>&lt;50% 크기·안정: 산소·경과 관찰 / &gt;50% 또는 증상 심함: 배액(needle aspiration 또는 chest tube)</li>
+<li>재발·지속 air leak·양측: <strong>VATS(Video-assisted thoracoscopic surgery)</strong> 고려</li>
+<li>추적: X-ray(chest PA)로 재팽창 확인</li>
+</ul>
+</div>
+<div class="danger-box"><strong>긴장성 기흉(tension pneumothorax):</strong> 심한 호흡곤란·저혈압·일측 호흡음 소실·경정맥 팽창 시 즉시 needle 감압(2번째 늑간, midclavicular line) 후 chest tube — 영상검사를 기다리지 않음.</div>
+</section>
+</div>
+<div class="footer"><span>IM PUL</span><span>3</span></div>
+</section>
+
+<section class="page">
+
+<section class="topic" id="pc-uri"><h2>[보강] 감기·상기도감염 대증치료 (가이드라인 #23)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>비약물 요법(최우선 교육)</h3>
+<ul>
+<li>휴식·수면·수분 섭취, 습도 50~60%, 실내온도 18~22도, 헛기침 하지 않기(허프 기침 교육), 목 보온, 알레르기 비염 기저 시 코세척(150mL 이상 large volume, 중이염 금기)</li>
+<li>환자 교육: 약은 증상 완화용일 뿐이며, 기침·가래가 2주 이상 지속되면 흉부 X선 필요. 호전 후 재악화·고열 시 재내원 안내</li>
+</ul>
+<h3>증상별 약제 선택</h3>
+<table>
+<thead><tr><th>증상</th><th>1차</th><th>주의·대안</th></tr></thead>
+<tbody>
+<tr><td>발열·통증</td><td>NSAID 우선(염증 기인), 경미하거나 NSAID 부작용 우려(고령·위장·신기능·심부전·간경변) 시 acetaminophen</td><td>빠른 효과: dexibuprofen·pelubiprofen. 불응 시 NSAID+acetaminophen 교차 투여 → acetaminophen+tramadol 복합제(통증 코드)</td></tr>
+<tr><td>코막힘</td><td>Pseudoephedrine(슈다페드)</td><td>불가 시 LTRA 또는 국소 비충혈억제제(3~7일 제한, 반동성 비염). 고령은 0.5T BID 감량. BPH·심혈관질환·당뇨·불면 주의</td></tr>
+<tr><td>콧물</td><td>1세대 항히스타민제(chlorpheniramine) — 항콜린 효과 이용</td><td>5일 이내 성인 감기에만 근거. 졸림·요폐·입마름·변비 설명. 폐쇄각 녹내장·BPH·경련 병력 금기. 점액을 끈끈하게 해 배출 방해 주의</td></tr>
+<tr><td>기침</td><td>말초성 진해제 Levodropropizine(드로피진) 우선(하기도 상병 필요), 심하면 중추성(코데날정 등) 병용 증량</td><td>마른기침·일상생활 불편 시에만. 가래 심하면 진해제가 배출 방해. Dihydrocodeine은 12세 미만 금기, 비만·수면무호흡·중증 폐질환 18세 미만 주의</td></tr>
+<tr><td>가래</td><td>뱉기 어려움 → Ambroxol(mucokinetics) / 끈끈함 → Erdosteine(mucolytics) / 둘 다 → 병용</td><td>같은 cysteine 계열(NAC+erdosteine) 병용은 삭감 사례. erdosteine은 급성 10일 용법(초과 시 주의)</td></tr>
+<tr><td>인후통</td><td>탄툼 가글(benzydamine)</td><td>외래 100mL까지 급여. J209(하기도)에서는 불가. 심하면 dexamethasone 1amp IM 단회 고려(감염성 단핵구증·면역저하자 금기)</td></tr>
+</tbody></table>
+<h3>항생제 원칙</h3>
+<ul>
+<li>감기에 항생제는 대부분 불필요, 합병증 예방 목적 처방은 권고하지 않음. 화농성 콧물만으로는 결정 금지(Cochrane: 효과 없고 부작용만 증가)</li>
+<li>세균 감염 의심 기준: <strong>38도 이상 발열 / 편측 농성 비루 / 이봉성(호전 후 악화) / 심한 통증 / CRP-ESR 상승 중 3개 이상</strong> → amoxicillin/clavulanate(설사 흔하면 cefaclor 또는 고용량 amoxicillin)</li>
+<li>3세대 세파(cefpodoxime 등)는 1차로 쓰면 삭감 위험 — 1일이라도 1차 항생제 후 JX999에 사유 기입하고 2차로 사용</li>
+<li>항생제 유발 설사 예방: Lactobacillus rhamnosus GG, S. boulardii(비오플) — 소아 루틴, 성인은 설사 병력 시</li>
+</ul>
+<div class="coverage-box"><span class="source-label">심평의학 요약</span>
+<p>상기도(J00/J069): 진해거담제 2종까지 / 하기도(J209): 3종까지 / 천식·COPD: 4종 이상 가능. Levodropropizine은 하기도 상병 필요. 시럽제는 동일 성분 정제가 없을 때(또는 12세 미만 소아·연하곤란) 급여. 상기도 상병에서 급여 가능한 해열진통제: acetaminophen, ibuprofen, dexibuprofen, morniflumate, pelubiprofen 일반형(서방정 X). Loxoprofen은 허가는 있으나 고시 미포함 → 전액본인부담.</p>
+</div>
+</div>
+</section>
+
+<section class="topic" id="pc-ddx"><h2>[보강] 호흡기 감염 감별·폐렴 외래 진료 (가이드라인 #24)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>감별 3단계</h3>
+<ul>
+<li>1단계 — 호흡기 증상 유무: 발열·피로만 있으면 호흡기 외 질환(쯔쯔가무시, 신우신염, 급성 간염, 뇌수막염, 심내막염 등) 감별</li>
+<li>2단계 — 상기도 vs 하기도: 상기도 기침은 목 간질·이물감(의지로 억제 가능), 하기도 기침은 반사적·발작적(가슴 깊은 곳에서), 크루프는 개 짖는 소리, 백일해는 기침 후 '홉' 소리</li>
+<li>3단계 — natural course: 감기는 1~3일에 최고조, 7일경 호전, 기침·콧물은 2주까지. 경과를 벗어나면 2차 세균 감염·폐렴 평가</li>
+</ul>
+<h3>질환별 핵심</h3>
+<table>
+<thead><tr><th>질환</th><th>감별 포인트</th><th>치료</th></tr></thead>
+<tbody>
+<tr><td>급성 부비동염(세균성)</td><td>10일 이상 지속 / 초기부터 39도+화농성 비루+안면통 3~4일 / 이봉성. X선·CT는 항생제 결정에 불필요</td><td>중등도 이상이면 항생제: amoxicillin 또는 amoxicillin/clavulanate(고령·만성질환·중등도 이상은 clavulanate 우선). 5~7일(shorter is better). 코세척(배농) 중요, INCS는 2배 용량</td></tr>
+<tr><td>S. pyogenes 인두편도염</td><td>기침 없음+편도 삼출물+38.5도 이상+경부 림프절 — <strong>Modified Centor 3점 이상이면 항생제</strong>(인두염에서 항생제 처방하는 유일한 경우). 단핵구증(EBV) 의심 시 amoxicillin 금기(발진)</td><td>1차 amoxicillin 10일(국내 외래 현실상 cefpodoxime 5일 선호하기도 함, 3세대 세파 삭감 주의). macrolide 내성률 40~50%</td></tr>
+<tr><td>급성 후두염</td><td>애성이 주증상, 대부분 바이러스. 항생제는 일반적으로 불필요</td><td>음성 휴식·수분·가습 교육. 스테로이드는 심한 목소리 변화 시. 2주 이상 지속 시 이비인후과 의뢰(후두결절)</td></tr>
+<tr><td>급성 기관지염</td><td>하기도 증상 + CXR 폐렴 소견(-). 기침 2~3주 지속 가능을 미리 설명</td><td>대증치료, 항생제 불필요(Cochrane). 심한 농성 가래·폐렴 배제 불가 시: 농성은 amoxicillin 계열, 마른기침은 macrolide/doxycycline</td></tr>
+<tr><td>인플루엔자</td><td>A형: 갑자기 치솟는 고열+심한 전신 증상. B형: 위장관 증상. 노인은 고열 없을 수 있음. RAT는 증상 48시간 내 민감</td><td>48시간 내 항바이러스제. 고위험·입원: oseltamivir / 경구 불가: peramivir·zanamivir / B형: baloxavir. 이상행동(10대·남성·발열 2일 내) 보호자 교육. 격리: 해열제 없이 정상 체온 회복 후 24시간까지</td></tr>
+<tr><td>COVID-19</td><td>증상만으로 감별 어려움 — 검사 적극 시행. 최신 지침은 질병관리청 '코로나19지침' 확인</td><td>외래 경구 치료제(paxlovid 우선) — 처방 기준·병용금기·급여가 자주 바뀌므로 최신 확인. 중증(호흡곤란·저산소증)은 전원</td></tr>
+</tbody></table>
+<div class="coverage-box"><span class="source-label">인플루엔자 급여 기준</span>
+<p>J11.1(바이러스 확인)은 항바이러스제 급여. J10.1(미확인)은 유행주의보 발령 시 고위험군(만 9세 이하, 임신 또는 출산 2주 이내, 만 65세 이상, 면역저하자, 기저질환자)에 한해 검사 없이 처방 가능. 고위험군 아니면 전액본인부담. PEP는 비급여.</p>
+</div>
+</div>
+</section>
+</div>
+<div class="footer"><span>IM PUL</span><span>4</span></div>
+</section>
+
+<section class="page">
+
+<section class="topic" id="pc-rhinitis"><h2>[보강] 알레르기 비염·부비동염 (가이드라인 #25)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>알레르기 비염 진단</h3>
+<ul>
+<li>4대 증상(콧물·재채기·코막힘·코/눈 가려움) 중 2개 이상 반복 지속 시 의심. 편측 지속 증상(점액농성 비루·코피)은 다른 원인 감별</li>
+<li>진찰: allergic shiner, allergic salute/crease, adenoid face, 비경상 창백한 하비갑개·후비루·cobblestone</li>
+<li>검사: MAST/ImmunoCAP 혈청 특이 IgE(증상과 부합해야 의미), VAS score(0~3 경증, 3.1~7 중등증, 7.1 이상 중증)</li>
+</ul>
+<h3>치료 (ARIA 2019)</h3>
+<table>
+<thead><tr><th>단계</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>T1</td><td>2세대 항히스타민제(경구/비강/점안) 또는 LTRA·cromones</td></tr>
+<tr><td>T2</td><td><strong>INCS(비강내 스테로이드)</strong> — 중증은 초치료부터</td></tr>
+<tr><td>T3</td><td>INCS + 비강내 azelastine 복합제(딜라스틴·모테손플러스 등) — 가장 강력</td></tr>
+<tr><td>T4</td><td>단기 경구 스테로이드</td></tr>
+<tr><td>T5</td><td>면역치료(SLIT/SCIT) — 전문의 의뢰</td></tr>
+</tbody></table>
+<ul>
+<li>효과: 2세대 항히스타민제 &lt; INCS &lt; INCS+비강내 항히스타민 복합제. 계절성은 INCS+항히스타민, 통년성은 INCS 단독 권고</li>
+<li>INCS는 <strong>최소 5일 이상 꾸준히 사용해야 효과</strong> — 국소 작용이라 전신 부작용 없음을 교육. 코피·건조 시 바깥쪽 분무 교육, 1주 중단 후 연고(에스로반 등)</li>
+<li>피할 것: 1세대 항히스타민제(진정), 비강 알파-교감신경흥분제(오트리빈 등) 장기 사용(반동성 비염), depot 스테로이드 근주</li>
+<li>비충혈억제제(슈다페드)는 불면·배뇨장애 주의(아침 처방, 고령 남성은 배뇨 먼저 언급). LTRA(montelukast)는 JX999에 '비폐색이 주증상인 알레르기비염' 기입, FDA 정신건강 부작용 고시</li>
+<li>다량 수양성 콧물: ipratropium 스프레이(리노벤트). 눈 증상: INCS가 가장 효과적, 빠른 완화는 항히스타민 안약</li>
+<li>난치성: 구조적 문제(비중격만곡·비용종)는 이비인후과, 약물 불응 중증은 면역치료(SLIT: 집먼지진드기, 비쌈 / SCIT: 저렴, 아나필락시스 위험)</li>
+</ul>
+<h3>만성 부비동염(CRS)</h3>
+<ul>
+<li>12주 이상. 폴립 동반(CRSwNP: 후각상실 주증상, 천식·아스피린 과민증 연관, 스테로이드 반응 좋음, 재발 잦음) vs 비동반(CRSsNP: 화농성 비루·안면압통, 감염 중심, 비강세척·INCS로 조절 가능)</li>
+<li>배농이 핵심: low pressure·large volume(200mL 이상) 코세척, INCS가 가장 높은 근거</li>
+<li>급성 악화 항생제: 1차 amoxicillin/clavulanate, 2차 cefpodoxime·cefdinir·levofloxacin(1일이라도 1차 사용 후 JX999 기입). 수술 전 2~4주 항생제 시도 가능</li>
+<li>약물 불응 시 ESS(내시경 부비동 수술) 위해 전원</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pc-cough"><h2>[보강] 오래가는 기침 (가이드라인 #26)</h2>
+<div class="guideline-supplement"><span class="source-label">일차진료 가이드라인 보강</span>
+<h3>기간별 분류</h3>
+<table>
+<thead><tr><th>분류</th><th>주요 원인</th></tr></thead>
+<tbody>
+<tr><td>급성(3주 미만)</td><td>급성 호흡기 감염, 독성 가스 흡입, 이물질 흡인</td></tr>
+<tr><td>아급성(3~8주)</td><td><strong>감염후 기침(최다)</strong>, 천식·기침형천식, 호산구성 기관지염, GERD·인후두역류</td></tr>
+<tr><td>만성(8주 이상)</td><td>상기도기침증후군(UACS), GERD, 기침이형천식(CVA), 호산구성 기관지염, 약물(ACEi·DPP4i), 폐종양·심부전·COPD</td></tr>
+</tbody></table>
+<h3>아급성 기침 — 감염후 기침</h3>
+<ul>
+<li>바이러스 상기도 감염 후 기도 과민증으로 발생, 자연 호전 — 항생제 불필요(백일해 초기·세균성 부비동염 합병 제외)</li>
+<li>경고 증상(객혈·호흡곤란·쉰 목소리·연하곤란·전신증상) 없으면 대증치료. 가이드라인은 흉부X선 우선이나, 병력상 강력히 의심되면 증상조절 후 불응 시 촬영</li>
+<li>진해제 사용, ipratropium 흡입(불응 시 흡입 스테로이드 고려)</li>
+<li>백일해 의심: 뚜렷한 원인 없이 2주 이상 발작적 기침, 기침 후 구토, 흡기 시 whoop</li>
+</ul>
+<h3>만성 기침 — 경험적 치료(4~6주 후 평가)</h3>
+<table>
+<thead><tr><th>원인</th><th>의심 증상</th><th>처방</th></tr></thead>
+<tbody>
+<tr><td>상기도기침증후군(UACS)</td><td>비염 병력, 코가 뒤로 넘어가는 느낌, 목 이물감, cobblestone·창백 비점막</td><td>1세대 항히스타민제(1~2주 내 호전), 비강 스테로이드, 세균성 부비동염 의심 시 항생제</td></tr>
+<tr><td>GERD</td><td>누우면 심함, 신물, 식후 발생, 목에 걸린 느낌, 구취</td><td>PPI 또는 H2RA(역류 증상 없으면 제한적 권고) + 생활습관(취침 3시간 전 금식 등)</td></tr>
+<tr><td>기침이형천식(CVA)</td><td>야간·새벽 발작적 마른기침, 운동·찬 공기에 악화, 기관지유발검사 양성</td><td>흡입 스테로이드. 불응 시 증량 또는 LTRA/지속성 기관지확장제 추가</td></tr>
+<tr><td>호산구성 기관지염</td><td>천식 유사하나 가역적 기도폐쇄·과민성 없이 객담 호산구 &gt;3%</td><td>흡입 스테로이드, 불응 시 경구 스테로이드. <strong>항류코트리엔제는 권고하지 않음</strong></td></tr>
+<tr><td>약제성</td><td>ACEi·DPP4i 복용</td><td>중단하면 1~4주 내 소실(일부 3개월 이상 지속)</td></tr>
+</tbody></table>
+<ul>
+<li>습관성·심인성 기침은 다른 원인 배제 후에만 진단 — 스트레스 시 악화·수면 시 소실</li>
+<li>만성기침은 기본적으로 CXR 필요(폐암·결핵 감별). 45세 이상 흡연자의 새로운 기침 또는 기침 양상 변화는 CT±기관지내시경 평가</li>
+</ul>
+</div>
+</section>
+
+<section class="topic" id="pc-refer"><h2>[보강] Red flag·의뢰 기준 종합</h2>
+<div class="danger-box"><strong>즉시 응급 평가:</strong>
+<ul>
+<li>급성후두개염·deep neck infection 의심(심한 인후통, 침 흘림, 연하 곤란, 입 벌리기 어려움, stridor, hot potato voice) — 기도 폐쇄 위험, 즉시 전원</li>
+<li>폐렴 + CRB-65 0점이 아님(혼돈·RR≥30·저혈압)</li>
+<li>객혈 다량 또는 지속</li>
+<li>천식/COPD 중증 악화(SpO2&lt;90%, 말하기 어려움)</li>
+<li>긴장성 기흉 의심</li>
+</ul></div>
+<div class="refer-box"><strong>상급병원 의뢰 고려:</strong>
+<ul class="checklist">
+<li>2주 이상 지속되는 후두염(후두결절), 2주 이상 기침·가래(CXR 필요)</li>
+<li>항생제 48~72시간 불응 인두편도염, 치료 실패 부비동염, 약물 불응 만성 부비동염(ESS 고려)</li>
+<li>기관지확장증 의심(HRCT), 폐농양 6cm 이상·불응</li>
+<li>폐렴 위험인자(최근 입원·항생제)로 MRSA/Pseudomonas 커버 필요</li>
+<li>천식 step 4 이상·생물학적 제제 고려, AERD, COPD 반복 악화</li>
+<li>삼출액 흉수 원인 불명, 기흉 재발·지속 air leak(VATS)</li>
+<li>만성기침 경험적 치료 불응, 경고 증상 동반 기침</li>
+</ul></div>
+<h3>근거·최신성 메모</h3>
+<ul>
+<li>일차진료_guideline #23 호흡기 대증치료, #24 호흡기 질환의 감별과 치료, #25 알레르기 비염·부비동염, #26 오래가는 기침</li>
+<li>기출 원문: 2권 심혈관,호흡기,류마티스.docx 호흡기 파트</li>
+<li>COVID-19·인플루엔자 급여 기준은 수시 변경 — 질병관리청 최신 지침 확인</li>
+<li>작성일: 2026-08-11. 급여 기준·허가사항·최신 지침은 실제 처방 전 재확인 필요.</li>
+</ul>
+</section>
+
+</div>
+<div class="footer"><span>IM PUL</span><span>5</span></div>
+</section>
+</body>
+</html>
