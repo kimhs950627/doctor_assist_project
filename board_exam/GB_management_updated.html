@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GB Management Plan (Updated)</title>
+<style>
+:root{--primary:#1a4f8a;--primary-light:#e8f1fa;--accent:#c0392b;--accent-light:#fdecea;--warn:#b9770e;--warn-light:#fef9e7;--ok:#1e8449;--ok-light:#eafaf1;--ink:#222;--muted:#666;--border:#d5dce4}
+*{box-sizing:border-box}
+body{font-family:"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:var(--ink);line-height:1.7;margin:0;background:#f4f6f8}
+.wrap{max-width:960px;margin:0 auto;padding:24px 20px 80px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.06)}
+.doc-header{border-bottom:4px double var(--primary);padding:28px 0 18px;margin-bottom:24px}
+.doc-header h1{font-size:1.7rem;color:var(--primary);margin:0 0 6px}
+.doc-header .sub{color:var(--muted);font-size:.92rem}
+.badge{display:inline-block;background:var(--primary);color:#fff;font-size:.72rem;padding:2px 10px;border-radius:12px;margin-bottom:8px;letter-spacing:.05em}
+.toc{background:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:16px 22px;margin-bottom:32px}
+.toc h3{margin:0 0 8px;color:var(--primary);font-size:1rem}
+.toc ol{margin:0;padding-left:22px}
+.toc a{color:var(--primary);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+h2{color:#fff;background:var(--primary);padding:10px 16px;border-radius:6px;font-size:1.25rem;margin:40px 0 18px;break-after:avoid;page-break-after:avoid}
+h3{color:var(--primary);border-left:5px solid var(--primary);padding-left:10px;font-size:1.1rem;margin:28px 0 12px;break-after:avoid;page-break-after:avoid}
+h4{color:#333;margin:18px 0 8px;font-size:1rem;break-after:avoid;page-break-after:avoid}
+table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:.93rem;break-inside:avoid;page-break-inside:avoid}
+th,td{border:1px solid var(--border);padding:9px 12px;text-align:center;vertical-align:middle}
+thead th{background:var(--primary);color:#fff;font-weight:600}
+tbody th{background:var(--primary-light);color:var(--primary);text-align:left;font-weight:600;width:170px}
+tr:nth-child(even) td{background:#fafbfd}
+.tx-op{color:var(--accent);font-weight:700}
+.tx-fu{color:var(--ok);font-weight:600}
+.danger-box,.note,.exam-tip,.guideline-box{border-radius:6px;padding:14px 18px;margin:16px 0;break-inside:avoid;page-break-inside:avoid;font-size:.94rem}
+.danger-box{background:var(--accent-light);border-left:6px solid var(--accent)}
+.danger-box .box-title{color:var(--accent);font-weight:700;margin-bottom:6px;display:block}
+.note{background:var(--warn-light);border-left:6px solid var(--warn)}
+.note .box-title{color:var(--warn);font-weight:700;margin-bottom:6px;display:block}
+.exam-tip{background:var(--ok-light);border-left:6px solid var(--ok)}
+.exam-tip .box-title{color:var(--ok);font-weight:700;margin-bottom:6px;display:block}
+.guideline-box{background:#f0f4f8;border:1px solid var(--border)}
+ul.risk-list{padding-left:0;list-style:none}
+ul.risk-list li{background:#fafbfd;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:4px;padding:10px 14px;margin-bottom:8px}
+ul.risk-list li strong{color:var(--accent)}
+sup.ref a{color:var(--primary);text-decoration:none;font-weight:600}
+sup.ref a:hover{text-decoration:underline}
+.flow{display:grid;gap:8px;margin:12px 0}
+.flow .step{border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:.93rem}
+.flow .step.green{background:var(--ok-light)}
+.flow .step.red{background:var(--accent-light)}
+.figure-box{background:#f7fafc;border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:.88rem;color:#333}
+.figure-box .fig-title{font-weight:700;color:var(--primary);display:block;margin-bottom:6px}
+.references{font-size:.85rem;color:#444;border-top:2px solid var(--border);margin-top:48px;padding-top:16px}
+.references ol{padding-left:20px}
+.references li{margin-bottom:8px}
+.references a{color:var(--primary);word-break:break-all}
+.disclaimer{margin-top:28px;font-size:.8rem;color:#888;background:#f7f7f7;border:1px dashed #ccc;border-radius:6px;padding:10px 14px}
+@media print{
+ body{background:#fff}
+ .wrap{box-shadow:none;max-width:none;padding:0 6mm}
+ h2,h3,h4{break-after:avoid;page-break-after:avoid}
+ table,.danger-box,.note,.exam-tip,.guideline-box,ul.risk-list li{break-inside:avoid;page-break-inside:avoid}
+ a{color:var(--ink);text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc-header">
+  <span class="badge">FAMILY MEDICINE · TEACHING NOTE</span>
+  <h1>GB Management Plan (Updated)</h1>
+  <p class="sub">담낭 초음파 소견에 따른 GB polyp / GB stone 관리 — 의료진 교육 및 학습용</p>
+</header>
+
+<nav class="toc">
+  <h3>목차</h3>
+  <ol>
+    <li><a href="#sec1">Section 1. GB Polyp Management</a></li>
+    <li><a href="#sec2">Section 2. GB Stone Management</a></li>
+  </ol>
+</nav>
+
+<!-- ================= Section 1 : GB Polyp ================= -->
+<h2 id="sec1">Section 1. GB Polyp Management</h2>
+
+<h3>1-1. 크기·위험인자별 관리 (요약 표)</h3>
+<table>
+<thead>
+<tr><th>폴립 크기</th><th>위험인자 없음</th><th>위험인자 있음<br><small>(PSC, 60세 이상, sessile, 담석/증상 동반)</small></th></tr>
+</thead>
+<tbody>
+<tr><th>&lt;6 mm</th><td class="tx-fu">추적 불필요</td><td class="tx-fu">1년 후 초음파 재검</td></tr>
+<tr><th>6~9 mm</th><td class="tx-fu">6개월 후 재검 → 이후 매년 초음파(최대 5년)</td><td class="tx-op">담낭절제술 고려</td></tr>
+<tr><th>≥10 mm</th><td class="tx-op"><strong>담낭절제술</strong></td><td class="tx-op"><strong>담낭절제술 (우선 시행)</strong></td></tr>
+<tr><th>추적 중 2 mm↑ 증가<br>또는 악성 소견</th><td class="tx-op"><strong>크기 무관 담낭절제술</strong></td><td class="tx-op">동일</td></tr>
+</tbody>
+</table>
+<p style="font-size:.85rem;color:var(--muted);margin-top:-10px">
+※ 상기 표는 EASL/Wiles 컨센서스 계열 권고를 기본 골격으로 함. 미국 SRU 2022와의 권고 강도 차이는 아래 1-3 비교표 참조.
+<sup class="ref"><a href="#ref1">[1]</a></sup><sup class="ref"><a href="#ref2">[2]</a></sup><sup class="ref"><a href="#ref3">[3]</a></sup><sup class="ref"><a href="#ref4">[4]</a></sup>
+</p>
+
+<h3>1-2. High-risk 상세 정의</h3>
+<ul class="risk-list">
+<li><strong>연령 ≥50세(특히 60세 이상)</strong>: 신생물성 폴립 위험 증가와 연관됨. <sup class="ref"><a href="#ref1">[1]</a></sup><sup class="ref"><a href="#ref2">[2]</a></sup></li>
+<li><strong>원발성 경화성 담관염(PSC) 동반</strong>: 폴립 크기와 무관하게 악성 위험이 크게 상승하여 절제 문턱이 낮아짐. <sup class="ref"><a href="#ref1">[1]</a></sup></li>
+<li><strong>폴립 크기 ≥10 mm</strong>: 가장 강력한 단일 예측인자. 10 mm 이상에서는 신생물성(선종/암) 가능성이 급격히 높아지며, 90% 이상이 신생물성이라는 보고도 있음. <sup class="ref"><a href="#ref1">[1]</a></sup><sup class="ref"><a href="#ref3">[3]</a></sup></li>
+<li><strong>무경성(sessile) 형태</strong> 또는 담낭벽 비후/침범 소견: 콜레스테롤 폴립보다 진성 종양성 폴립을 시사. <sup class="ref"><a href="#ref2">[2]</a></sup><sup class="ref"><a href="#ref3">[3]</a></sup></li>
+<li><strong>단일(solitary) 폴립</strong>: 다발성 폴립보다 상대적으로 선종/암 가능성이 높음. <sup class="ref"><a href="#ref1">[1]</a></sup></li>
+<li><strong>추적 중 크기 증가(특히 2 mm 이상)</strong>: 크기 자체와 무관하게 절제 지표가 됨. <sup class="ref"><a href="#ref1">[1]</a></sup></li>
+<li><strong>담석 동반 및 담도성 증상</strong>: 위험인자로 작용하나, 이는 담석의 크기가 아니라 <em>증상 유무</em>로 판단하는 정성적 기준이며 명확한 담석 크기 컷오프는 제시되어 있지 않음. <sup class="ref"><a href="#ref1">[1]</a></sup><sup class="ref"><a href="#ref2">[2]</a></sup></li>
+</ul>
+
+<div class="danger-box">
+<span class="box-title">시험·진료 핵심</span>
+<strong>≥10 mm</strong>, <strong>PSC 동반</strong>, 또는 <strong>추적 중 2 mm 이상 성장</strong>은 크기와 무관하게 절제 지표가 된다. 위험인자를 가진 <strong>6~9 mm</strong> 폴립은 절제를 고려하는 회색 영역임을 기억한다.
+</div>
+
+<h3 id="guideline-compare1-3">1-3. SRU vs EASL/Wiles 비교</h3>
+<div class="guideline-box">
+<table>
+<thead>
+<tr><th></th><th>SRU 2022 (미국 영상의학회)</th><th>EASL / Wiles (유럽 공동 컨센서스)</th></tr>
+</thead>
+<tbody>
+<tr><th>추적 개시 기준</th><td><strong>&lt;7 mm</strong>: 추적 불필요<br>(저위험 기준 상향)</td><td><strong>&gt;6 mm</strong>: 정기 추적 권고<br>(보수적 접근)</td></tr>
+<tr><th>성향</th><td>과잉 추적 감소 지향 — 위험층화(risk stratification) 중시</td><td>조기 발견 지향 — 6~9 mm도 정기 US 추적</td></tr>
+<tr><th>공통점</th><td colspan="2">≥10 mm 절제, 크기 증가 시 절제, PSC 동반 시 저(低)문턱 절제에는 이견이 없음</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<span class="box-title">임상적 고려</span>
+미국 SRU 2022 컨센서스(7 mm 미만 추적 불필요)와 유럽 EASL/Wiles 가이드라인(6 mm 초과 시 정기 추적) 간 권고 강도 차이가 있다는 점을 함께 고려해야 한다. 6 mm 전후 소형 폴립에서는 기관 프로토콜과 환자 위험인자에 따라 SRU식 완화 전략과 EASL식 보수적 추적 전략 중 선택이 갈릴 수 있다.
+<sup class="ref"><a href="#ref1">[1]</a></sup><sup class="ref"><a href="#ref5">[5]</a></sup>
+</div>
+<div class="exam-tip">
+<span class="box-title">학습 포인트</span>
+담낭절제 후 병리에서 <strong>선종(adenoma)</strong>이나 <strong>조기 담낭암</strong>이 발견되었을 때 <strong>extended cholecystectomy</strong> 등 추가 수술이 필요한지 여부는 T-stage와 침범 깊이에 따라 결정된다(별도 학습 항목).
+</div>
+
+<!-- ================= Section 2 : GB Stone ================= -->
+<h2 id="sec2">Section 2. GB Stone Management</h2>
+
+<h3>2-1. 상태별 관리 (요약 표)</h3>
+<table>
+<thead>
+<tr><th>상태</th><th>기본 방침</th><th>비고</th></tr>
+</thead>
+<tbody>
+<tr><th>무증상 담석, 위험인자 없음</th><td class="tx-fu"><strong>경과관찰(watch-and-see)</strong>, 정기적 초음파 불필요</td><td>연간 증상 발생률 1~2% <sup class="ref"><a href="#ref6">[1]</a></sup><sup class="ref"><a href="#ref7">[2]</a></sup></td></tr>
+<tr><th>무증상 담석 + 고위험군</th><td class="tx-op"><strong>예방적 담낭절제술 고려</strong></td><td>아래 2-2 상세 참조 <sup class="ref"><a href="#ref6">[1]</a></sup><sup class="ref"><a href="#ref9">[3]</a></sup><sup class="ref"><a href="#ref8">[4]</a></sup></td></tr>
+<tr><th>증상성 담석(담도산통)</th><td class="tx-op"><strong>담낭절제술 권고</strong>(재발률 높음)</td><td>통증 재발 없는 경우도 약 30% 존재 <sup class="ref"><a href="#ref10">[5]</a></sup></td></tr>
+<tr><th>합병증 동반<br>(급성 담낭염, 담관염, 담석 췌장염)</th><td class="tx-op"><strong>응급/조기 담낭절제술</strong> (±ERCP)</td><td>수술 불가 시 통증조절 후 대기 <sup class="ref"><a href="#ref11">[6]</a></sup><sup class="ref"><a href="#ref12">[7]</a></sup></td></tr>
+<tr><th>수술 고위험 환자(증상성)</th><td>경피적 담낭조루술 또는 선택적 경구 용해요법(작은 비석회화 콜레스테롤 담석, 담낭 기능 정상) 고려</td><td>큰 담석·색소성·석회화 담석은 용해요법 부적합 <sup class="ref"><a href="#ref11">[6]</a></sup><sup class="ref"><a href="#ref12">[7]</a></sup><sup class="ref"><a href="#ref7">[2]</a></sup></td></tr>
+</tbody>
+</table>
+
+<h3>2-2. 고위험군(예방적 절제 고려 대상) 상세</h3>
+<ul class="risk-list">
+<li><strong>담석 크기 &gt;3 cm</strong>: 담낭암 위험 증가와 연관되어 크기 자체가 독립적 절제 지표로 제시됨. <sup class="ref"><a href="#ref6">[1]</a></sup></li>
+<li><strong>용혈성 질환(겸상적혈구빈혈, 유전성 구상적혈구증)</strong>: 담석 재형성 및 합병증 위험이 높아 예방적 절제 권고. 겸상적혈구빈혈 환자는 3~5년 내 합병증 발생률이 약 50%에 달함. <sup class="ref"><a href="#ref8">[4]</a></sup><sup class="ref"><a href="#ref6">[1]</a></sup></li>
+<li><strong>장기이식 예정 환자</strong>: 이식 후 면역억제 상태에서 담낭염 발생 시 위험이 크므로 이식 전 예방적 절제 고려. <sup class="ref"><a href="#ref6">[1]</a></sup></li>
+<li><strong>신경내분비종양(neuroendocrine tumor) 환자</strong>: 소마토스타틴 유사체 치료로 담석 형성이 촉진되므로 예방적 절제가 함께 논의됨. <sup class="ref"><a href="#ref6">[1]</a></sup></li>
+<li><strong>담낭암 고위험 지역(북인도, 칠레 등) 거주자</strong>: 지역적 담낭암 유병률이 높아 다른 위험인자와 무관하게 예방적 절제가 고려될 수 있음. <sup class="ref"><a href="#ref8">[4]</a></sup></li>
+<li><strong>비기능성 담낭, 석회화(porcelain) 담낭, 담낭 용종 동반, 담석 &lt;3 mm이면서 담낭관이 개통된 경우</strong>: 오래된 문헌(Patiño 등)에서 고위험 기준으로 제시되었으나 최신 가이드라인에서의 근거 수준은 낮음. <sup class="ref"><a href="#ref9">[3]</a></sup></li>
+<li><strong>당뇨병 동반, 60세 미만 여성</strong>: 과거 기준에서 언급되었으나 현재는 일률적 절제 근거가 약함. <sup class="ref"><a href="#ref9">[3]</a></sup></li>
+</ul>
+
+<div class="note">
+<span class="box-title">근거 수준에 대한 주의</span>
+담낭 용종과 달리 무증상 담석에는 공인된 학회 차원의 정량적 크기·추적간격 가이드라인이 없으며, 대부분의 권고는 관찰 코호트와 전문가 의견(SORT 등급 B~C)에 근거한다는 점을 감안해야 한다.
+</div>
+
+<h3>2-3. Yamada's Gastroenterology 담석 관리 알고리듬</h3>
+<div class="flow">
+<div class="step">1. 담석 확인 → 담석 성분(콜레스테롤/색소성)이나 크기보다 먼저 <strong>전형적 담도성 증상 또는 합병증 유무</strong>를 우선 판단한다.</div>
+<div class="step green">2A. <strong>무증상 (Green zone)</strong> → 최선의 선택은 관찰(watch-and-see). 선택된 고위험 하위군에서만 예방적 담낭절제술을 고려한다.</div>
+<div class="step red">2B. <strong>증상성 (Red zone), 합병증 포함</strong> → 즉각적인 통증 치료 후, 메타분석에 따르면 담낭절제술이 증상성 담석 치료의 gold standard이다.</div>
+<div class="step">3. 수술이 불가능한 경우(수술 위험, 환자 선택, 경미한 증상) → 담석 종류·크기·담낭 기능을 신중히 평가하여, <strong>비석회화 소형 콜레스테롤 담석 + 기능하는 담낭 + 개통된 담낭관</strong>을 가진 하위군에서만 내과적 치료(경구 용해요법)를 계획한다.</div>
+<div class="step">4. 담석 용해에 성공해 담석이 없는 담낭 상태가 되어도 전체 재발 위험을 고려해야 하며, 이 경우 다시 Green zone(무증상 관찰)으로 돌아간다.</div>
+</div>
+<div class="figure-box">
+<span class="fig-title">Figure 6 (Yamada's Gastroenterology) 원문 해설</span>
+The flowchart depicts the step‐by‐step approach to therapies of gallstone disease. 초기 결정은 담석 성분(콜레스테롤 또는 색소성)이나 크기와 무관하게, 전형적 담도성 증상/합병증의 유무에 따라 이루어진다. Green 영역은 무증상 환자를 위한 것으로, 현재 가이드라인상 최선의 선택은 watch-and-see 정책이며, 선택된 하위군에서는 예방적 담낭절제술을 고려할 수 있다. Red 영역은 합병증 유무와 관계없이 증상성 담석 환자를 위한 것으로, 즉각적인 통증 처치 후 메타분석에 따르면 수술(담낭절제술)이 증상성 담석 치료의 gold standard이다. 수술이 불가능한 경우(수술 위험, 환자의 선택, 경미한 증상), 담석 종류·크기·담낭 기능에 대한 신중한 평가가 필요하며, 이는 비석회화된 소형 콜레스테롤 담석 및 개통된 담낭관을 가진 기능성 담낭 하위군에서 내과적 치료를 계획하기 위함이다. 궁극적으로 담석 용해 성공 후 담석이 없는 담낭 상태가 되면 전체 재발 위험을 고려하여 다시 Green 영역으로 돌아가야 한다. 크거나, 색소성이거나, 석회화된(방사선 비투과성) 담석은 경구 용해요법(oral litholysis)의 대상이 되지 않는다.<br><br>
+<strong>약어</strong>: CT, computed tomography; ERCP, endoscopic retrograde cholangiopancreatography; HIDA, 99mTc‐N‐(2,6‐dimethylacetanilide)‐iminodiacetic acid; HU, Hounsfield unit; TUDCA, tauroursodeoxycholic acid; UDCA, ursodeoxycholic acid; US, abdominal ultrasonography.
+</div>
+
+<div class="exam-tip">
+<span class="box-title">다음 학습 항목 (추후 확장 예정)</span>
+경구 담석 용해요법(UDCA)의 적응증과 성공률: 대상 선정 기준(담석 크기·성분·담낭 기능), 표준 용량 및 치료 기간, 성공률과 재발률.
+</div>
+
+<!-- References -->
+<footer class="references">
+<h3 style="border:none;padding:0;color:var(--primary)">References</h3>
+<h4 style="margin-top:6px">Section 1. GB Polyp</h4>
+<ol>
+<li id="ref1">Wennmacker SZ, Lamberts MP, Di Martino M, et al. <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012233.pub2/full">Transabdominal Ultrasound and Endoscopic Ultrasound for Diagnosis of Gallbladder Polyps</a>. <em>Cochrane Database Syst Rev.</em> 2018;8:CD012233. doi:10.1002/14651858.CD012233.pub2.</li>
+<li id="ref2">Mellnick VM, Menias CO, Sandrasegaran K, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/25763724">Polypoid Lesions of the Gallbladder: Disease Spectrum With Pathologic Correlation</a>. <em>Radiographics.</em> 2015;35(2):387-99. doi:10.1148/rg.352140095.</li>
+<li id="ref3">Taskin OC, Basturk O, Reid MD, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/32915805">Gallbladder Polyps: Correlation of Size and Clinicopathologic Characteristics Based on Updated Definitions</a>. <em>PLoS One.</em> 2020;15(9):e0237979. doi:10.1371/journal.pone.0237979.</li>
+<li id="ref4">Fujiwara K, Abe A, Masatsugu T, Hirano T, Sada M. <a href="https://pubmed.ncbi.nlm.nih.gov/32974780">Effect of Gallbladder Polyp Size on the Prediction and Detection of Gallbladder Cancer</a>. <em>Surg Endosc.</em> 2021;35(9):5179-5185. doi:10.1007/s00464-020-08010-8.</li>
+<li id="ref5">Hajibandeh S, Ashar S, Parry C, Ellis-Owen R, Kumar N. <a href="https://pubmed.ncbi.nlm.nih.gov/37926936">The Risk and Predictors of Gallbladder Cancer in Patients With Gallbladder Polyps: A Retrospective Cohort Study With an Insight Into Confounding by Indication</a>. <em>J Gastroenterol Hepatol.</em> 2023;38(12):2247-2253. doi:10.1111/jgh.16399.</li>
+</ol>
+<h4>Section 2. GB Stone</h4>
+<ol>
+<li id="ref6">Patel H, Jepsen J. <a href="https://www.aafp.org/link_out?pmid=38905549">Gallstone Disease: Common Questions and Answers</a>. <em>Am Fam Physician.</em> 2024;109(6):518-524.</li>
+<li id="ref7">Abraham S, Rivero HG, Erlikh IV, Griffith LF, Kondamudi VK. <a href="https://pubmed.ncbi.nlm.nih.gov/24866215">Surgical and Nonsurgical Management of Gallstones</a>. <em>Am Fam Physician.</em> 2014;89(10):795-802.</li>
+<li id="ref9">Patiño JF, Quintero GA. <a href="https://pubmed.ncbi.nlm.nih.gov/9828719">Asymptomatic Cholelithiasis Revisited</a>. <em>World J Surg.</em> 1998;22(11):1119-24. doi:10.1007/s002689900530.</li>
+<li id="ref8">Morris-Stiff G, Sarvepalli S, Hu B, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/35513234">The Natural History of Asymptomatic Gallstones: A Longitudinal Study and Prediction Model</a>. <em>Clin Gastroenterol Hepatol.</em> 2023;21(2):319-327.e4. doi:10.1016/j.cgh.2022.04.010.</li>
+<li id="ref10">Ransohoff DF, Gracie WA. <a href="https://pubmed.ncbi.nlm.nih.gov/8363172">Treatment of Gallstones</a>. <em>Ann Intern Med.</em> 1993;119(7 Pt 1):606-19. doi:10.7326/0003-4819-119-7_part_1-199310010-00010.</li>
+<li id="ref11">Portincasa P, Wang DQ-H. <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119600206.ch81">Gallstones</a>. Chapter 81. In: Yamada's Gastroenterology.</li>
+<li id="ref12">Portincasa P, Wang DQ-H. <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781119600527.ch43">Gallstones</a>. Chapter 43. In: Yamada's Gastroenterology.</li>
+</ol>
+</footer>
+
+<div class="disclaimer">
+본 문서는 의료진 교육 및 시험 대비 학습을 목적으로 정리한 요약 자료이며, 실제 임상 결정은 환자의 개별 상태, 최신 영상 소견 및 기관 프로토콜을 종합하여 이루어져야 한다.
+</div>
+
+</div>
+</body>
+</html>
