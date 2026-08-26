@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일차의료 소화기 약속처방 프로토콜 — 복통 · 설사 · 변비 · IBS</title>
+<style>
+  :root{
+    --ink:#1a2332; --sub:#5a6a7e; --line:#d9e2ec;
+    --accent:#1f6feb; --accent-bg:#eef4ff;
+    --danger:#c0392b; --danger-bg:#fdecea;
+    --refer:#b26a00; --refer-bg:#fff6e5;
+    --tip:#1e7e4d; --tip-bg:#e9f7ef;
+    --rx:#6c3483; --rx-bg:#f5eef8;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+       color:var(--ink); background:#f4f6f9; margin:0; line-height:1.65; font-size:15px;}
+  .page{max-width:1060px; margin:0 auto; background:#fff; padding:0 0 60px;
+        box-shadow:0 0 12px rgba(0,0,0,.06);}
+  header{background:linear-gradient(135deg,#16345c,#1f6feb); color:#fff; padding:34px 44px 28px;}
+  header h1{margin:0 0 6px; font-size:26px; letter-spacing:-.5px;}
+  header p{margin:2px 0; font-size:13px; opacity:.92;}
+  nav{position:sticky; top:0; z-index:50; background:#16345c; display:flex; flex-wrap:wrap;}
+  nav a{color:#dbe7ff; text-decoration:none; padding:10px 18px; font-size:13.5px; font-weight:600;}
+  nav a:hover{background:#1f6feb; color:#fff;}
+  main{padding:0 44px;}
+  section{margin-top:38px;}
+  h2{font-size:21px; margin:0 0 4px; padding:8px 14px; border-left:6px solid var(--accent);
+     background:var(--accent-bg); border-radius:0 8px 8px 0;}
+  h2 .en{font-size:13px; color:var(--sub); font-weight:500; margin-left:8px;}
+  h3{font-size:16.5px; margin:26px 0 8px; color:#16345c; border-bottom:2px solid var(--line); padding-bottom:4px;}
+  h4{font-size:15px; margin:18px 0 6px; color:var(--accent);}
+  p{margin:6px 0;}
+  ul,ol{margin:6px 0 10px; padding-left:22px;}
+  li{margin:3px 0;}
+  table{border-collapse:collapse; width:100%; margin:10px 0 16px; font-size:13.5px;}
+  th{background:#16345c; color:#fff; padding:7px 9px; text-align:left; font-weight:600;}
+  td{border:1px solid var(--line); padding:7px 9px; vertical-align:top;}
+  tr:nth-child(even) td{background:#f7fafd;}
+  .danger-box,.refer-box,.tip-box,.rx-box{border-radius:8px; padding:12px 16px; margin:12px 0; font-size:14px;}
+  .danger-box{background:var(--danger-bg); border:1.5px solid var(--danger);}
+  .danger-box strong{color:var(--danger);}
+  .refer-box{background:var(--refer-bg); border:1.5px solid var(--refer);}
+  .refer-box strong{color:var(--refer);}
+  .tip-box{background:var(--tip-bg); border:1.5px solid var(--tip);}
+  .tip-box strong{color:var(--tip);}
+  .rx-box{background:var(--rx-bg); border:1.5px solid var(--rx);}
+  .rx-box strong{color:var(--rx);}
+  .tag{display:inline-block; font-size:11px; font-weight:700; border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;}
+  .tag-ins{background:#e3f0e3; color:#1e7e4d; border:1px solid #1e7e4d;}
+  .tag-non{background:#fdeaea; color:#c0392b; border:1px solid #c0392b;}
+  .tag-otc{background:#e8eefc; color:#1f4fb0; border:1px solid #1f4fb0;}
+  .tag-rx{background:#f0e6f6; color:#6c3483; border:1px solid #6c3483;}
+  .tag-na{background:#eceff3; color:#5a6a7e; border:1px solid #8aa6c9;}
+  .flow{background:#f0f4fa; border:1px dashed #8aa6c9; border-radius:8px; padding:12px 16px;
+        font-size:14px; margin:10px 0; font-weight:500;}
+  .small{font-size:12.5px; color:var(--sub);}
+  .verified{display:inline-block; font-size:11px; font-weight:700; color:#1e7e4d; background:#e9f7ef;
+            border:1px solid #1e7e4d; border-radius:4px; padding:1px 6px; margin-left:6px; vertical-align:middle;}
+  footer{margin-top:44px; padding:20px 44px 0; border-top:2px solid var(--line);
+         font-size:12.5px; color:var(--sub);}
+  @media print{
+    body{background:#fff; font-size:12px;}
+    .page{box-shadow:none; max-width:none;}
+    nav{display:none;}
+    section{page-break-inside:avoid;}
+    h2{page-break-after:avoid;}
+    header{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>일차의료 소화기 약속처방 프로토콜</h1>
+  <p>복통 · 설사 · 변비 · 과민성 장증후군(IBS) — 가정의학과 외래 Routine Order &amp; 의사결정 자료 (의사용) · v1.2</p>
+  <p>근거: 일차진료_guideline 소화기 시리즈(Ch.17~21) · ACG 2021 IBS Guideline · 대한소화기기능성질환운동학회 IBS 진료지침</p>
+  <p>제작 2026-08-26 · 심평의학 항목 현행 고시 대조 검증 완료(2026-08-26)</p>
+</header>
+<nav>
+  <a href="#common">공통 원칙</a>
+  <a href="#pain">1. 복통</a>
+  <a href="#diarrhea">2. 설사</a>
+  <a href="#constipation">3. 변비</a>
+  <a href="#ibs">4. IBS</a>
+  <a href="#billing">심평의학·상병코드</a>
+  <a href="#ref">출처·주의</a>
+</nav>
+<main>
+
+<section id="common">
+<h2>공통 원칙 <span class="en">모든 소화기 증상 접근의 출발점</span></h2>
+<div class="flow">기질적 원인 · 위장관 외 질환 배제 → Red flag 확인 → 기능성 질환 고려 → 대증 치료 → 재평가·의뢰 기준 차팅</div>
+<ul>
+  <li>급성 증상·응급 내원에서는 <strong>기능성 질환보다 기질적 원인을 먼저</strong> 생각한다. 고령일수록 증상을 축소해서 말하는 경향이 있어 더 적극적으로 확인한다.</li>
+  <li>대장암·염증성 장질환 등 기질적 원인을 항상 염두에 두고, 내시경 검사를 꾸준히 시행하고 있는지 체크한다.</li>
+  <li>환자에게 Red flag를 설명하고 "호전이 없거나 이런 증상이 나타나면 추가 검사가 필요하다"고 안내 후 <strong>차팅</strong> — 환자와 의사 모두에게 안전장치.</li>
+  <li>Alarm sign이 있는데 검사를 거부하는 경우, 반드시 워닝과 차팅으로 방어한다.</li>
+</ul>
+<div class="danger-box">
+<strong>소화기 공통 Red flag (즉시 추가 평가·전원 고려)</strong>
+<ul>
+  <li>혈변·흑색변·토혈, 황달, 분출성 구토</li>
+  <li>활력징후 불안정, rebound tenderness, muscle guarding, 고열</li>
+  <li>잠에서 깰 정도의 심한 복통, 등으로 방사되는 통증, 명치·배꼽 등 전형적 부위가 아닌 복통</li>
+  <li>설명되지 않는 체중 감소, 빈혈, 촉지되는 복부 종괴</li>
+  <li>상복부 통증 + 식은땀 + 지속적 통증 + 고령·기저질환 → <strong>심근경색 반드시 감별</strong></li>
+</ul>
+</div>
+</section>
+
+<section id="pain">
+<h2>1. 복통 <span class="en">급성 복통 접근 + 기능성 소화기 질환(FD·IBS 등)</span></h2>
+
+<h3>1-1. 첫 판단: 위치·양상·맥락으로 기질성 감별</h3>
+<table>
+<tr><th>양상 / 맥락</th><th>우선 감별 질환</th><th>다음 행동</th></tr>
+<tr><td>상복부 통증이 등으로 방사</td><td>췌장 질환, 대동맥 박리</td><td>복부 CT 의뢰, EKG·SBP(양팔) 확인</td></tr>
+<tr><td>기름진 음식·과식 후, 밤에 통증</td><td>Biliary colic, 소화성 궤양</td><td>복부 초음파, 위내시경</td></tr>
+<tr><td>상복부 통증 + 식은땀, 고령·기저질환 다수</td><td>Angina / 심근경색</td><td>EKG·chest PA·SBP, 즉시 전원 고려</td></tr>
+<tr><td>우상복부 통증 + 발열·구역 (고령은 Murphy sign 불명확 가능)</td><td>급성 담낭염</td><td>CBC(WBC↑), 복부 초음파(담낭벽 비후·비대·결석)</td></tr>
+<tr><td>복부 수술력 + diffuse colicky pain + 구토·복부 팽만, 장음 변화(tinkling → 폐색 시 소실), 가스 배출 여부</td><td>장폐색</td><td><strong>진경제 함부로 사용 금지</strong>, 영상 후 의뢰</td></tr>
+<tr><td>고령 + 심방세동·심부전·죽상동맥경화 + 촉진 소견보다 심한 localization 안 되는 통증</td><td>급성 장간막 허혈</td><td>즉시 상급병원 전원</td></tr>
+<tr><td>40세 이상 + 위장약 불응 + new-onset DM(또는 갑작스런 혈당 상승) + 체중 감소·황달, 명치~배꼽 사이 누르는 듯한 통증, 누우면 악화·웅크리면 완화</td><td>췌장암</td><td>복부 CT 의뢰 (검사 없이 초기 감별 어려움)</td></tr>
+<tr><td>옆구리 통증으로 촉지</td><td>요로결석</td><td>소변검사·영상</td></tr>
+</table>
+
+<h3>1-2. 검사상 이상 없는 복통 — 기능성 질환 감별</h3>
+<table>
+<tr><th>단서</th><th>의심 질환</th></tr>
+<tr><td>배변 후 복통 호전 (주로 하복부)</td><td>과민성 장증후군(IBS) → <a href="#ibs">4. IBS 섹션</a></td></tr>
+<tr><td>식사 후 상복부 통증·불편</td><td>기능성 소화불량(FD)</td></tr>
+<tr><td>식후 반복 오심·구토 + 당뇨 병력</td><td>위마비(Gastroparesis) — 어지러움·이명 등 신경과/이비인후과 원인 감별</td></tr>
+<tr><td>식후 가슴·속쓰림, 잦은 트림, 신물 (누우면 악화, 제산제에 완화)</td><td>GERD</td></tr>
+<tr><td>배변·식사와 무관한 복통, Carnett test(+): 압통 부위에서 복벽 긴장(다리 들기·윗몸일으키기) 시 통증 악화</td><td>만성 복벽 통증(복부피신경 포착, 근막통증)</td></tr>
+</table>
+<p class="small">※ 기능성 질환끼리 overlap이 흔하고 불안·우울 동반이 많다. 흉통 감별: 심장 기원은 운동 시 악화·휴식 시 호전, GERD는 누우면 악화·음식/제산제에 완화.</p>
+
+<h3>1-3. Routine 처방 — 기능성 소화불량(FD)</h3>
+<div class="flow">소화불량 → 40세 미만 &amp; alarm(-): PPI + Prokinetics 경험 치료 / 40세 이상 or alarm(+): 위식도내시경 → 기질성 배제 후 FD 치료</div>
+<div class="danger-box">
+<strong>Alarm sign (2017 미국/캐나다 지침 + 국내 권고)</strong>
+<ul>
+  <li>60세 이상 새로 발생한 소화불량 · 지속적 구토 · 의미 있는 체중 감소 · 진행성 연하통/연하곤란 · 철결핍성 빈혈 · 위장관 출혈 · 촉지되는 복부 종괴 · 상부위장관암 가족력</li>
+  <li>국내: <strong>40세 이상</strong>이거나 NSAID·항응고제·항혈소판제 복용 중이면 더 적극적으로 위내시경 권고</li>
+</ul>
+</div>
+<table>
+<tr><th>상황</th><th>1차 처방</th><th>불응 시 추가</th><th>비고</th></tr>
+<tr><td>EPS(상복부 통증·쓰림 주형)</td><td>PPI 우선 ± Prokinetics</td><td>TCA (통증), Mirtazapine (체중 감소 시 — 단 기질성 재의심)</td><td>PPI는 <strong>8주 이상</strong> 투여해야 효과 (4주 미만은 위약과 차이 없음)</td></tr>
+<tr><td>PDS(식후 포만·조기 만복 주형)</td><td>Prokinetics 우선 ± PPI</td><td>Buspirone (위저부 이완, 상병 F41.9)</td><td>EPS-PDS 중첩 흔함</td></tr>
+<tr><td>공통 추가 옵션</td><td colspan="3">쓰림 심함: 점막보호제·제산제 PRN / 경련성 통증: 진경제 / 복합 증상: Trimebutine / 설사 동반: Probiotics(감염 배제 후) / 스트레스: Etizolam·Alprazolam / 소화 불량: 소화효소제(비급여)</td></tr>
+<tr><td>비약물</td><td colspan="3">안심시키기, 소식·저지방식, 커피·NSAID·흡연·음주 제한, 식사 일기</td></tr>
+</table>
+<div class="rx-box">
+<strong>TCA 사용 원칙 (FD·IBS 공통)</strong>
+<ul>
+  <li>정신과 용량보다 훨씬 적게: Amitriptyline[에트라빌] 10mg, Nortriptyline[센시발] 10mg — 저용량으로도 충분한 효과(Lancet 2023)</li>
+  <li>Nortriptyline이 항콜린 부작용 적어 선호(단 품절 잦음). Amitriptyline은 근거 가장 높으나 항콜린 부작용 커서 IBS-C 악화 가능</li>
+  <li>고령에서 사용 시 EKG 촬영 권고(QT 연장 확인). 폐쇄각 녹내장·부정맥·기립성 저혈압 주의. 4주 이상 사용해야 효과 발현</li>
+</ul>
+</div>
+<div class="tip-box">
+<strong>재평가 기준</strong> — 치료 시작 1~2개월 후 전혀 호전 없으면 다른 진단 고려. 3개월 후에도 확실한 호전 없으면 다른 진단 고려. 불응성 FD는 위배출 검사·심리 평가, H. pylori 검사 후 안정되면 제균 치료 고려. PPI 장기 사용 시 quarter dose(예: Esomeprazole 10mg)로 감량 고려.
+</div>
+
+<h3>1-4. 기타 — 만성 복벽 통증 · 위마비</h3>
+<ul>
+  <li><strong>만성 복벽 통증:</strong> 일반 진통제·진경제 효과 적음. 1% Lidocaine 4mL + Triamcinolone 40mg 1mL를 작은 바늘로 trigger point 주사가 효과적. TCA·Gabapentin, TENS 도움 가능.</li>
+  <li><strong>위마비:</strong> 저지방·저섬유·입자 작은 죽 같은 식사. Prokinetics(D2 antagonist: Levosulpiride, Metoclopramide, Domperidone, Itopride) 1차 — 장기 사용 금지, 심하면 5-HT3 antagonist로 전환. 불응 시 TCA 등 neuromodulator.</li>
+</ul>
+<div class="refer-box">
+<strong>상급병원 의뢰·응급:</strong> 장폐색·장간막 허혈·대동맥 박리·췌장암 의심, alarm sign(+)인데 검사 불가한 환경, 1~3개월 치료 불응 기능성 질환, 위배출 검사·식도내압검사 필요 시.
+</div>
+</section>
+
+<section id="diarrhea">
+<h2>2. 설사 <span class="en">급성 위장관 감염 중심 + 만성 설사 감별</span></h2>
+
+<h3>2-1. 정의와 분류</h3>
+<ul>
+  <li>정의: 묽거나 형태 없는 변 + 빈도 증가, 하루 200g 초과. Bristol type 6~7.</li>
+  <li>급성 &lt;2주 / 지속성 2~4주 / 만성 &gt;4주. 급성은 90% 이상 감염성, 만성은 대부분 비감염성(과민성 장증후군이 가장 흔함).</li>
+  <li>감별: 변실금(신경계·당뇨병성 신경병증 등), 가성설사·과배변(IBS, 직장염, 갑상선기능항진증 — 대변량 증가 없이 횟수만 증가).</li>
+</ul>
+
+<h3>2-2. 급성 설사 문진·원인 추정</h3>
+<table>
+<tr><th>단서</th><th>추정 원인</th></tr>
+<tr><td>잠복기 1~6시간 (김밥·볶음밥, 구토 주도, 24시간 미만)</td><td>S. aureus, B. cereus(구토형)</td></tr>
+<tr><td>잠복기 8~16시간</td><td>C. perfringens, B. cereus(설사형)</td></tr>
+<tr><td>잠복기 16~72시간</td><td>ETEC, Salmonella, Shigella, V. cholerae</td></tr>
+<tr><td>염증성(발열·소량 자주·뒤무직·혈변/점액변)</td><td>Salmonella, Shigella, Campylobacter, EHEC, EIEC</td></tr>
+<tr><td>비염증성(물설사)</td><td>Norovirus(연령 무관), Rotavirus(소아), S. aureus, B. cereus, ETEC</td></tr>
+<tr><td>겨울철·굴/조개·집단 발생(감염력 매우 높음)</td><td>Norovirus</td></tr>
+<tr><td>여름철 어패류 + 간질환·면역저하 + 하지 수포·괴사</td><td>V. parahaemolyticus → 의뢰</td></tr>
+<tr><td>8~12주 이내 항생제 복용력</td><td>C. difficile</td></tr>
+<tr><td>여행자에서 14일 이상 지속</td><td>기생충(Giardia 가장 흔함)</td></tr>
+<tr><td>발열 없이 혈성 설사 + 복통(우측) + 덜 익은 햄버거</td><td><strong>EHEC(STEC) — 항생제 금기(HUS 위험)</strong></td></tr>
+</table>
+<p class="small">바이러스성: 오심·구토 등 상복부 증상 + 물설사 동반, 복통 경미·산발적, 경~중등도 발열·두통·근육통. 세균성: 혈변·점액변과 심한 복통, 중등도~고열. 유행 동향: 감염병포털(dportal.kdca.go.kr) 표본감시 주간소식지 확인.</p>
+
+<h3>2-3. 검사 적응증과 선택</h3>
+<div class="tip-box">
+<strong>대변·혈액검사 적응증</strong> — 탈수 / 38.5℃ 이상 발열 / 혈성 설사 / 대변 WBC 검출 / 48시간 이상 호전 없음 / 최근 항생제 사용 / 50세 이상 + 심한 복통 / 70세 이상 / 면역저하자
+</div>
+<table>
+<tr><th>검사</th><th>목적·해석</th></tr>
+<tr><td>Stool WBC</td><td>민감도 낮음. 양성이면 염증성(감염성) 시사 → 경험적 항생제 고려</td></tr>
+<tr><td>Stool culture, EHEC PCR, 다중 설사패널 분자검사</td><td>분자검사는 검출률 우수하나 사체도 검출 → 임상 상황과 종합 판단</td></tr>
+<tr><td>C. difficile toxin assay (GDH/Toxin A·B ELISA, 하나만 양성이면 PCR 확인)</td><td>최근 항생제 사용 또는 입원 3일 이후 발생 설사</td></tr>
+<tr><td>기생충 검사</td><td>7~10일 초과 지속 설사</td></tr>
+<tr><td>CBC, BUN/Cr, Electrolyte</td><td>설사 심하거나 오래된 경우 — <strong>대변 수분 K⁺ 농도 높아 다량 설사 시 저칼륨혈증 동반</strong></td></tr>
+<tr><td>대장내시경·CT</td><td>원인 불명확 + 비감염성 감별 필요 시(IBD, 허혈성 대장염)</td></tr>
+</table>
+
+<h3>2-4. Routine 처방 — 수분·전해질이 기본</h3>
+<table>
+<tr><th>탈수 정도</th><th>임상 소견</th><th>수액 요법</th></tr>
+<tr><td>경증 (&lt;체중 5%)</td><td>약간 건조한 점막, 갈증, 소변량 약간 감소</td><td>경구 수액(ORT) 50mL/kg을 4~6시간에 걸쳐 + 지속 손실분 보충</td></tr>
+<tr><td>중등도 (5~9%)</td><td>건조한 점막, 함몰안, 소변량 감소</td><td>ORT 100mL/kg을 4~6시간에 걸쳐</td></tr>
+<tr><td>중증 (&gt;10%)</td><td>혈압 저하, 빠르고 약한 맥박, 무기력, 혼수·차가운 사지</td><td>의학적 응급 — 링거액·생리식염수 20~40mL/kg 정주, 쇼크 해소까지 유지</td></tr>
+</table>
+<ul>
+  <li>콜라·과일주스는 고장액으로 탈수 악화 가능 → 금지. 이온음료는 ORT 어려울 때, 물에 타서 당분 낮춰 복용. 바나나는 칼륨 보충에 유리(sorbitol 적고 과당:포도당 비율 좋음).</li>
+  <li>국내 현실: 경구 수액제(페디라 생산 중단, 링거라이트 구하기 어려움) → 의료기관 정주 수액 치료가 순응도·수익 면에서 합리적.</li>
+  <li><strong>식사 단계:</strong> 구토 있으면 금식 하루(물은 섭취) → 미음(간 안 한) → 죽 → 밥 → 단백질 → 지방 순. 수액 4시간 후부터 소량씩 자주. 1주일간 차갑고·달고·맵고·기름진 음식, 유제품, 식이섬유(야채·과일) 제한.</li>
+</ul>
+
+<h3>2-5. Routine 처방 — 약물</h3>
+<table>
+<tr><th>약제</th><th>제품(급여)</th><th>적응·주의</th></tr>
+<tr><td>Loperamide (GI opioid agonist)</td><td>로프민캡슐 <span class="tag tag-otc">일반-급여</span></td><td>비염증성 설사만. <strong>발열·혈성 설사·감염성 설사(C. diff 포함)에서 금기</strong> — 독성거대결장·장폐색 위험. 세균성 완벽 배제 전 사용 지양</td></tr>
+<tr><td>Dioctahedral smectite (흡착제)</td><td>포타겔현탁액·스타빅현탁액 <span class="tag tag-otc">일반-급여</span></td><td>독소 흡착 기전으로 급성 설사에 비교적 안전. 다른 약제와 1~2시간 간격 복용</td></tr>
+<tr><td>Racecadotril (enkephalinase 억제)</td><td>라세카캡슐(성인)·하이드라섹산(소아) <span class="tag tag-non">비급여</span></td><td>장운동 늦추지 않고 분비 조절. 급성 설사용, 콜레라·EHEC 금기</td></tr>
+<tr><td>Probiotics</td><td>비오플(S. boulardii) <span class="tag tag-non">비급여</span> 등</td><td>급성 감염성 설사의 증상·기간 단축(성인·소아). LGG·S. boulardii 근거 풍부. 여행자 설사는 근거 부족. 면역저하자 금기</td></tr>
+<tr><td>항구토제·해열제</td><td>Metoclopramide, Acetaminophen</td><td>오심·구토·발열 대증. 진경제는 독소 배출 저해 가능성으로 주의</td></tr>
+</table>
+<div class="rx-box">
+<strong>경험적 항생제 — 대부분의 급성 물설사에는 불필요. 적응증:</strong>
+<ul>
+  <li>발열 + 혈변·점액변, 이질 증상(자주 피 묻은 설사·경련성 복통·뒤무직)</li>
+  <li>38.5℃ 이상 고열 동반 또는 패혈증 징후 있는 여행자 설사</li>
+  <li>혈변이 있는 면역저하자 (기타: 1주일 이상 지속, 입원 필요)</li>
+</ul>
+<strong>처방:</strong> Ciprofloxacin[사이톱신·씨프로바이] 500mg BID 3일, 또는 Azithromycin[지스로맥스] 500mg QD 3일(Campylobacter 타겟). 비침습적 의심 시 Rifaximin. <strong>STEC 의심 시 항생제 금기 — 용혈성요독증후군(HUS) 위험 증가.</strong> Fluoroquinolone: 건염·건파열·말초신경병증·중추신경계 부작용 경고(허가사항), 소아·18세 미만·임부·수유부 투여 금기.
+</div>
+
+<h3>2-6. 항생제 관련 설사</h3>
+<table>
+<tr><th>질환</th><th>특징</th><th>치료</th></tr>
+<tr><td>Klebsiella oxytoca 장염</td><td>우측 대장 출혈성 장염(혈변·복통). 페니실린·퀴놀론·세팔로스포린 연관. 대변 배양으로 진단</td><td>원인 항생제 중단 시 빠르게 호전</td></tr>
+<tr><td>C. difficile 감염</td><td>8~12주 이내 항생제(Clindamycin, Ampicillin, Cephalosporin, FQ). Toxin B가 더 위험</td><td>유발 약물 중단 + Metronidazole 500mg TID 10~14일 또는 Vancomycin 경구 125mg QID 10~14일. 중증·합병증 동반 시 의뢰</td></tr>
+</table>
+
+<h3>2-7. 만성 설사 (&gt;4주)</h3>
+<ul>
+  <li>대부분 비감염성 — IBS가 가장 흔함(→ <a href="#ibs">4. IBS 섹션</a>). 약제 감별 필수: Mg 함유 제산제(PPI 복합제 포함), 완하제, Misoprostol, Digitalis, BB, ACEi, 이뇨제, Clindamycin·Ampicillin, Lithium, Fluoxetine, 갑상선호르몬 등.</li>
+  <li>담즙산 설사: 갑작스런 시작·밤중 설사, 담낭절제술·SIBO 연관.</li>
+  <li>Red flag(+)(혈성 설사·체중 감소·빈혈·암 가족력·최근 항생제·고령·극심한 설사) → 대장내시경 + lab. IBS-D 의심 시 CBC·전해질·albumin·대변 WBC·잠혈 등 최소 선별검사.</li>
+  <li>양으로 추정: 소장 병변 &gt;1L, 우측 대장 ~1L, 좌측 대장 200mL 내외+잦은 횟수(뒤무직·혈변·점액변). IBS는 250mL 초과 드묾.</li>
+</ul>
+
+<h3>2-8. Follow-up · 전원 · 행정</h3>
+<div class="danger-box">
+<strong>입원·전원 적응증:</strong> 심각한 탈수 / 신경학적 이상 / 혈변 / 설사 양·횟수 과다 / 지속 구토·발열 / 경구 수액에도 탈수 지속 / 48시간 내 호전 없음 / 6개월 미만·8kg 미만 / 3개월 미만 38℃·3세 미만 39℃ 이상 / 만성질환자
+</div>
+<ul>
+  <li>수액 맞을 정도로 심한 경우 1일 뒤 빠른 재진. 환자 교육: 설사·구토 3일 이상 지속, 고열, 밤에 깰 정도 복통, 서기 어려움, 통증 이동 → 응급실.</li>
+  <li>전파 방지: 손 씻기 등 격리 수칙 교육. 법정감염병 의심 시 보건소 신고(의증 상병으로도 신고).</li>
+  <li><strong>"식중독 아닌가요?" 답변:</strong> "식중독은 식품과 대변에서 배양된 균주의 인과관계가 성립되어 보건소 역학조사로 진단하는 것입니다. 현재는 음식으로 인한 급성 위장관염이 맞는 진단입니다." — 섣부른 식중독 진단은 식당 피해·신고의무 문제.</li>
+</ul>
+</section>
+
+<section id="constipation">
+<h2>3. 변비 <span class="en">단계별 완하제 처방</span></h2>
+
+<h3>3-1. 진단과 감별</h3>
+<ul>
+  <li>유병률 약 16%. 위험인자: 고령(동반질환·다약제), 여성(황체기 colon transit 증가).</li>
+  <li>진료실 실무: 변 형태(Bristol 1~2)와 횟수(주 3회 미만) 질문. 환자는 '힘주는 것'을 변비로 인식 → 횟수만으로 판단 금지. Bristol &lt;3점이면 delayed transit 예측.</li>
+  <li>ROME IV: 6개월 전 시작, 최근 3개월간 — ① 배변 1/4 이상 힘줌 ② 딱딱·덩어리 변 1/4 이상 ③ 잔변감 ④ 항문직장 폐쇄감 ⑤ 수동 조작 필요 ⑥ 주 3회 미만 자발 배변 — 중 2개 이상 + 완하제 없이 설사 거의 없음 + IBS 기준 미달.</li>
+  <li>이차성 변비 감별: 당뇨·파킨슨병 등 질환, 약제(오피오이드, CCB, NSAIDs).</li>
+</ul>
+<div class="danger-box">
+<strong>변비 Red flag → 대장내시경·적극 의뢰:</strong> 체중 감소, 혈변, 빈혈, 대장암 가족력, 가늘어진 변, 배변습관의 급격한 변화, 지속적인 통증, 대장잠혈 양성
+</div>
+<div class="tip-box">
+<strong>DRE(직장수지검사) — 배변실조(dyssynergia) 소견 시 상급기관 의뢰:</strong> 힘을 줘도 주는 힘이 느껴지지 않음 / 손가락이 밀려 나오지 않음 / 손가락이 오히려 올라감(치골직장근 역설적 수축) / 항문괄약근 역설적 수축 / 직장탈출 촉지
+</div>
+
+<h3>3-2. Routine 처방 — 단계별 접근</h3>
+<div class="flow">생활습관 교정 → Bulking agent → Osmotic laxative → Stimulant(단기 rescue) → Prucalopride(저항성) → (관장·수술은 상급기관)</div>
+<p class="small">※ 식사량 부족하면 bulking 우선. 식사량 괜찮으면 bulking 자제하고 마그밀 등 삼투성 완하제 우선(분변 매복 등 문진만으로 감별 어려운 상황에서 대장압 상승 방지).</p>
+
+<h4>0단계. 생활습관</h4>
+<ul>
+  <li>권장: 섬유질 풍부 채소(브로콜리·시금치·양배추·고구마), 껍질째 먹는 과일(사과·배·키위·자두), 통곡물, 수분 많은 음식, 건자두(프룬). 섬유질 하루 20~35g.</li>
+  <li>제한: 떫은 과일(감·푸른 바나나 — 탄닌), 카페인·알코올(장 탈수), 가공식·저섬유 식단.</li>
+  <li>섬유질은 1주일간 천천히 증량 — 갑자기 늘리면 복통·복부 팽만. 심한 서행성 변비·배변출구 폐쇄·분변 매복·약물 유발 변비에서는 오히려 악화 가능.</li>
+</ul>
+
+<h4>1단계. Bulking agent (팽창성 완하제)</h4>
+<table>
+<tr><th>약제</th><th>특징</th><th>주의·금기</th></tr>
+<tr><td>Psyllium — 아기오과립 <span class="tag tag-otc">일반-급여</span></td><td>수용성 섬유, 타 약제보다 추천. 복용 후 12~72시간에 효과(천천히 온다고 설명). 1~2주 간격 서서히 증량, 충분한 물과 복용</td><td>가스·복부 팽만 사전 고지</td></tr>
+<tr><td>Calcium polycarbophil — 실콘정 <span class="tag tag-rx">전문-급여</span></td><td>동일 계열</td><td><strong>중증 심부전 금기</strong></td></tr>
+</table>
+<p class="small">공통 금기: 심한 서행성 변비, 배변출구 폐쇄, 분변 매복, 약인성 변비 — 부피 증가로 오히려 악화 → 삼투성 완하제 사용.</p>
+
+<h4>2단계. Osmotic laxatives (삼투성 완하제)</h4>
+<table>
+<tr><th>약제</th><th>특징</th><th>주의·금기</th></tr>
+<tr><td>Magnesium — 마그밀정 <span class="tag tag-otc">일반-급여</span></td><td>저가, 빠른 효과(30분~3시간). 국내 지침 만성 변비 strong recommendation</td><td><strong>신장애 금기(고마그네슘혈증)</strong> → PEG·Lactulose로. 근신경계 질환 근쇠약, 분변 매복, 임부·수유부 주의. 소아 주의</td></tr>
+<tr><td>Lactulose — 듀락칸이지시럽 <span class="tag tag-otc">일반-급여(변비)</span><span class="verified">고시 확인</span></td><td>비흡수 이당류 — 당뇨에서도 사용 가능. 1~2일에 걸쳐 서서히 효과. 노인·임산부·간/신기능 저하자 장기 사용 안전. 간성혼수에도 사용. <strong>급여 세부:</strong> 소아변비 1일 1mL/kg 원칙(투여소견서 첨부 시 2mL/kg까지), 만성신부전 환자의 만성변비는 1일 60mL까지 인정</td><td>대장 세균 대사로 가스 발생 → 복부 팽만·방귀. 맛 불량으로 순응도 저하</td></tr>
+<tr><td>Lactitol — 포탈락시럽 <span class="tag tag-non">일반-비급여</span></td><td>Lactulose보다 부드럽고 순한 맛</td><td>—</td></tr>
+<tr><td>PEG — 폴락스산 <span class="tag tag-non">일반-비급여</span></td><td>세균 대사 과정 없어 <strong>가스 발생 없음</strong> — 복부 팽만·가스 호소 환자에 Lactulose보다 유리. 노인 메타분석에서 가장 안전·효과적. 당뇨·간/신기능 저하자 장기 안전</td><td>—</td></tr>
+</table>
+
+<h4>3단계. Stimulant laxatives (자극성 완하제) — 단기 rescue만</h4>
+<table>
+<tr><th>약제</th><th>제품</th><th>주의</th></tr>
+<tr><td>Bisacodyl</td><td>듀오락스정·메이킨큐장용정 <span class="tag tag-non">일반-비급여</span></td><td><strong>최대 1주</strong>. 장폐색·급성 복부 질환 금기. 대사물 BHPM이 prokinetic 효과</td></tr>
+<tr><td>Senna (anthraquinone)</td><td>아락실과립(Psyllium+Senna)·센코딜에프정 <span class="tag tag-non">일반-비급여</span></td><td>장폐색·급성 복부 질환 금기</td></tr>
+<tr><td>Sodium picosulfate</td><td>지엘피코락정(유통 중단)</td><td>—</td></tr>
+</table>
+<p class="small">장기 안전성 미확보 — bulking·osmotic 불응 시 단기간만. 부작용: 흡수장애, 저칼륨혈증 등 전해질 장애, 용량 의존 복통·설사, melanosis coli, 남용.</p>
+
+<h4>4단계. Prucalopride <span class="verified">급여기준 확인(2020.5.1~)</span></h4>
+<ul>
+  <li>고선택적 5-HT4 작용제. 급여기준: <strong>완하제 투여로 증상 완화에 실패한 성인의 만성 변비</strong>에 투여 시 요양급여 인정(Prucalopride succinate 경구제, 2020.5.1 시행).</li>
+  <li><strong>제품별 급여 상이:</strong> 오리지널 레졸로정(얀센)은 비급여. 루칼로정(유영, 2020년 최초 등재) 등 일부 제네릭이 급여 — 처방 전 제품별 급여 여부 확인 필수.</li>
+  <li>하루 최대 2mg. <strong>65세 이상·중증 간장애·중증 신장애는 1mg으로 감량.</strong> 24개월 안전성 확보.</li>
+  <li>부작용: 두통(26.6%), 구역(22.2%), 복통(19.3%), 설사. Cisapride류 심장 부작용은 없으나 심장질환·부정맥 환자는 조심 + ECG 모니터링.</li>
+  <li>금기: 임부·수유부, 투석 환자, 장벽 구조적 이상, 장폐색, 염증성 장질환.</li>
+</ul>
+
+<h4>보조. Probiotics</h4>
+<ul>
+  <li>유효 균주: Bifidobacterium lactis BB-12·HN019·DN-173 010, LGG — 단 처방약으로 가능한 것 없음 → <strong>비급여 제품 활용이 안전</strong>.</li>
+  <li>람노스(L. rhamnosus LCR35): 소아 변비 RCT 근거. 정장생균제 급여 기준은 6세 미만 급성감염성 설사 등에 한정(심평의학 섹션 참조).</li>
+</ul>
+
+<h3>3-3. 환자 특성별 완하제 선택 (요약)</h3>
+<table>
+<tr><th>상황</th><th>권장</th><th>피할 것</th></tr>
+<tr><td>고령</td><td>PEG(최우선 근거), Lactulose, Prucalopride 1mg</td><td>Magnesium 장기(신기능 확인), stimulant 남용</td></tr>
+<tr><td>임신·수유</td><td>Lactulose, PEG</td><td>Magnesium, Prucalopride 금기</td></tr>
+<tr><td>신기능 장애</td><td>PEG, Lactulose(만성신부전 만성변비 1일 60mL까지 급여 인정)</td><td>Magnesium 금기(고마그네슘혈증)</td></tr>
+<tr><td>간기능 장애</td><td>PEG, Lactulose(간성혼수 적응)</td><td>Prucalopride 중증 시 감량(1mg)</td></tr>
+<tr><td>분변 매복</td><td>관장 등 상급기관 연계</td><td>Bulking, Magnesium, stimulant 금기</td></tr>
+<tr><td>수술 후·장폐색</td><td>—</td><td>Bulking·Magnesium·stimulant 금기(장폐색)</td></tr>
+<tr><td>척수 손상</td><td>삼투성·stimulant 제한적, 관장 병행</td><td>Bulking 비추</td></tr>
+</table>
+
+<div class="refer-box">
+<strong>상급병원 의뢰:</strong> ① Red flag(빈혈·혈변·잠혈 양성·체중 감소) → 대장내시경 ② <strong>12주 이상 치료에도 반응 없는 불응성 변비</strong> ③ DRE에서 배변실조 소견.
+</div>
+</section>
+
+<section id="ibs">
+<h2>4. 과민성 장증후군 (IBS) <span class="en">Subtype별 통합 프로토콜 — 국내 지침 + ACG 2021</span></h2>
+
+<h3>4-1. 진단: 배제가 아니라 양성 진단(positive diagnosis)</h3>
+<ul>
+  <li><strong>ROME IV:</strong> 6개월 전 시작, 최근 3개월간 주 1일 이상 반복 복통 + ① 배변과 연관 ② 배변 횟수 변화 연관 ③ 대변 형태 변화 연관 중 2가지 이상.</li>
+  <li>ACG 2021: 배제 진단 전략보다 <strong>양성 진단 전략</strong> 권고 — 병력(복통-배변 연관, 6개월 이상 경과)과 신체검진 중심, 최소한의 검사로 빠르게 치료 시작. 팽만감은 흔하지만 진단에 필수는 아님.</li>
+  <li>유병률 약 4%(미국·영국·캐나다), 여성·50세 미만에서 흔함. 장-뇌 상호작용 장애(DGBI)로 분류.</li>
+</ul>
+
+<h4>Subtype 분류 (치료 선택의 기준)</h4>
+<table>
+<tr><th>Subtype</th><th>기준 (비정상 배변일 기준, Bristol)</th><th>비고</th></tr>
+<tr><td>IBS-C (변비형)</td><td>딱딱·덩어리 변(BSFS 1~2) &gt;25% + 묽은 변(6~7) &lt;25%</td><td>국내는 IBS-D가 가장 흔함</td></tr>
+<tr><td>IBS-D (설사형)</td><td>묽은·물설사(BSFS 6~7) &gt;25% + 딱딱 변 &lt;25%</td><td>국내 가장 흔한 subtype</td></tr>
+<tr><td>IBS-M (혼합형)</td><td>딱딱 변 &gt;25% + 묽은 변 &gt;25%</td><td>—</td></tr>
+<tr><td>IBS-U (비분류형)</td><td>어느 기준도 충족 못함</td><td>—</td></tr>
+</table>
+<div class="tip-box">
+<strong>Subtype 평가 실무 (ACG 2021):</strong> 배변 약제 영향 없는 상태에서 비정상 배변일만 대상으로, <strong>최소 2주간 배변 일기</strong> + BSFS로 우세 형태 판정. <strong>1년 내 절반 이상이 주 subtype이 바뀌므로 주기적 재평가</strong> 필수 — 처방도 그에 맞춰 조정.
+</div>
+
+<h3>4-2. 감별 검사 — 최소 선별만</h3>
+<div class="danger-box">
+<strong>Alarm features (추가 검사·내시경 필요):</strong> 혈변·흑색변, 의도치 않은 체중 감소, 고령에서의 증상 발현(국내 지침 50세 이상), IBD·대장암 가족력, 철결핍성 빈혈, 밤중 설사, 기타 중대 GI 질환
+</div>
+<table>
+<tr><th>검사</th><th>대상</th><th>목적</th></tr>
+<tr><td>Celiac 혈청검사 (IgA tTG + 총 IgA 정량)</td><td>IBS-D·설사 증상 (ACG 권고)</td><td>셀리악병 배제</td></tr>
+<tr><td>Fecal calprotectin(또는 lactoferrin) + CRP</td><td>설사 증상 + alarm(-) (ACG 권고)</td><td>IBD 배제</td></tr>
+<tr><td>CBC·전해질·albumin·대변 WBC·잠혈</td><td>IBS-D 의심 시 (국내 지침)</td><td>기질적 원인 최소 선별</td></tr>
+<tr><td>대변 병원체 검사</td><td>루틴 비권고 — Giardia 노출 위험(여행·오염수) 시만</td><td>—</td></tr>
+<tr><td>대장내시경</td><td>alarm(+) 또는 45~50세 이상 암선별 목적. alarm 없는 젊은 환자 루틴 비권고(ACG) / 국내 지침은 alarm 없어도 적극 권고</td><td>대장암·IBD 배제</td></tr>
+<tr><td>항문직장 생리검사(직장항문내압검사·풍선배출검사)</td><td>골반저 장애 시사 증상 또는 불응성 변비 동반 시</td><td>배변실조 감별 — IBS 환자의 최대 40%에서 항문직장 기능이상 동반</td></tr>
+<tr><td>음식 알레르기 검사</td><td>진성 알레르기 의심 시만, 루틴 비권고</td><td>—</td></tr>
+</table>
+
+<h3>4-3. 공통(전 subtype) 치료</h3>
+<table>
+<tr><th>방법</th><th>내용</th><th>근거 수준</th></tr>
+<tr><td>Low FODMAP 식이</td><td>제한적 시행(limited trial)으로 전반 증상 개선. 지속 시 영양 불균형 위험 — 장기 유지는 식이 교육 자료 제공 또는 영양 상담 연계</td><td>ACG 강한 권고 / 국내 권고</td></tr>
+<tr><td>수용성 섬유(Psyllium 등)</td><td>전반 증상 개선. <strong>불용성 섬유(밀기울 등)는 오히려 악화 가능</strong></td><td>ACG 조건부 권고</td></tr>
+<tr><td>운동·생활습관</td><td>규칙적 신체활동, 잘 씹어 먹기, NSAID 피하기</td><td>국내외 공통</td></tr>
+<tr><td>Peppermint oil</td><td>전반 증상·복통 완화에 도움 가능</td><td>ACG 조건부 권고</td></tr>
+<tr><td>Probiotics</td><td>국내 지침: 보조적 고려(4주 이상 투여 후 효과 판정, 특정 균주 추천 불가, 비급여 제품). <strong>ACG는 근거 부족으로 권고하지 않음</strong> — 지침 간 차이 인지</td><td>지침 간 상이</td></tr>
+<tr><td>장-뇌 심리치료(gut-directed psychotherapy)</td><td>인지행동치료(CBT), 장-지향 최면치료 — 정서적으로 안정된 환자에서 다른 치료와 병행. 중단 후에도 효과 지속</td><td>ACG 조건부 권고</td></tr>
+<tr><td>분변 이식</td><td>권고하지 않음(근거 부족)</td><td>ACG</td></tr>
+</table>
+<p class="small">환자 설명: "약물 효과는 바로 나타나지 않고, 완치보다 증상 조절이 목표"임을 사전에 설명 — 치료 순응도와 만족도에 직결. 불안·우울 동반 흔하므로 심리 평가 병행.</p>
+
+<h3>4-4. IBS-D (설사형) Routine 처방</h3>
+<div class="flow">식이 조절(low FODMAP) → Loperamide(설사 조절) ± 진경제(복통) → 불응·재발 시 Ramosetron 또는 Rifaximin → 난치성 TCA</div>
+<table>
+<tr><th>약제</th><th>위치</th><th>주의</th></tr>
+<tr><td>Loperamide[로프민] <span class="tag tag-otc">일반-급여</span></td><td>1차 지사제 — 설사 자체는 개선하나 <strong>전반 증상(global symptom) 개선 근거는 부족</strong>(ACG)</td><td>복통·팽만에는 효과 없음</td></tr>
+<tr><td>Ramosetron[이리콜정] <span class="tag tag-rx">전문-급여</span><span class="verified">고시 제2025-88호</span></td><td>5-HT3 길항제 — 대장 통각·과민 및 설사 억제. 남성 5μg QD(최대 10μg), 여성 2.5μg QD(최대 5μg)</td><td>K58.1 상병에 급여. 변비 유발 가능</td></tr>
+<tr><td>Rifaximin[노르믹스] <span class="tag tag-rx">전문-급여</span></td><td>비흡수성 항생제 — SIBO 동반 고려, 복통·팽만·대변 성상 정상화. 타 약제 불응·자주 재발 시. ACG는 IBS-D 전반 증상에 권고</td><td>급여: 타 약제 불응 시 2차, 7일 이내, JX999 기재(심평의학 참조)</td></tr>
+<tr><td>TCA (Amitriptyline 10mg 등)</td><td>난치성·복통 동반 시 — 항콜린 효과로 <strong>IBS-D에 더 유리</strong></td><td>저용량 시작, 4주 이상 투여</td></tr>
+<tr><td>Cholestyramine</td><td>담즙산 설사 의심 시</td><td>현재 국내 유통 중단</td></tr>
+</table>
+<p class="small">국외 전용 약제(참고): Alosetron(중증 여성 IBS-D, 허혈성 대장염 위험), Eluxadoline(담낭절제·췌장염 병력 금기) — <strong>국내 미도입</strong>(약가 문제).</p>
+
+<h3>4-5. IBS-C (변비형) Routine 처방</h3>
+<div class="flow">수용성 섬유(Psyllium) → 삼투성 완하제(PEG·Lactulose·마그밀) → 불응 시 Prucalopride → 난치성 의뢰</div>
+<table>
+<tr><th>약제</th><th>위치</th><th>주의</th></tr>
+<tr><td>수용성 섬유 — 아기오과립 <span class="tag tag-otc">일반-급여</span></td><td>1차. 전반 증상 개선 근거</td><td>서서히 증량, 복부 팽만 고지</td></tr>
+<tr><td>PEG[폴락스산] <span class="tag tag-non">비급여</span></td><td>변비 자체에는 1차로 합리적(저가·안전) — 단 <strong>IBS-C의 복통·전반 증상 개선 근거는 없음</strong>(ACG 권고하지 않음)</td><td>변비 프로토콜 3-2 참조</td></tr>
+<tr><td>Lactulose·마그밀</td><td>삼투성 완하제 — 변비 증상 조절</td><td>가스·팽만(Lactulose), 신장애 금기(마그밀)</td></tr>
+<tr><td>Prucalopride <span class="tag tag-rx">전문(제품별 급여 상이)</span></td><td>완하제 불응 만성 변비 — 5-HT4 작용제, 배변 빈도·지속성 개선</td><td>65세 이상 1mg, 부작용 두통·구역</td></tr>
+<tr><td>Prokinetics</td><td>병용 고려(국내 지침)</td><td>2종 병용 급여 불가</td></tr>
+</table>
+<p class="small">국외 전용 약제(참고): Lubiprostone(염소채널 활성제 8μg BID), Linaclotide·Plecanatide(GC-C 작용제), Tegaserod(65세 미만 여성, 심혈관 위험인자 ≤1개) — ACG 강한 권고이나 <strong>국내 미도입</strong>.</p>
+
+<h3>4-6. IBS-M (혼합형) · IBS-U</h3>
+<ul>
+  <li>우세 증상에 따라 IBS-D/IBS-C 전략을 교차 적용. subtype이 1년 내 바뀌는 경우가 절반 이상 — 재진 때마다 배변 양상 재확인 후 처방 조정.</li>
+  <li>복통이 주호소면 진경제 ± neuromodulator 중심. <strong>TCA 필요 시 항콜린 부작용이 적은 Nortriptyline[센시발] 10mg 선호</strong>(Amitriptyline은 변비 악화 가능).</li>
+  <li>지사제·완하제의 상시 병용보다 증상 우세기에 맞춘 간헐적 사용이 실용적.</li>
+</ul>
+
+<h3>4-7. 복통 조절 (전 subtype 공통)</h3>
+<table>
+<tr><th>단계</th><th>처방</th><th>비고</th></tr>
+<tr><td>1차</td><td>진경제(항콜린제 또는 direct muscle relaxant 계열)</td><td>국내 지침 1차. 단 ACG 2021은 근거 질 낮아 전반 증상에 권고하지 않음 — 국내 실정상 경련성 복통에 단기 사용, 2종 병용 급여 가능(계열 무관)</td></tr>
+<tr><td>2차</td><td>TCA 10mg 저용량 (또는 SSRI)</td><td>ACG: IBS 전반 증상에 TCA 권고(강한). 내장 통각·중추 통증 조절. IBS-D에 더 유리, IBS-C는 Nortriptyline</td></tr>
+<tr><td>보조</td><td>Peppermint oil, 심리치료 병행</td><td>—</td></tr>
+</table>
+
+<h3>4-8. Follow-up · 의뢰</h3>
+<ul>
+  <li>초기 치료 후 4~8주 내 재진 — 증상 반응·부작용 확인, subtype 재평가. Probiotics는 4주 투여 후 효과 없으면 중단.</li>
+  <li>치료 1~2개월 후에도 전혀 호전 없으면 다른 진단 고려(셀리악, IBD, 담즙산 설사, SIBO 등 재감별).</li>
+</ul>
+<div class="refer-box">
+<strong>상급병원 의뢰:</strong> alarm feature(+), 대표 약제 순차 투여에도 불응하는 난치성, 항문직장 생리검사·수소호기검사(SIBO) 필요 시, 심한 불안·우울 동반으로 정신건강의학과 협진 필요 시.
+</div>
+</section>
+
+<section id="billing">
+<h2>심평의학 · 상병코드 요약 <span class="en">현행 고시 대조 검증 완료(2026-08-26)</span></h2>
+<table>
+<tr><th>항목</th><th>내용</th><th>검증</th></tr>
+<tr><td>상병코드</td><td>K30 기능성 소화불량 · R10.19 속쓰림 · K58.0 변비 동반 IBS · K58.1 설사 동반 IBS(Ramosetron 급여 상병) · K58.2 혼합형 IBS · K58.8 기타 IBS · K58.9 상세불명 IBS(TCA 허가외 급여는 K58.8/58.9에서 인정 사례) · K52.9 비감염성 위장염·대장염 · A09.0 감염성 위장염(항생제 필요 시, JX999에 근거 기입) · A09.9는 세균성 장염 제외 목적 코드로 사용 주의 · 바이러스성 장염은 A08.-</td><td>—</td></tr>
+<tr><td>Ciprofloxacin 경구제</td><td>고시 제2017-77호(2017.5.1): 원칙은 1차 약제 불응 시 투여. 단 <strong>위장관감염증(세균성 장감염) 상병으로 처방 시에는 1차 약제로도 급여 인정</strong>. A090(급성 위장관 감염증에 의한 설사)으로 청구 시에는 세균성 장감염을 확인할 수 있도록 특정내역(JX999)에 사유 기재 — 미기재 시 삭감 사례 있음</td><td class="small">고시 제2017-77호, 심사사례 확인</td></tr>
+<tr><td>Rifaximin[노르믹스정]</td><td>고시 제2013-127호: 그람양성·음성균에 의한 급성장염 또는 장내세균상 이상으로 인한 설사(여름철 설사·여행자설사·소장결장염)에 <strong>동일 효능 타 약제 불응 시</strong> 투여 원칙, 이외 전액본인부담. 급성·세균성 장염 상병 + JX999에 '타 약제에 호전 없음' 등 2차 사용 사유 필수 기재(누락 시 다량 삭감 사례). 허가사항상 치료는 7일을 넘지 않음</td><td class="small">고시 제2013-127호, 삭감사례 확인</td></tr>
+<tr><td>Ramosetron 경구제</td><td>고시 제2025-88호(2025.6.1): <strong>설사형 과민성 대장증후군에 인정</strong>, 이외 전액본인부담. 이리보정은 2025.2.1 급여 삭제, 이리콜정 2.5·5μg 등 급여 등재(이리스탑정 5μg도 동일 기준으로 신규 등재). 허가 용량: 남성 5μg 1일 1회(최소 2.5~최대 10μg), 여성 2.5μg 1일 1회(최대 5μg)</td><td class="small">고시 제2025-88호 확인</td></tr>
+<tr><td>삼환계 항우울제(Amitriptyline·Nortriptyline)</td><td>허가사항 초과이나 <strong>과민성 장증후군(IBS)에 투여 시 요양급여 인정</strong>(섬유근육통 확진, 턱관절 장애 만성통증도 인정). 상병 K58.8/58.9 활용</td><td class="small">약제 급여기준 확인</td></tr>
+<tr><td>Prokinetics(위장관운동촉진제)</td><td>동일효능군 <strong>2종 이상 병용 시 1종만 급여 인정</strong>(심평원 심사사례 — 근거 미약). 대상 성분: 돔페리돈·메토클로프라미드·레보설프라이드·이토프라이드·모사프라이드 등 8개. 생약 성분 모티리톤과 병용은 삭감되지 않음</td><td class="small">심평원 심사사례 확인</td></tr>
+<tr><td>진경제</td><td>별도 급여기준 없음 — 계열(항콜린제 vs direct muscle relaxant) 무관하게 병용 처방 인정(기전상 synergism). 단 동일 성분 중복 처방은 주의</td><td class="small">닥터김의 건강보험 청진기 확인</td></tr>
+<tr><td>Etizolam 등 향정신성 약물</td><td>향정신성 약물 일반원칙: 대상 성분(Etizolam·Alprazolam·Zolpidem 등) <strong>1회 처방 시 30일까지 급여</strong>(말기·중증 환자, 장기출장·여행 등 예외 시 최대 90일). Triazolam 3주·Cloral hydrate 2주·Zolpidem 4주 이내. 추가로 동일 요양기관 6개월간 처방일수 214일 초과 시 전산심사 삭감. 상병 G47.0 등</td><td class="small">고시 제2011-49호 일반원칙 + 전산심사 강화 확인</td></tr>
+<tr><td>Buspirone</td><td>F41.9 불안장애 상병 사용</td><td>—</td></tr>
+<tr><td>Mirtazapine</td><td>우울증 상병 필수. 비정신과 의사 60일까지 처방·반복 가능</td><td>—</td></tr>
+<tr><td>Lactulose</td><td>일반의약품(듀락칸이지시럽 등): <strong>변비(만성변비, 영·유아 및 소아 변비, 분만 후 변비)에서 급여</strong>. 허가 범위 초과 시에도 소아변비 1일 1mL/kg(투여소견서 첨부 시 2mL/kg), 만성신부전 환자 만성변비 1일 60mL까지 인정. 전문의약품(듀락칸시럽 등): 만성 문맥계 뇌증의 간성혼수 치료·예방에서 급여</td><td class="small">고시 제2013-127호 확인</td></tr>
+<tr><td>정장생균제(Probiotics)</td><td>고시 제2013-127호: ① 6세 미만 급성감염성 설사 ② 6세 미만 항생제 연관 설사 ③ 괴사성 장염에만 급여. <strong>6세 이상은 괴사성 장염만 인정</strong>, 이외는 전액본인부담 — 임의로 비급여 처리하면 임의비급여로 실사 대상 주의. 6세 미만 항생제 연관 설사는 JX999에 '항생제로 인한 설사' 기재</td><td class="small">고시 제2013-127호, 삭감사례 확인</td></tr>
+<tr><td>Prucalopride</td><td>급여기준(2020.5.1): <strong>완하제 투여로 증상 완화에 실패한 성인의 만성 변비</strong>에 인정. 오리지널 레졸로정은 비급여, 루칼로정 등 일부 제네릭 급여 — 제품별 확인</td><td class="small">급여기준·등재 현황 확인</td></tr>
+<tr><td>지사제(Loperamide·Smectite)</td><td>A09.0, K58.1 상병에서 급여</td><td>—</td></tr>
+</table>
+<div class="tip-box">
+<strong>최신성 메모:</strong> 위 항목은 2026-08-26에 심평원 보험인정기준·복지부 고시·심사사례와 대조함. 고시는 수시 개정되므로 처방 전 최신 고시 재확인. 건강보험 실무는 '닥터김의 건강보험 청진기' 네이버 블로그를 우선 참조.
+</div>
+</section>
+
+<section id="ref">
+<h2>출처 · 사용 주의</h2>
+<ul>
+  <li>일차진료_guideline_17 GI_설사 DDx 및 치료 (Infect Chemother 2019;51:217-43 등 인용)</li>
+  <li>일차진료_guideline_18 GI_변비 치료 (J Korean Med Assoc 2018;61:57-61, Korean J Gastroenterol 2019;73:92-98 인용)</li>
+  <li>일차진료_guideline_20 GI_복통, Functional GI diseases (ROME IV, Korean J Gastroenterol 2019;73:77-83, Lancet 2023;402:1773-85 등 인용)</li>
+  <li>일차진료_guideline_19 GI_GERD, 일차진료_guideline_21 GI_기타약제 (연관 처방 보조 근거)</li>
+  <li>IBS 섹션 추가 근거: Lacy BE et al. ACG Clinical Guideline: Management of Irritable Bowel Syndrome. Am J Gastroenterol 2021;116:17-44 · 대한소화기기능성질환운동학회 과민성장증후군 진료지침(2017 개정)</li>
+  <li>급여 검증 근거: 보건복지부 고시 제2011-49호(향정신성 약물 일반원칙), 제2013-127호(정장생균제·Rifaximin·Lactulose 등), 제2017-77호(Ciprofloxacin), 제2025-88호(Ramosetron), Prucalopride 경구제 급여기준(2020.5.1), 심평원 심사사례(위장관운동촉진제 병용), 닥터김의 건강보험 청진기(진경제 병용 등)</li>
+</ul>
+<p class="small">본 문서는 일차의료 외래에서의 진료 참고용 내부 프로토콜이며, 개별 환자의 최종 진단·처방·의뢰 결정은 담당 의사의 판단에 따른다. 약제 용량·급여 기준은 처방 시점의 최신 허가사항·고시를 반드시 확인한다. 국외 전용 약제(Linaclotide, Lubiprostone, Alosetron, Eluxadoline, Tegaserod)는 국내 미도입으로 참고용 표기.</p>
+</section>
+
+</main>
+<footer>
+  일차의료 소화기 약속처방 프로토콜 v1.2 · 복통/설사/변비/IBS · 제작 2026-08-26 · v1.1: 심평의학 현행 고시 대조 보정 · v1.2: IBS subtype별 통합 프로토콜 섹션 추가(ACG 2021 + 국내 지침), K58 세부 상병코드 보강 · 검토 주기: 고시 개정 시
+</footer>
+</div>
+</body>
+</html>
